@@ -4,18 +4,18 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*
  * Clase que conserva la coleccion global de los usuarios del sistema.
- * Los usuarios se identifican por su cedula de identidad.
+ * Los usuarios se identifican por su nickname.
  * Se implementa en base al patron Singleton.
  * 
  */ 
 public class ManejadorUsuario {
-    private Map<String, Usuario> usuariosCI;           // Coleccion
+    private Map<String, Usuario> usuarios;           // Coleccion
     private static ManejadorUsuario instancia = null;  // Instancia unica de manejador usando Singleton
 
     private ManejadorUsuario() {                       // Constructor privado
-        usuariosCI = new HashMap<String, Usuario>();
+        usuarios = new HashMap<String, Usuario>();
     }
 
     public static ManejadorUsuario getinstance() {
@@ -25,19 +25,19 @@ public class ManejadorUsuario {
     }
 
     public void addUsuario(Usuario usu) {
-        String ci = usu.getCedulaIdentidad();    // Get de la cedula
-        usuariosCI.put(ci, usu);                 // agrego al usuario a la coleccion
+        String ci = usu.getNickname();    // Get de la cedula
+        usuarios.put(ci, usu);                 // agrego al usuario a la coleccion
     }
 
-    public Usuario obtenerUsuario(String ci) {     // Recibo una cedula y devuelvo el objeto Usuario
-        return ((Usuario) usuariosCI.get(ci));
+    public Usuario obtenerUsuario(String nickname) {     // Recibo una cedula y devuelvo el objeto Usuario
+        return ((Usuario) usuarios.get(nickname));
     }
 
     public Usuario[] getUsuarios() {      // Devuelve la coleccion completa de los usuarios en array
-        if (usuariosCI.isEmpty())
+        if (usuarios.isEmpty())
             return null;
         else {
-            Collection<Usuario> usrs = usuariosCI.values(); // Metodo values devuelve la coleccion entera
+            Collection<Usuario> usrs = usuarios.values(); // Metodo values devuelve la coleccion entera
             Object[] o = usrs.toArray();                    // Devuelve los objetos a una array     
             Usuario[] usuarios = new Usuario[o.length];     // Creo  un array de usuarios
             for (int i = 0; i < o.length; i++) {
