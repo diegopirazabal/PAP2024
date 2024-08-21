@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+version="3.1"
+xsi:schemalocation="https://jakarta.ee/xml/ns/persistence
+https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd">
+<persistence-unit name="airelibre.uy" transactiontype="RESOURCE_LOCAL">
+ <!-- Clase de proveedor de JPA -->
+<provider>org.eclipse.persistence.jpa.PersistenceProvider
+</provider>
+<!-- Esto cuando corro la primer vez genera las
+tablas -->
+<class>logica.Usuario</class>
+<properties>
+<property name="jakarta.persistence.jdbc.driver"
+value="org.hsqldb.jdbcDriver" />
+<property
+name="jakarta.persistence.jdbc.url"
+value="jdbc:hsqldb:/user/instalacion/desktop/base2024/Mibas
+e;shutdown=true" />
+<property
+name="jakarta.persistence.jdbc.user"
+value="sa" />
+<property
+name="jakarta.persistence.jdbc.password"
+value="" />
+<!-- Configuracion de generacion del esquema -->
+<property
+name="eclipselink.ddl-generation"
+value="create-tables" />
+<property
+name="eclipselink.ddl-generation.outputmode" value="database" />
+</properties>
+</persistence-unit>
+</persistence>

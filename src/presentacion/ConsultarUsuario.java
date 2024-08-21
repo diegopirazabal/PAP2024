@@ -1,5 +1,5 @@
 package presentacion;
-
+/*
 import javax.swing.JInternalFrame;
 
 import excepciones.UsuarioNoExisteException;
@@ -13,12 +13,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+*/
 /**
  * JInternalFrame que permite consultar la información de un usuario del sistema.
  * @author TProg2017
  *
- */
+ **/
+/*
 @SuppressWarnings("serial")
 public class ConsultarUsuario extends JInternalFrame {
 
@@ -37,9 +38,7 @@ public class ConsultarUsuario extends JInternalFrame {
     private JButton btnCerrar;
     private JLabel lblInfoUsuario;
 
-    /**
-     * Create the frame.
-     */
+
     public ConsultarUsuario(IControladorUsuario icu) {
         // Se inicializa con el controlador de usuarios
         controlUsr = icu;
@@ -156,3 +155,4 @@ public class ConsultarUsuario extends JInternalFrame {
         textFieldCI.setText("");
     }
 }
+*/
