@@ -156,3 +156,4 @@ public class ConsultarUsuario extends JInternalFrame {
     }
 }
 */
+int x;
