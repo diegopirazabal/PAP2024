@@ -14,7 +14,6 @@ public class Actividad {
     private String imagen; // URL o nombre de archivo de la imagen
     private Entrenador entrenador; // Relación con el entrenador
     private List<Clase> clases; // Relación con las clases
-
     public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -27,7 +26,7 @@ public class Actividad {
         this.entrenador = entrenador;
         this.clases = clases;
     }
-
+HOLAAAAAASDSADSADAS
     // Getters y Setters
 
     public String getNombre() {
