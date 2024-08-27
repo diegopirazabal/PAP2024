@@ -13,7 +13,7 @@ public class Inscripcion {
         this.fechaInscripcion = fechaInscripcion;
         this.cantidadDeportistas = cantidadDeportistas;
         this.costo = costo;
-        this.clase = clase;
+        this.clase = clase; //hols
         this.deportista = deportista;
     }
 
