@@ -26,7 +26,7 @@ public class Actividad {
         this.entrenador = entrenador;
         this.clases = clases;
     }
-HOLAAAAAASDSADSADAS
+    
     // Getters y Setters
 
     public String getNombre() {
@@ -109,7 +109,3 @@ HOLAAAAAASDSADSADAS
         this.clases = clases;
     }
 }
-
-aaaaaaaaaaajs
-
-
