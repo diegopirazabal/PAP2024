@@ -8,13 +8,15 @@ public class Usuario {
     private String apellido;
     private String email;
     private LocalDate fechaNacimiento;
+    private String contrasena;
 
-    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.contrasena = contrasena;
     }
 
     // Getters y Setters
@@ -56,6 +58,14 @@ public class Usuario {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setContrasena(String contrasena){
+        this.contrasena = contrasena;
+    }
+
+    public String getContrasena(){
+        return contrasena;
     }
 }
 
