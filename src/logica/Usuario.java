@@ -8,13 +8,15 @@ public class Usuario {
     private String apellido;
     private String email;
     private LocalDate fechaNacimiento;
+    private String contrasena;
 
-    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.contrasena = contrasena;
     }
 
     // Getters y Setters
@@ -57,14 +59,22 @@ public class Usuario {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+	public String getConstrasena() {
+		return contrasena;
+	}
+	
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
 }
 
 // Subclase Deportista
 class Deportista extends Usuario {
     private boolean esProfesional;
 
-    public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, boolean esProfesional) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena,  boolean esProfesional) {
+        super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.esProfesional = esProfesional;
     }
 
@@ -82,8 +92,8 @@ class Entrenador extends Usuario {
     private String disciplina;
     private String linkSitioWeb;
 
-    public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String disciplina, String linkSitioWeb) {
-        super(nickname, nombre, apellido, email, fechaNacimiento);
+    public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
+        super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.disciplina = disciplina;
         this.linkSitioWeb = linkSitioWeb;
     }

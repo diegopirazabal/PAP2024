@@ -9,25 +9,20 @@ public class DataUsuario {
     private String apellido;
     private String email;
     private LocalDate fechaNacimiento;
+    private String contrasena;
 
-    public DataUsuario () {
-    	this.setNickname(new String());
-    	this.setNombre(new String());
-    	this.setApellido(new String());
-    	this.setEmail(new String());
-    	//this.setFechaNacimiento(LocalDate());
-    }
-    
-    public DataUsuario (String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
+    public DataUsuario () {}
+
+	public DataUsuario (String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
     	this.setNickname(nickname);
     	this.setNombre(nombre);
     	this.setApellido(apellido);
     	this.setEmail(email);
     	this.setFechaNacimiento(fechaNacimiento);
+    	this.setContrasena(contrasena);
     }
     
     //Getters
-    
     public String getNickname() {
     	return nickname;
     }
@@ -46,6 +41,10 @@ public class DataUsuario {
     
     public LocalDate getFechaNacimiento() {
     	return fechaNacimiento;
+    }
+    
+    public String getConstrasena() {
+    	return contrasena;
     }
     
     //Setters
@@ -68,5 +67,9 @@ public class DataUsuario {
    
    public void setFechaNacimiento(LocalDate fechaNacimiento) {
 	   this.fechaNacimiento = fechaNacimiento;
+   }
+   
+   public void setContrasena(String contrasena) {
+	   this.contrasena = contrasena;
    }
 }
