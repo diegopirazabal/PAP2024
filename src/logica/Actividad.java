@@ -1,18 +1,40 @@
 package logica;
 
+import clase.java;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Actividades")
 public class Actividad {
+    @Column (name = Nombre, nullable = false, length = 50)
     private String nombre;
+    
+    @Column (name = Descripcion, nullable = false, length = 50)
     private String descripcion;
+
+    @Column (name = Duracion, nullable = false)
     private int duracion; // En minutos
+
+    @Column (name = Costo)
     private double costo;
+
+    @Column (name = Lugar, length = 50)
     private String lugar;
+
+    @Column (name = fechaAlta)
     private LocalDate fechaAlta;
+
+    @Column (name = Estado, nullable = false)
     private String estado; // Ej: Activa, Inactiva, etc.
+    
     private String imagen; // URL o nombre de archivo de la imagen
+    
+    @OneToOne
     private Entrenador entrenador; // Relación con el entrenador
+    
+    @OneToMany( targetEntity=Clase.class)
     private List<Clase> clases; // Relación con las clases
     public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
         this.nombre = nombre;
