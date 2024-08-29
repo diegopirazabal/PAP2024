@@ -1,33 +1,33 @@
 package logica;
 
-import clase.java;
+import logica.Clase;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Actividades")
+@Table(name = "ACTIVIDADES")
 public class Actividad {
-    @Column (name = Nombre, nullable = false, length = 50)
+    @Column (name = "Nombre", nullable = false, length = 50)
     private String nombre;
     
-    @Column (name = Descripcion, nullable = false, length = 50)
+    @Column (name = "Descripcion", nullable = false, length = 50)
     private String descripcion;
 
-    @Column (name = Duracion, nullable = false)
+    @Column (name = "Duracion", nullable = false)
     private int duracion; // En minutos
 
-    @Column (name = Costo)
+    @Column (name = "Costo")
     private double costo;
 
-    @Column (name = Lugar, length = 50)
+    @Column (name = "Lugar", length = 50)
     private String lugar;
 
-    @Column (name = fechaAlta)
+    @Column (name = "fechaAlta")
     private LocalDate fechaAlta;
 
-    @Column (name = Estado, nullable = false)
-    private String estado; // Ej: Activa, Inactiva, etc.
+    @Column (name = "Estado", nullable = false)
+    private String estado; // Ej: Activa, Inactiva, etc. DEBERIA SER UN ENUM ?
     
     private String imagen; // URL o nombre de archivo de la imagen
     
@@ -36,6 +36,9 @@ public class Actividad {
     
     @OneToMany( targetEntity=Clase.class)
     private List<Clase> clases; // Relación con las clases
+    
+    public Actividad(){};
+    
     public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
         this.nombre = nombre;
         this.descripcion = descripcion;
