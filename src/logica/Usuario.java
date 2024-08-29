@@ -97,6 +97,7 @@ public String getContrasena(){
 
 // Subclase Deportista
 @Entity
+@Table(name = Deportistas)
 class Deportista extends Usuario {
     @Column (name = Profesional, nullable = false)
     private boolean esProfesional;
@@ -116,6 +117,8 @@ class Deportista extends Usuario {
 }
 
 // Subclase Entrenador
+@Entity
+@Table(name = Entrenadores)
 class Entrenador extends Usuario {
     @Column (name = Disciplina, nullable = false, length = 50)
     private String disciplina;
