@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 @Entity 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)  //no se si va todo esto xd "unique = true" ?
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)  //no se si va todo esto xd "unique = true" ? no se si se crea la tabla o hay que poner el @column tambn
     private String nickname;
     
     @Column (name = Nombre, nullable = false, length = 50) 
