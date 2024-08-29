@@ -1,37 +1,31 @@
 package logica;
-import Actividad.java; // ??? dxxd
 import java.util.\*;
 /**Representa a un usuario en el sistema con nombre, apellido y cedula de identidad. */
 import java.time.LocalDate;
 
 //Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
-package com.example.demo.model;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity 
-@Table(name = Usuarios)
+@Table(name = "USUARIOS")  // VA A HABER TABLA USUARIOS?
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)  //no se si va todo esto xd "unique = true" ? no se si se crea la tabla o hay que poner el @column tambn
+    @Id
     private String nickname;
     
-    @Column (name = Nombre, nullable = false, length = 50) 
+    @Column (name = "Nombre", nullable = false, length = 50) 
     private String nombre;
     
-    @Column (name = Apellido, nullable = false, length = 50)
+    @Column (name = "Apellido", nullable = false, length = 50)
     private String apellido;
     
-    @Column (name = Email, nullable = false, length = 50)
+    @Column (name = "Email", nullable = false, length = 50)
     private String email;
     
-    @Column (name = fechaNac, nullable = false)
+    @Column (name = "fechaNac", nullable = false)
     private LocalDate fechaNacimiento;
     
-    @Column (name = Contrasena, nullable = false, length = 20)
+    @Column (name = "Contrasena", nullable = false, length = 20)
     private String contrasena;
 };
     
@@ -97,9 +91,9 @@ public String getContrasena(){
 
 // Subclase Deportista
 @Entity
-@Table(name = Deportistas)
+@Table(name = "DEPORTISTAS")
 class Deportista extends Usuario {
-    @Column (name = Profesional, nullable = false)
+    @Column (name = "Profesional", nullable = false)
     private boolean esProfesional;
 
     public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) {
@@ -118,15 +112,15 @@ class Deportista extends Usuario {
 
 // Subclase Entrenador
 @Entity
-@Table(name = Entrenadores)
+@Table(name = "ENTRENADORES")
 class Entrenador extends Usuario {
-    @Column (name = Disciplina, nullable = false, length = 50)
+    @Column (name = "Disciplina", nullable = false, length = 50)
     private String disciplina;
     
-    @Column (name = URL, nullable = false, length = 75)
+    @Column (name = "URL", nullable = false, length = 75)
     private String linkSitioWeb;
     
-    @OneToMany(targetEntity=Usuario.class)
+    @OneToMany(targetEntity=Usuario.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
     private List<Actividad> actividades;
     
     public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
