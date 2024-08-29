@@ -1,4 +1,6 @@
 package logica;
+import Actividad.java; // ??? dxxd
+import java.util.\*;
 /**Representa a un usuario en el sistema con nombre, apellido y cedula de identidad. */
 import java.time.LocalDate;
 
@@ -116,9 +118,13 @@ class Deportista extends Usuario {
 class Entrenador extends Usuario {
     @Column (name = Disciplina, nullable = false, length = 50)
     private String disciplina;
+    
     @Column (name = URL, nullable = false, length = 75)
     private String linkSitioWeb;
-
+    
+    @OneToMany(targetEntity=Usuario.class)
+    private List<Actividad> actividades;
+    
     public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.disciplina = disciplina;
