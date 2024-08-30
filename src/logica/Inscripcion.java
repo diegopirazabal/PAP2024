@@ -1,14 +1,34 @@
 package logica;
-
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "INSCRIPCIONES")
 public class Inscripcion {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "Fecha", nullable = false)
     private LocalDate fechaInscripcion;
+
+    @Column(name = "CantidadDeportistas", nullable = false)
     private int cantidadDeportistas;
+
+    @Column(name = "Costo", nullable = false)
     private double costo;
+
+    @ManyToOne
     private Clase clase; // Relación con la clase
+
+    @ManyToOne
     private Deportista deportista; // Relación con el deportista
 
+    // Constructor sin parámetros
+    public Inscripcion() {}
+
+    // Constructor con parámetros
     public Inscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
         this.fechaInscripcion = fechaInscripcion;
         this.cantidadDeportistas = cantidadDeportistas;
@@ -18,7 +38,6 @@ public class Inscripcion {
     }
 
     // Getters y Setters
-
     public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
     }
