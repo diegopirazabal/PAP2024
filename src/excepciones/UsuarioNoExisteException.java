@@ -12,4 +12,10 @@ public class UsuarioNoExisteException extends Exception {
     }
 }
 
+<<<<<<< HEAD
 jabfdsk
+=======
+asjbiagsfa
+anashe 3
+guille gay anashe 4
+>>>>>>> 4cb678d26ad33f86cc127df105e0e4627e2f5cdd
