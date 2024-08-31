@@ -28,4 +28,4 @@ public class manejadorUsuario {
         return usuario;
     }
     // Otros métodos...
-}
+} 
