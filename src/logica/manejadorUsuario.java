@@ -1,13 +1,13 @@
 package logica;
-
+import excepciones.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ManejadorUsuario {
+public class manejadorUsuario {
     private Map<String, Usuario> usuarios;
 
     // Constructor
-    public ManejadorUsuario() {
+    public manejadorUsuario() {
         usuarios = new HashMap<>();
     }
 
@@ -20,13 +20,12 @@ public class ManejadorUsuario {
     }
 
     // Método para obtener un usuario por su nickname
-    public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteExcepcion {
+    public Usuario obtenerUsuario(String nickname) throws UsuarioNoExisteException {
         Usuario usuario = usuarios.get(nickname);
         if (usuario == null) {
-            throw new UsuarioNoExisteExcepcion("El usuario con nickname " + nickname + " no existe.");
+            throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
         }
         return usuario;
     }
-
     // Otros métodos...
 }
