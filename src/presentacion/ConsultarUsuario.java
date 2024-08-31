@@ -1,7 +1,8 @@
 package presentacion;
-/*
-import javax.swing.JInternalFrame;
 
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+/*
 import excepciones.UsuarioNoExisteException;
 import logica.DataUsuario;
 import logica.IControladorUsuario;
@@ -156,4 +157,3 @@ public class ConsultarUsuario extends JInternalFrame {
     }
 }
 */
-int x;

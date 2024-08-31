@@ -1,5 +1,5 @@
 package presentacion;
-/*
+
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
@@ -15,13 +15,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-*/
+
 /**
  * JInternalFrame que permite listar todos los usuarios del sistema.
  * @author TProg2017
  *
  */
-/*
+
 @SuppressWarnings("serial")
 public class ListaUsuarios extends JInternalFrame {
 
@@ -36,7 +36,7 @@ public class ListaUsuarios extends JInternalFrame {
 
    
   
-    public ListaUsuarios(IControladorUsuario icu) {
+    public ListaUsuarios(IControladorUsuario icu) { // nos falta crear el controlador de usuarios!
         // Se inicializa con el controlador de usuarios
         controlUsr = icu;
         
@@ -93,4 +93,3 @@ public class ListaUsuarios extends JInternalFrame {
     }
 
 }
-*/

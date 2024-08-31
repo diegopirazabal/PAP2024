@@ -3,7 +3,7 @@ package logica;
 import java.time.LocalDate;
 
 public class DataUsuario {
-	
+
 	private String nickname;
     private String nombre;
     private String apellido;
