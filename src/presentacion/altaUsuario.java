@@ -16,6 +16,7 @@ public class altaUsuario extends JFrame {
 	    private JTextField fechaNacimientoField;
         private JTextField contrasenaField;
 	    private JRadioButton deportistaRadio;
+	
 	    private JRadioButton entrenadorRadio;
 	    private JCheckBox checkBoxProfesional;
 	    private JTextField txtDisciplina;
