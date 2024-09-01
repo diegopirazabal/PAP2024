@@ -1,12 +1,18 @@
 package presentacion;
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
-
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import logica.ControladorUsuario;
 import java.time.LocalDate;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import logica.controladorUsuario;
 
 public class altaUsuario extends JFrame {
 	 private JTextField nicknameField;
@@ -25,7 +31,7 @@ public class altaUsuario extends JFrame {
 	    private JPanel entrenadorPanel;
 	    private JButton btnRegistrar;
 	   // CONTROLADOR USUARIO
-	    ControladorUsuario cntrlUsuario;
+	    controladorUsuario cntrlUsuario;
 
     public altaUsuario() {
     	setTitle("Alta de Usuario");
@@ -158,4 +164,6 @@ public class altaUsuario extends JFrame {
         	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
+    
     }
+}

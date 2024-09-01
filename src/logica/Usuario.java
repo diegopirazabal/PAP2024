@@ -25,7 +25,7 @@ public abstract class Usuario {
     
     @Column (name = "Contrasena", nullable = false, length = 20)
     private String contrasena;
-};
+;
     
 public Usuario(){};
     
@@ -147,3 +147,4 @@ class Entrenador extends Usuario {
         this.linkSitioWeb = linkSitioWeb;
     }
 }
+};

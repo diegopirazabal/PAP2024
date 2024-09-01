@@ -1,6 +1,9 @@
 package logica;
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.stream.Collectors;
+
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 import jakarta.persistence.EntityManager;
@@ -8,6 +11,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import dtos.*;
+import dtos.dataTypeUsuario;
 
 public class manejadorUsuarios {
     private EntityManagerFactory emf;
@@ -78,7 +82,7 @@ public class manejadorUsuarios {
         try {
             List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
             return usuarios.stream()
-                    .map(usuario -> new DataTypeUsuario(
+                    .map(usuario -> new dataTypeUsuario(
                             usuario.getNickname(),
                             usuario.getNombre(),
                             usuario.getApellido(),
