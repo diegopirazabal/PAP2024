@@ -1,12 +1,12 @@
 package presentacion;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import logica.ControladorUsuario;
 import java.time.LocalDate;
+
 
 public class altaUsuario extends JFrame {
 	 private JTextField nicknameField;
@@ -53,16 +53,19 @@ public class altaUsuario extends JFrame {
         panel.add(new JLabel("Correo:"));
         correoField = new JTextField();
         panel.add(correoField);
-
+        
         panel.add(new JLabel("Fecha de Nacimiento (dd/mm/yyyy):"));
         fechaNacimientoField = new JTextField();
         panel.add(fechaNacimientoField);
         
-                // Radio buttons para seleccionar si es deportista o entrenador
-                JLabel label = new JLabel("Tipo de Usuario:");
-                panel.add(label);
+        panel.add(new JLabel("Contraseña:"));
         contrasenaField = new JTextField();
-        panel.add(contrasena);
+        panel.add(contrasenaField);
+       
+        // Radio buttons para seleccionar si es deportista o entrenador
+        JLabel label = new JLabel("Tipo de Usuario:");
+        panel.add(label);
+       
         JPanel radioPanel = new JPanel();
         deportistaRadio = new JRadioButton("Deportista");
         entrenadorRadio = new JRadioButton("Entrenador");
@@ -145,7 +148,7 @@ public class altaUsuario extends JFrame {
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String correo = correoField.getText();
-        LocalDate fechaNacimiento = fechaNacimientoField.setDate();
+        LocalDate fechaNacimiento = fechaNacimientoField.getDate();
 		String contrasena = contrasenaField.getText();
         String tipoUsuario = deportistaRadio.isSelected() ? "Deportista" : "Entrenador";
         //FALTA CHECKEAR EXCEPCIONES
@@ -159,3 +162,5 @@ public class altaUsuario extends JFrame {
 
         }
     }
+}
+    

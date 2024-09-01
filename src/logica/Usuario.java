@@ -148,3 +148,5 @@ class Entrenador extends Usuario {
         this.linkSitioWeb = linkSitioWeb;
     }
 }
+}
+
