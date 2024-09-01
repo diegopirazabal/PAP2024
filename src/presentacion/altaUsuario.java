@@ -5,7 +5,9 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import logica.ControladorUsuario;
+
+import logica.controladorUsuario;
+
 import java.time.LocalDate;
 
 public class altaUsuario extends JFrame {
@@ -25,7 +27,7 @@ public class altaUsuario extends JFrame {
 	    private JPanel entrenadorPanel;
 	    private JButton btnRegistrar;
 	   // CONTROLADOR USUARIO
-	    ControladorUsuario cntrlUsuario;
+	    controladorUsuario cntrlUsuario;
 
     public altaUsuario() {
     	setTitle("Alta de Usuario");
@@ -158,4 +160,4 @@ public class altaUsuario extends JFrame {
         	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
-    }
+    }}; 
