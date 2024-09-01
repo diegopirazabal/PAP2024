@@ -1,15 +1,15 @@
 package logica;
-import logica.Usuario;
+import logica.Usuario.*;
 import java.time.LocalDate;
 import java.util.*;
-
 import excepciones.*;
+import dtos.*;
 
-public class ControladorUsuario {
-    private manejadorUsuario manejador;
+public class controladorUsuario {
+    private manejadorUsuarios manejador;
 
-    public ControladorUsuario() {
-        manejador = new manejadorUsuario();
+    public controladorUsuario() {
+        manejador = new manejadorUsuarios();
     }
 
     public void crearDeportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
@@ -31,8 +31,8 @@ public class ControladorUsuario {
     	 manejador.eliminar(nickname);
     }
     
-    public List<Usuario> listarTodos(){
-    	return manejador.obtenerTodos();
+    public List<dataTypeUsuario> listarTodos() {
+        return manejador.obtenerTodos();
     }
 }
 /*

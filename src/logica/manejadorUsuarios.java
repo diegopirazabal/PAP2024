@@ -1,3 +1,4 @@
+package logica;
 import java.util.ArrayList;
 import java.util.List;
 import excepciones.UsuarioNoExisteException;
@@ -6,12 +7,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import dtos.*;
 
-public class manejadorUsuario {
+public class manejadorUsuarios {
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    public manejadorUsuario() {
+    public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
         this.em = emf.createEntityManager();
     }
@@ -72,9 +74,17 @@ public class manejadorUsuario {
         }
     }
 
-    public List<Usuario> obtenerTodos() {
+    public List<dataTypeUsuario> obtenerTodos() {
         try {
-            return em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+            return usuarios.stream()
+                    .map(usuario -> new DataTypeUsuario(
+                            usuario.getNickname(),
+                            usuario.getNombre(),
+                            usuario.getApellido(),
+                            usuario.getEmail(),
+                            usuario.getFechaNacimiento()))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();

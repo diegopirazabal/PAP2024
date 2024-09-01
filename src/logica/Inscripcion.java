@@ -1,23 +1,34 @@
 package logica;
-
+import logica.Usuario;
+import logica.Usuario.Deportista;
+import logica.Usuario.Entrenador;
 import java.time.LocalDate;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "INSCRIPCIONES")
 public class Inscripcion {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "FechaInscripcion", nullable = false)
     private LocalDate fechaInscripcion;
+
+    @Column(name = "CantidadDeportistas", nullable = false)
     private int cantidadDeportistas;
+
+    @Column(name = "Costo", nullable = false)
     private double costo;
-    private Clase clase; // Relación con la clase
-    private Deportista deportista; // Relación con el deportista
 
-    public Inscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
-        this.fechaInscripcion = fechaInscripcion;
-        this.cantidadDeportistas = cantidadDeportistas;
-        this.costo = costo;
-        this.clase = clase;
-        this.deportista = deportista;
-    }
+    @ManyToOne
+    @JoinColumn(name = "clase_id")
+    private Clase clase;
 
-    // Getters y Setters
+    @ManyToOne
+    @JoinColumn(name = "deportista_id")
+    private Deportista deportista;
 
     public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
