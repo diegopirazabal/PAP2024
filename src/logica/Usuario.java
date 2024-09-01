@@ -95,6 +95,8 @@ class Deportista extends Usuario {
     @Column (name = "Profesional", nullable = false)
     private boolean esProfesional;
 
+    public Deportista() {};
+    
     public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.esProfesional = esProfesional;
@@ -121,6 +123,8 @@ class Entrenador extends Usuario {
     
     @OneToMany(targetEntity=Usuario.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
     private List<Actividad> actividades;
+    
+    public Entrenador() {};
     
     public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
