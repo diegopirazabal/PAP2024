@@ -1,7 +1,7 @@
 package logica;
-import logica.Usuario;
+
 import logica.Usuario.Deportista;
-import logica.Usuario.Entrenador;
+
 import java.time.LocalDate;
 import jakarta.persistence.*;
 

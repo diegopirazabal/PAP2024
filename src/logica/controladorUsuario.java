@@ -19,6 +19,7 @@ public class controladorUsuario {
     }
 
     public void crearEntrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
+
     	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }
