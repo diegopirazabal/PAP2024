@@ -1,4 +1,5 @@
 package logica;
+import jakarta.persistence.*;
 
 import logica.Clase;
 import java.time.LocalDate;
