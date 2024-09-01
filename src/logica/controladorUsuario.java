@@ -1,6 +1,6 @@
 package logica;
 import logica.Usuario.*;
-import persistencia.*;
+import persistencia.Persistencia;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,74 @@
 package presentacion;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JToolBar;
+import java.awt.BorderLayout;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Dimension;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
+import logica.manejadorUsuarios;
+
+import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Action;
+
+public class Principal {
+    public static void main(String[] args) {
+        // Crear la ventana principal
+        JFrame frame = new JFrame("Mi Aplicación");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+
+        // Crear un panel y agregar componentes
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Nombre:");
+        label.setBounds(22, 12, 40, 13);
+        JTextField textField = new JTextField(20);
+        textField.setBounds(72, 9, 166, 19);
+        JButton button = new JButton("Buscar usuario");
+        button.setBounds(248, 8, 99, 21);
+
+        // Crear una instancia del manejador
+        manejadorUsuarios manejadorUsuario = new manejadorUsuarios(); // Corrige el nombre de la clase según tu implementación
+
+        // Agregar un ActionListener al botón
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el texto del campo de texto
+                String nombre = textField.getText();
+                // Llamar al método del manejador
+                manejadorUsuario.buscarUsuarioPorNickname(nombre); // Asegúrate de que el método y parámetro son correctos
+            }
+        });
+        panel.setLayout(null);
+
+        panel.add(label);
+        panel.add(textField);
+        panel.add(button);
+
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+}
+
+
 /*
 import java.awt.EventQueue;  // La clase EventQueue es para manejo de eventos, pone eventos en cola
 

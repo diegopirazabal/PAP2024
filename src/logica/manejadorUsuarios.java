@@ -38,7 +38,7 @@ public class manejadorUsuarios {
         }
     }
 
-    private Usuario buscarUsuarioPorNickname(String nickname) {
+    public Usuario buscarUsuarioPorNickname(String nickname) {
         try {
             return em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
                      .setParameter("nickname", nickname)
