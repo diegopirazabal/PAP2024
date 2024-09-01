@@ -1,15 +1,13 @@
 package logica;
-import java.util.\*;
-/**Representa a un usuario en el sistema con nombre, apellido y cedula de identidad. */
 import java.time.LocalDate;
+import java.util.List;
 
 //Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
 import jakarta.persistence.*;
 
 @Entity 
-@Table(name = "USUARIOS")  // VA A HABER TABLA USUARIOS?
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Usuario {
+public abstract class Usuario {
     @Id
     private String nickname;
     
@@ -96,6 +94,8 @@ class Deportista extends Usuario {
     @Column (name = "Profesional", nullable = false)
     private boolean esProfesional;
 
+    public Deportista() {};
+    
     public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.esProfesional = esProfesional;
@@ -122,6 +122,8 @@ class Entrenador extends Usuario {
     
     @OneToMany(targetEntity=Usuario.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
     private List<Actividad> actividades;
+    
+    public Entrenador() {};
     
     public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);

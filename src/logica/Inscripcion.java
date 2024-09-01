@@ -1,6 +1,14 @@
 package logica;
+<<<<<<< HEAD
 import java.time.LocalDate;
 import javax.persistence.*;
+=======
+import logica.Usuario;
+import logica.Usuario.Deportista;
+import logica.Usuario.Entrenador;
+import java.time.LocalDate;
+import jakarta.persistence.*;
+>>>>>>> cantomauro
 
 @Entity
 @Table(name = "INSCRIPCIONES")
@@ -8,9 +16,15 @@ public class Inscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private int id;
 
     @Column(name = "Fecha", nullable = false)
+=======
+    private Long id;
+
+    @Column(name = "FechaInscripcion", nullable = false)
+>>>>>>> cantomauro
     private LocalDate fechaInscripcion;
 
     @Column(name = "CantidadDeportistas", nullable = false)
@@ -18,6 +32,7 @@ public class Inscripcion {
 
     @Column(name = "Costo", nullable = false)
     private double costo;
+<<<<<<< HEAD
 
     @ManyToOne
     private Clase clase; // Relación con la clase
@@ -38,6 +53,17 @@ public class Inscripcion {
     }
 
     // Getters y Setters
+=======
+
+    @ManyToOne
+    @JoinColumn(name = "clase_id")
+    private Clase clase;
+
+    @ManyToOne
+    @JoinColumn(name = "deportista_id")
+    private Deportista deportista;
+
+>>>>>>> cantomauro
     public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
     }
