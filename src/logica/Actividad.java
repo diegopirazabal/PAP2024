@@ -33,7 +33,7 @@ public class Actividad {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Estado", nullable = false)
-    private EstadoActividad estado;
+    private estadoActividad estado;
 
     private String imagen;
 
@@ -45,7 +45,18 @@ public class Actividad {
     private List<Clase> clases;
 
     public Actividad() {}
-
+   
+    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, estadoActividad estado, String imagen, Entrenador entrenador) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.lugar = lugar;
+        this.fechaAlta = fechaAlta;
+        this.estado = estado;
+        this.imagen = imagen;
+        this.entrenador = entrenador;
+    }
     
     public Long getId() {
 		return id;
@@ -117,12 +128,12 @@ public class Actividad {
 	}
 
 
-	public EstadoActividad getEstado() {
+	public estadoActividad getEstado() {
 		return estado;
 	}
 
 
-	public void setEstado(EstadoActividad estado) {
+	public void setEstado(estadoActividad estado) {
 		this.estado = estado;
 	}
 
@@ -157,7 +168,7 @@ public class Actividad {
 	}
 
 
-	public enum EstadoActividad {
+	public enum estadoActividad {
         ACTIVA,
         INACTIVA,
         CANCELADA
