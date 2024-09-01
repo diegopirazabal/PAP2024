@@ -11,3 +11,7 @@ public class UsuarioNoExisteException extends Exception {
         super(string);  // Le pasamos al constructor de la clase exception el mensaje especifico
     }
 }
+
+asjbiagsfa
+anashe 3
+guille gay anashe 4
