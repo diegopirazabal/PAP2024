@@ -1,4 +1,5 @@
 package logica;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,19 +22,19 @@ public abstract class Usuario {
     private String email;
     
     @Column (name = "fechaNac", nullable = false)
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     
     @Column (name = "Contrasena", nullable = false, length = 20)
     private String contrasena;
 
     public Usuario(){}
     
-public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
+public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, String contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
-    this.fechaNacimiento = fechaNacimiento;
+    this.fechaNacimiento = fechaNacimiento2;
     this.contrasena = contrasena;
 }
 
@@ -70,11 +71,11 @@ public void setEmail(String email) {
         this.email = email;
     }
 
-public LocalDate getFechaNacimiento() {
+public String getFechaNacimiento() {
     return fechaNacimiento;
 }
 
-public void setFechaNacimiento(LocalDate fechaNacimiento) {
+public void setFechaNacimiento(String fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
 }
 

@@ -2,7 +2,6 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.List;
-import logica.Usuario.Deportista;
 
 public class manejadorInscripciones {
     private List<Inscripcion> inscripciones;

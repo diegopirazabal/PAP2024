@@ -1,6 +1,8 @@
 package logica;
 import logica.Usuario;
 import persistencia.Persistencia;
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,13 +16,13 @@ public class controladorUsuario {
         manejador = new manejadorUsuarios();
     }
 
-    public void crearDeportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
+    public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
         Deportista deportista = new Deportista (nickname, nombre, apellido, email, fechaNacimiento, contrasena, esProfesional);
        
         manejador.agregar(deportista);
     }
 
-    public void crearEntrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
+    public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
     	Entrenador entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }

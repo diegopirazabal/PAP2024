@@ -1,12 +1,13 @@
 package presentacion;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
+
+import excepciones.UsuarioRepetidoException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import logica.ControladorUsuario;
-import java.time.LocalDate;
+
+import logica.controladorUsuario;
 
 public class altaUsuario extends JFrame {
 	 private JTextField nicknameField;
@@ -24,8 +25,9 @@ public class altaUsuario extends JFrame {
 	    private JPanel deportistaPanel;
 	    private JPanel entrenadorPanel;
 	    private JButton btnRegistrar;
+	    private JTextField contrasena;
 	   // CONTROLADOR USUARIO
-	    ControladorUsuario cntrlUsuario;
+	    controladorUsuario cntrlUsuario;
 
     public altaUsuario() {
     	setTitle("Alta de Usuario");
@@ -55,7 +57,7 @@ public class altaUsuario extends JFrame {
         panel.add(correoField);
 
         panel.add(new JLabel("Fecha de Nacimiento (dd/mm/yyyy):"));
-        fechaNacimientoField = new JTextField();
+        fechaNacimientoField = new JFormattedTextField();
         panel.add(fechaNacimientoField);
         
                 // Radio buttons para seleccionar si es deportista o entrenador
@@ -130,7 +132,12 @@ public class altaUsuario extends JFrame {
         btnRegistrar = new JButton("Registrar");
         btnRegistrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		registrarUsuario();
+        		try {
+					registrarUsuario();
+				} catch (UsuarioRepetidoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
         	}
         });
         panel.add(btnRegistrar);
@@ -140,12 +147,12 @@ public class altaUsuario extends JFrame {
     
     
 //REGISTRAR USUARIO
-    private void registrarUsuario() {
+    private void registrarUsuario() throws UsuarioRepetidoException {
     	String nickname = nicknameField.getText();
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String correo = correoField.getText();
-        LocalDate fechaNacimiento = fechaNacimientoField.setDate();
+        String fechaNacimiento = fechaNacimientoField.getText();
 		String contrasena = contrasenaField.getText();
         String tipoUsuario = deportistaRadio.isSelected() ? "Deportista" : "Entrenador";
         //FALTA CHECKEAR EXCEPCIONES
@@ -159,3 +166,4 @@ public class altaUsuario extends JFrame {
 
         }
     }
+}
