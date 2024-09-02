@@ -146,5 +146,9 @@ class Entrenador extends Usuario {
     public void setLinkSitioWeb(String linkSitioWeb) {
         this.linkSitioWeb = linkSitioWeb;
     }
+<<<<<<< HEAD
 }
 };
+=======
+}};
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69

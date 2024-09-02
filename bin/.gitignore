@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /presentacion/
 /logica/
 =======
@@ -14,3 +15,9 @@
 /excepciones/
 >>>>>>> refs/remotes/origin/PAP2024
 >>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
+=======
+/logica/
+/presentacion/
+/persistencia/
+/excepciones/
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69

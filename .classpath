@@ -7,6 +7,7 @@
 		</attributes>
 	</classpathentry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="lib" path="/Users/diego/Developer/jars entrega 1/eclipselink-4.0.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/diego/Developer/jars entrega 1/hsqldb.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/diego/Developer/jars entrega 1/jakarta.persistence-api-3.1.0.jar"/>
@@ -17,5 +18,10 @@
 	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
 >>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
+=======
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/eclipselink-4.0.2.jar"/>
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/jakarta.persistence-api-3.1.0.jar"/>
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
 	<classpathentry kind="output" path="bin"/>
 </classpath>

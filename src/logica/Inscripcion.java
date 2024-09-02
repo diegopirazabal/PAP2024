@@ -1,16 +1,25 @@
 package logica;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import logica.Usuario;
 import logica.Usuario.Deportista;
 import logica.Usuario.Entrenador;
 =======
 >>>>>>> refs/remotes/origin/PAP2024
+=======
+
+import logica.Usuario.Deportista;
+
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
 import java.time.LocalDate;
 <<<<<<< HEAD
 import jakarta.persistence.*;
+<<<<<<< HEAD
 =======
 import javax.persistence.*;
 >>>>>>> refs/remotes/origin/PAP2024
+=======
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
 
 @Entity
 @Table(name = "INSCRIPCIONES")
@@ -18,6 +27,7 @@ public class Inscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 <<<<<<< HEAD
     private Long id;
 
@@ -27,6 +37,11 @@ public class Inscripcion {
 
     @Column(name = "Fecha", nullable = false)
 >>>>>>> refs/remotes/origin/PAP2024
+=======
+    private Long id;
+
+    @Column(name = "FechaInscripcion", nullable = false)
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
     private LocalDate fechaInscripcion;
 
     @Column(name = "CantidadDeportistas", nullable = false)
@@ -34,6 +49,7 @@ public class Inscripcion {
 
     @Column(name = "Costo", nullable = false)
     private double costo;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -63,13 +79,23 @@ public class Inscripcion {
 >>>>>>> refs/remotes/origin/PAP2024
 
 <<<<<<< HEAD
+=======
+
+    @ManyToOne
+    @JoinColumn(name = "clase_id")
+    private Clase clase;
+
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
     @ManyToOne
     @JoinColumn(name = "deportista_id")
     private Deportista deportista;
 
+<<<<<<< HEAD
 =======
     // Getters y Setters
 >>>>>>> refs/remotes/origin/PAP2024
+=======
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
     public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
     }

@@ -2,6 +2,12 @@ package presentacion;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+
+import logica.controladorUsuario;
+
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
 import java.time.LocalDate;
 
 import javax.swing.ButtonGroup;
@@ -164,6 +170,10 @@ public class altaUsuario extends JFrame {
         	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
+<<<<<<< HEAD
     
     }
 }
+=======
+    }}; 
+>>>>>>> 5a0a2580742232f8f60a77af361db86cf362cb69
