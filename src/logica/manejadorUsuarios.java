@@ -11,7 +11,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import dtos.*;
+<<<<<<< HEAD
 import dtos.dataTypeUsuario;
+=======
+import persistencia.*;
+>>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
 
 public class manejadorUsuarios {
     private EntityManagerFactory emf;
@@ -41,7 +45,7 @@ public class manejadorUsuarios {
         }
     }
 
-    private Usuario buscarUsuarioPorNickname(String nickname) {
+    public Usuario buscarUsuarioPorNickname(String nickname) {
         try {
             return em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
                      .setParameter("nickname", nickname)
@@ -78,6 +82,7 @@ public class manejadorUsuarios {
         }
     }
 
+<<<<<<< HEAD
     public List<dataTypeUsuario> obtenerTodos() {
         try {
             List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
@@ -94,6 +99,9 @@ public class manejadorUsuarios {
             return new ArrayList<>();
         }
     }
+=======
+
+>>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
 
     public void cerrar() {
         if (em.isOpen()) em.close();

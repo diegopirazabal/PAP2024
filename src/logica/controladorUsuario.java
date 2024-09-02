@@ -1,7 +1,10 @@
 package logica;
 import logica.Usuario.*;
+import persistencia.Persistencia;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
+
 import excepciones.*;
 import dtos.*;
 
@@ -30,9 +33,22 @@ public class controladorUsuario {
     public void eliminarUsuario(String nickname) throws UsuarioNoExisteException{
     	 manejador.eliminar(nickname);
     }
-    
-    public List<dataTypeUsuario> listarTodos() {
-        return manejador.obtenerTodos();
+
+    public List<dataTypeUsuario> obtenerTodos() {
+        try {
+            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+            return usuarios.stream()
+                    .map(usuario -> new dataTypeUsuario(
+                            usuario.getNickname(),
+                            usuario.getNombre(),
+                            usuario.getApellido(),
+                            usuario.getEmail(),
+                            usuario.getFechaNacimiento()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }
 /*
