@@ -1,11 +1,21 @@
 package presentacion;
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import logica.ControladorUsuario;
 import java.time.LocalDate;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import logica.ControladorUsuario;
+import logica.IControladorUsuario;
 
 
 public class altaUsuario extends JInternalFrame {
@@ -14,24 +24,23 @@ public class altaUsuario extends JInternalFrame {
 	 private JTextField apellidoField;
 	 private JTextField correoField;
 	 private JTextField fechaNacimientoField;
-   		private JTextField contrasenaField;
-	    private JRadioButton deportistaRadio;
-	    private JRadioButton entrenadorRadio;
-	    private JCheckBox checkBoxProfesional;
-	    private JTextField txtDisciplina;
-	    private JTextField txtUrl;
-	    private JButton btnCancelar;
-	    private JPanel deportistaPanel;
-	    private JPanel entrenadorPanel;
-	    private JButton btnRegistrar;
-	   // CONTROLADOR USUARIO
-	    ControladorUsuario cntrlUsuario;
+   	 private JTextField contrasenaField;
+	 private JRadioButton deportistaRadio;
+	 private JRadioButton entrenadorRadio;
+	 private JCheckBox checkBoxProfesional;
+	 private JTextField txtDisciplina;
+	 private JTextField txtUrl;
+	 private JButton btnCancelar;
+	 private JPanel deportistaPanel;
+	 private JPanel entrenadorPanel;
+	 private JButton btnRegistrar;
+	 private IControladorUsuario IcntrlUsuario;
 
-    public altaUsuario() {
+    public altaUsuario(IControladorUsuario icu) {
     	setTitle("Alta de Usuario");
         setSize(561, 549);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setLocation(null);
 
         // Panel principal
         JPanel panel = new JPanel();
@@ -154,11 +163,11 @@ public class altaUsuario extends JInternalFrame {
         //FALTA CHECKEAR EXCEPCIONES
         if(tipoUsuario.equals("Deportista")) {
         	boolean esProfesional = checkBoxProfesional.isSelected();
-        	cntrlUsuario.crearDeportista(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, esProfesional);
+        	IcntrlUsuario.crearDeportista(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, esProfesional);
         } else if (tipoUsuario.equals("Entrenador")) {
             String disciplina = txtDisciplina.getText();
             String url = txtUrl.getText();
-        	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
+        	IcntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
     }

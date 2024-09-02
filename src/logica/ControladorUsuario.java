@@ -35,9 +35,7 @@ public class ControladorUsuario  implements IControladorUsuario{
     	return manejador.obtenerTodos();
     }
     
-    public void altaUsuario() {
-    	
-    }
+    public void altaUsuario() {}
 }
 	
 /*

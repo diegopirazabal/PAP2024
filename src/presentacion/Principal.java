@@ -55,10 +55,11 @@ public class Principal {
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
         // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
-        creUsrInternalFrame = new CrearUsuario(ICU);
-        creUsrInternalFrame.setLocation(10, 118);
-        creUsrInternalFrame.setVisible(false);
-
+		/*
+		 * creUsrInternalFrame = new CrearUsuario(ICU);
+		 * creUsrInternalFrame.setLocation(10, 118);
+		 * creUsrInternalFrame.setVisible(false);
+		 */
         altUsrInternalFrame = new altaUsuario(ICU);
         altUsrInternalFrame.setLocation(10, 247);
         altUsrInternalFrame.setVisible(false);
