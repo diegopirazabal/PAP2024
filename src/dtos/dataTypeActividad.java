@@ -1,5 +1,5 @@
+package dtos;
 import java.time.LocalDate;
-
 import logica.Actividad.estadoActividad;
 
 public class dataTypeActividad {

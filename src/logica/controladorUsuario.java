@@ -1,10 +1,9 @@
 package logica;
-import logica.Usuario.*;
+import logica.Usuario;
 import persistencia.Persistencia;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import excepciones.*;
 import dtos.*;
 
@@ -16,13 +15,13 @@ public class controladorUsuario {
     }
 
     public void crearDeportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
-        Usuario deportista = new Deportista(nickname, nombre, apellido, email, fechaNacimiento, contrasena, esProfesional);
+        Deportista deportista = new Deportista (nickname, nombre, apellido, email, fechaNacimiento, contrasena, esProfesional);
        
         manejador.agregar(deportista);
     }
 
     public void crearEntrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
-    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
+    	Entrenador entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }
     
@@ -34,22 +33,22 @@ public class controladorUsuario {
     	 manejador.eliminar(nickname);
     }
 
-    public List<dataTypeUsuario> obtenerTodos() {
-        try {
-            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
-            return usuarios.stream()
-                    .map(usuario -> new dataTypeUsuario(
-                            usuario.getNickname(),
-                            usuario.getNombre(),
-                            usuario.getApellido(),
-                            usuario.getEmail(),
-                            usuario.getFechaNacimiento()))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
+//    public List<dataTypeUsuario> obtenerTodos() {
+//        try {
+//            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+//            return usuarios.stream()
+//                    .map(usuario -> new dataTypeUsuario(
+//                            usuario.getNickname(),
+//                            usuario.getNombre(),
+//                            usuario.getApellido(),
+//                            usuario.getEmail(),
+//                            usuario.getFechaNacimiento()))
+//                    .collect(Collectors.toList());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ArrayList<>();
+//        }
+//    }
 }
 /*
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("airelibre.uy");
