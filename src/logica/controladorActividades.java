@@ -31,24 +31,24 @@ public class controladorActividades {
    	 manejador.eliminarActividad(nombre);
    }
     
-    @GetMapping("/actividades")
-    public List<dataTypeActividad> listarActividades() {
-        List<Actividad> actividades = manejador.obtenerTodasLasActividades(); // Asumiendo que tienes un servicio para obtener actividades
-        return actividades.stream()
-                .map(actividad -> new dataTypeActividad(
-                    actividad.getId(),
-                    actividad.getNombre(),
-                    actividad.getDescripcion(),
-                    actividad.getDuracion(),
-                    actividad.getCosto(),
-                    actividad.getLugar(),
-                    actividad.getFechaAlta(),
-                    actividad.getEstado(),
-                    actividad.getImagen(),
-                    actividad.getEntrenador() != null ? actividad.getEntrenador().getId() : null
-                ))
-                .collect(Collectors.toList());
-    }
+//    @GetMapping("/actividades")
+//    public List<dataTypeActividad> listarActividades() {
+//        List<Actividad> actividades = manejador.obtenerTodasLasActividades(); // Asumiendo que tienes un servicio para obtener actividades
+//        return actividades.stream()
+//                .map(actividad -> new dataTypeActividad(
+//                    actividad.getId(),
+//                    actividad.getNombre(),
+//                    actividad.getDescripcion(),
+//                    actividad.getDuracion(),
+//                    actividad.getCosto(),
+//                    actividad.getLugar(),
+//                    actividad.getFechaAlta(),
+//                    actividad.getEstado(),
+//                    actividad.getImagen(),
+//                    actividad.getEntrenador() != null ? actividad.getEntrenador().getId() : null
+//                ))
+//                .collect(Collectors.toList());
+//    }
 
 
 
