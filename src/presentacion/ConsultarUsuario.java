@@ -155,4 +155,9 @@ public class ConsultarUsuario extends JInternalFrame {
         textFieldCI.setText("");
     }
 }
+<<<<<<< HEAD
 */
+=======
+*/
+
+>>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/

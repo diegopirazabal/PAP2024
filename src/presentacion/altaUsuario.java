@@ -1,12 +1,30 @@
 package presentacion;
+<<<<<<< HEAD
 import javax.swing.*;
 
 import excepciones.UsuarioRepetidoException;
 
 import java.awt.*;
+=======
+import java.awt.GridLayout;
+>>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 
+import logica.controladorUsuario;
+=======
+import java.time.LocalDate;
+>>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import logica.controladorUsuario;
 
 public class altaUsuario extends JFrame {
@@ -165,5 +183,9 @@ public class altaUsuario extends JFrame {
         	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
     }
 }
