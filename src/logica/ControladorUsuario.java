@@ -5,7 +5,7 @@ import java.util.*;
 
 import excepciones.*;
 
-public class ControladorUsuario {
+public class ControladorUsuario  implements IControladorUsuario{
     private manejadorUsuario manejador;
 
     public ControladorUsuario() {
@@ -23,8 +23,8 @@ public class ControladorUsuario {
     	manejador.agregar(entrenador);    	
     }
     
-    	public Usuario consultarUsuario(String nickname) throws UsuarioNoExisteException {
-        return manejador.buscarUsuario(nickname);
+    public Usuario consultarUsuario(String nickname) throws UsuarioNoExisteException {
+    	return manejador.buscarUsuario(nickname);
     }
 
     public void eliminarUsuario(String nickname) throws UsuarioNoExisteException{

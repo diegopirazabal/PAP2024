@@ -9,8 +9,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import logica.Fabrica;   // Uso Fabricas de la clase logica
-import logica.IControladorUsuario;  // Lo mismo para controlador de usuarios
+import logica.IControladorUsuario;
+
+//import logica.Fabrica;   // Uso Fabricas de la clase logica
+//import logica.IControladorUsuario;  // Lo mismo para controlador de usuarios
 
 /**
  * Clase principal (Frame) con el metodo Main.
@@ -47,8 +49,8 @@ public class Principal {
     public Principal() {   // Constructor de la clase
         initialize();     // Inicializa la interface
 
-        Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
-        ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
+        //Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
+        //ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
