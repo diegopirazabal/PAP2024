@@ -3,7 +3,6 @@ package logica;
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
-import logica.Usuario.Entrenador;
 
 @Entity
 @Table(name = "ACTIVIDADES")
