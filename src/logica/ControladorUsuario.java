@@ -34,7 +34,12 @@ public class ControladorUsuario  implements IControladorUsuario{
     public List<Usuario> listarTodos(){
     	return manejador.obtenerTodos();
     }
+    
+    public void altaUsuario() {
+    	
+    }
 }
+	
 /*
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("airelibre.uy");
     private EntityManager em = emf.createEntityManager();

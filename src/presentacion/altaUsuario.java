@@ -8,15 +8,14 @@ import logica.ControladorUsuario;
 import java.time.LocalDate;
 
 
-public class altaUsuario extends JFrame {
+public class altaUsuario extends JInternalFrame {
 	 private JTextField nicknameField;
 	 private JTextField nombreField;
-	    private JTextField apellidoField;
-	    private JTextField correoField;
-	    private JTextField fechaNacimientoField;
-        private JTextField contrasenaField;
+	 private JTextField apellidoField;
+	 private JTextField correoField;
+	 private JTextField fechaNacimientoField;
+   		private JTextField contrasenaField;
 	    private JRadioButton deportistaRadio;
-	
 	    private JRadioButton entrenadorRadio;
 	    private JCheckBox checkBoxProfesional;
 	    private JTextField txtDisciplina;

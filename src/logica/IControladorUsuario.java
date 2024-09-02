@@ -17,4 +17,6 @@ public interface IControladorUsuario {
 	public void eliminarUsuario(String nickname) throws UsuarioNoExisteException;
 	
 	public List<Usuario> listarTodos();
+	
+	public void altaUsuario(); 
 }

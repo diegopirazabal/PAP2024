@@ -23,7 +23,7 @@ public class Principal {
     private JFrame frmGestionDeUsuarios;       // Frame principal
     private IControladorUsuario ICU;           // Objeto de tipo controlador para manipulacion de objetos
     private CrearUsuario creUsrInternalFrame;  // Frame interno para dar de alta usuario
-    private ConsultarUsuario conUsrInternalFrame; // Frame interno para consultar por usuario
+    private altaUsuario altUsrInternalFrame; // Frame interno para consultar por usuario
     private ListaUsuarios lisUsrInternalFrame;    // Frame interno para listar usuario 
 
     /**
@@ -59,16 +59,16 @@ public class Principal {
         creUsrInternalFrame.setLocation(10, 118);
         creUsrInternalFrame.setVisible(false);
 
-        conUsrInternalFrame = new ConsultarUsuario(ICU);
-        conUsrInternalFrame.setLocation(10, 247);
-        conUsrInternalFrame.setVisible(false);
+        altUsrInternalFrame = new altaUsuario(ICU);
+        altUsrInternalFrame.setLocation(10, 247);
+        altUsrInternalFrame.setVisible(false);
 
         lisUsrInternalFrame = new ListaUsuarios(ICU);
         lisUsrInternalFrame.setLocation(24, 10);
         lisUsrInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().setLayout(null);
 
-        frmGestionDeUsuarios.getContentPane().add(conUsrInternalFrame); /*Agrego los 3 internos al principal */
+        frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame); /*Agrego los 3 internos al principal */
         frmGestionDeUsuarios.getContentPane().add(creUsrInternalFrame);
         frmGestionDeUsuarios.getContentPane().add(lisUsrInternalFrame);
     }
@@ -116,7 +116,7 @@ public class Principal {
         menuConsultarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-                conUsrInternalFrame.setVisible(true);
+            	altUsrInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuConsultarUsuario);
