@@ -1,9 +1,11 @@
 package logica;
 import java.time.LocalDate;
+
 import java.util.List;
 
 //Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
 import jakarta.persistence.*;
+
 
 @Entity 
 @Table(name = "USUARIOS")  // VA A HABER TABLA USUARIOS?
