@@ -62,7 +62,7 @@ public class Principal {
 		 */
         altUsrInternalFrame = new altaUsuario(ICU);
         altUsrInternalFrame.setLocation(10, 247);
-        altUsrInternalFrame.setVisible(true);
+        altUsrInternalFrame.setVisible(false);
 
 		
         lisUsrInternalFrame = new ListarUsuarios(ICU);
