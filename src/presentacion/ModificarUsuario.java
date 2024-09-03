@@ -1,20 +1,20 @@
 package presentacion;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-
-import excepciones.UsuarioNoExisteException;
-import dtos.dataTypeUsuario;
-import logica.IControladorUsuario;
-
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import dtos.dataTypeUsuario;
+import excepciones.UsuarioNoExisteException;
+import logica.IControladorUsuario;
 
 /**
  * JInternalFrame que permite listar todos los usuarios del sistema.
@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
  */
 
 @SuppressWarnings("serial")
-public class ListarUsuarios extends JInternalFrame {
+public class ModificarUsuario extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
     private IControladorUsuario controlUsr;
@@ -36,7 +36,7 @@ public class ListarUsuarios extends JInternalFrame {
 
    
   
-    public ListarUsuarios() { // nos falta crear el controlador de usuarios!
+    public ModificarUsuario() { // nos falta crear el controlador de usuarios!
         // Se inicializa con el controlador de usuarios
         
         

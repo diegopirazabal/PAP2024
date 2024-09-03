@@ -14,6 +14,8 @@ public class Principal extends JFrame {
 	
 	private JDesktopPane desktopPane;
     private altaUsuario frameAltaUsuario;
+    private ListarUsuarios frameListarUsuarios;
+    private ModificarUsuario frameModificarUsuario;
     //private JInternalFrame frameAltaUsuario;
 
 
@@ -34,6 +36,18 @@ public class Principal extends JFrame {
         frameAltaUsuario.setBounds(10, 10, 750, 500);
         desktopPane.add(frameAltaUsuario);
         frameAltaUsuario.setVisible(false);
+        
+        //INTERNAL FRAME CONSULTAR USUARIOS
+        frameListarUsuarios = new ListarUsuarios(); //() puede ir controlador
+        frameListarUsuarios.setBounds(10, 10, 750, 500);
+        desktopPane.add(frameListarUsuarios);
+        frameListarUsuarios.setVisible(false);
+        
+        //INTERNAL FRAME MODIFICAR USUARIOS
+        frameModificarUsuario = new ModificarUsuario(); //() puede ir controlador
+        frameModificarUsuario.setBounds(10, 10, 750, 500);
+        desktopPane.add(frameModificarUsuario);
+        frameModificarUsuario.setVisible(false);
         
         
         // Crear la barra de menú
@@ -76,11 +90,33 @@ public class Principal extends JFrame {
         menuUsuarios.add(menuItemRegistrar);
         
         //USUARIO----- Consultar usuario
-        JMenuItem menuConsultarUsuario = new JMenuItem("Consultar usuario");
+        JMenuItem menuConsultarUsuario = new JMenuItem("Listar usuarios");
+        menuConsultarUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frameListarUsuarios.setVisible(true);
+            	   try {
+            		   frameListarUsuarios.setSelected(true);
+                   } catch (java.beans.PropertyVetoException ex) {
+                       ex.printStackTrace();
+                   }
+               
+            }
+        });
         menuUsuarios.add(menuConsultarUsuario);
         
         //USUARIO -------- Modificar usuario
         JMenuItem menuModificarUsuario = new JMenuItem("Modificar usuario");
+        menuModificarUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frameModificarUsuario.setVisible(true);
+            	   try {
+            		   frameModificarUsuario.setSelected(true);
+                   } catch (java.beans.PropertyVetoException ex) {
+                       ex.printStackTrace();
+                   }
+               
+            }
+        });
         menuUsuarios.add(menuModificarUsuario);
        
         

@@ -1,13 +1,13 @@
 package logica;
+import java.persistence.EntityManager;
+import java.persistence.EntityTransaction;
+import java.persistence.Persistence;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 
 public class manejadorUsuario {
     private EntityManagerFactory emf;
