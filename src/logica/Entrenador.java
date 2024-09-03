@@ -1,10 +1,13 @@
 package logica;
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.List;
-import jakarta.persistence.*;
 
-// Subclase Entrenador
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "ENTRENADORES")
 class Entrenador extends Usuario {
@@ -19,7 +22,7 @@ class Entrenador extends Usuario {
     
     public Entrenador() {};
     
-    public Entrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
+    public Entrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.disciplina = disciplina;
         this.linkSitioWeb = linkSitioWeb;
@@ -40,5 +43,4 @@ class Entrenador extends Usuario {
     public void setLinkSitioWeb(String linkSitioWeb) {
         this.linkSitioWeb = linkSitioWeb;
     }
-
 }

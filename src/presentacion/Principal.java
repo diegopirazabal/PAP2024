@@ -3,12 +3,11 @@ package presentacion;
 import java.awt.EventQueue;  // La clase EventQueue es para manejo de eventos, pone eventos en cola
 import java.awt.event.ActionEvent; // Para indicar que el usuario quiere que ocurra alguna acción.
 import java.awt.event.ActionListener; // Permite quedar a la espera de una accion
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+import logica.Fabrica;
 import logica.IControladorUsuario;
 
 //import logica.Fabrica;   // Uso Fabricas de la clase logica
@@ -24,7 +23,7 @@ public class Principal {
     private IControladorUsuario ICU;           // Objeto de tipo controlador para manipulacion de objetos
     private CrearUsuario creUsrInternalFrame;  // Frame interno para dar de alta usuario
     private altaUsuario altUsrInternalFrame; // Frame interno para consultar por usuario
-    private ListaUsuarios lisUsrInternalFrame;    // Frame interno para listar usuario 
+    private ListarUsuarios lisUsrInternalFrame;    // Frame interno para listar usuario 
 
     /**
      * Launch the application.
@@ -42,7 +41,6 @@ public class Principal {
             }
         });
     }
-
     /**
      * Create the application.
      */
@@ -55,18 +53,21 @@ public class Principal {
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
         // Cada InternalFrame usa un layout diferente, simplemente para mostrar distintas opciones.
-        creUsrInternalFrame = new CrearUsuario(ICU);
-        creUsrInternalFrame.setLocation(10, 118);
-        creUsrInternalFrame.setVisible(false);
-
+		/*
+		 * creUsrInternalFrame = new CrearUsuario(ICU);
+		 * creUsrInternalFrame.setLocation(10, 118);
+		 * creUsrInternalFrame.setVisible(false);
+		 */
         altUsrInternalFrame = new altaUsuario(ICU);
         altUsrInternalFrame.setLocation(10, 247);
         altUsrInternalFrame.setVisible(false);
 
-        lisUsrInternalFrame = new ListaUsuarios(ICU);
+		
+        lisUsrInternalFrame = new ListarUsuarios(ICU);
         lisUsrInternalFrame.setLocation(24, 10);
         lisUsrInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().setLayout(null);
+		 
 
         frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame); /*Agrego los 3 internos al principal */
         frmGestionDeUsuarios.getContentPane().add(creUsrInternalFrame);
@@ -107,7 +108,7 @@ public class Principal {
         menuItemRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-                creUsrInternalFrame.setVisible(true);
+            	altUsrInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemRegistrar);
@@ -116,7 +117,7 @@ public class Principal {
         menuConsultarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-            	altUsrInternalFrame.setVisible(true);
+            	lisUsrInternalFrame.setVisible(false);
             }
         });
         menuUsuarios.add(menuConsultarUsuario);
@@ -190,8 +191,7 @@ public class Principal {
                 creUsrInternalFrame.setVisible(true);
             }
         });
-        menuClaseDeportiva.add(menuConsultaInscripciones);
-        
+        menuClaseDeportiva.add(menuConsultaInscripciones); 
     }
     
 }

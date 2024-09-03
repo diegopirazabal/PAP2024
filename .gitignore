@@ -1,17 +1,16 @@
-# Eclipse specific files
+# Ignorar archivos de configuración del entorno de desarrollo
+
 .project
-.classpath
 .settings/
-.idea/
-.vscode/
-
-# Ignore build directories
-/bin/
-/target/
-
-# Other IDEs (if relevant)
 *.iml
 *.ipr
 *.iws
-.factorypath
-.externalToolBuilders/
+
+# Ignorar archivos de compilación
+/build/
+/target/
+/bin/
+
+# Ignorar archivos temporales
+*.log
+*.tmp

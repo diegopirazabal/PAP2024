@@ -1,9 +1,11 @@
 package logica;
-// A VER SI LO ARREGLO
+import jakarta.persistence.*;
+import logica.Usuario;
+import logica.Clase;
 import java.time.LocalDate;
 import java.util.List;
-import jakarta.persistence.*;
-//asdad adsdasd
+import java.persistence.*;
+
 @Entity
 @Table(name = "ACTIVIDADES")
 public class Actividad {
@@ -30,22 +32,21 @@ public class Actividad {
     @Column(name = "FechaAlta")
     private LocalDate fechaAlta;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "Estado", nullable = false)
-    private estadoActividad estado;
+    @Column (name = "Estado", nullable = false)
+    private String estado; // Ej: Activa, Inactiva, etc. DEBERIA SER UN ENUM ?
+    
+    private String imagen; // URL o nombre de archivo de la imagen
+    
+    @OneToOne
+    private Entrenador entrenador; // Relación con el entrenador
+    
+    @OneToMany( targetEntity=Clase.class)
+    private List<Clase> clases; // Relación con las clases
+    
 
-    private String imagen;
-
-    @ManyToOne
-    @JoinColumn(name = "entrenador_id")
-    private Entrenador entrenador;
-
-    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Clase> clases;
-
-    public Actividad() {}
-   
-    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, estadoActividad estado, String imagen, Entrenador entrenador) {
+    //public Actividad(){};
+    
+    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -56,6 +57,7 @@ public class Actividad {
         this.imagen = imagen;
         this.entrenador = entrenador;
     }
+
     
     public Long getId() {
 		return id;

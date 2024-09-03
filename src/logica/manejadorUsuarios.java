@@ -1,6 +1,6 @@
 package logica;
 import java.util.ArrayList;
-
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,10 +20,30 @@ import persistencia.*;
 public class manejadorUsuarios {
     private EntityManagerFactory emf;
     private EntityManager em;
+    private static manejadorUsuario instancia = null;
 
     public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
         this.em = emf.createEntityManager();
+    }
+    
+    public static manejadorUsuario getinstance() {
+        if (instancia == null)
+            instancia = new manejadorUsuario();      // Constructor solo se llama de aca
+        return instancia;
+    }
+    
+    public Usuario[] getUsuarios() {      // Devuelve la coleccion completa de los usuarios en array
+		/*
+		 * if (usuariosCI.isEmpty()) return null; else { Collection<Usuario> usrs =
+		 * usuariosCI.values(); // Metodo values devuelve la coleccion entera Object[] o
+		 * = usrs.toArray(); // Devuelve los objetos a una array Usuario[] usuarios =
+		 * new Usuario[o.length]; // Creo un array de usuarios for (int i = 0; i <
+		 * o.length; i++) { usuarios[i] = (Usuario) o[i]; // Cargo con la salida de
+		 * toArray }
+		 * 
+		 * return usuarios; }
+		 */
     }
 
     public void agregar(Usuario usuario) throws UsuarioRepetidoException {

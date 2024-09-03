@@ -15,8 +15,8 @@ import jakarta.persistence.*;
 import javax.persistence.*;
 >>>>>>> refs/remotes/origin/PAP2024
 
-@Entity
-@Table(name = "INSCRIPCIONES")
+import logica.Deportista;
+
 public class Inscripcion {
 
     @Id
