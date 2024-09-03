@@ -136,6 +136,22 @@ public class Principal extends JFrame {
         JMenuItem menuRankingActividad = new JMenuItem ("Ranking actividades");
         menuActividades.add(menuRankingActividad);
         
+        //CLASE
+        JMenu menuClase = new JMenu ("Clase");
+        menuBar.add(menuClase);
+        
+        //CLASE---Alta clase
+        JMenuItem menuAltaClase = new JMenuItem ("Alta clase");
+        menuClase.add(menuAltaClase);
+        
+        //ACTIVIDADES----Consulta actividad
+        JMenuItem menuConsultaClase = new JMenuItem ("Consulta clase");
+        menuClase.add(menuConsultaClase);
+
+        //ACTIVIDADES-----Ranking actividades
+        JMenuItem menuInscripcionClase = new JMenuItem ("Inscripcion clase");
+        menuClase.add(menuInscripcionClase);
+        
         
         
         // Configurar el layout y hacerlo visible
