@@ -34,13 +34,13 @@ public class altaUsuario extends JInternalFrame {
 	 private JPanel deportistaPanel;
 	 private JPanel entrenadorPanel;
 	 private JButton btnRegistrar;
-	 private IControladorUsuario IcntrlUsuario;
+	 //private IControladorUsuario IcntrlUsuario;
 
-    public altaUsuario(IControladorUsuario icu) {
+    public altaUsuario() {
     	setTitle("Alta de Usuario");
         setSize(561, 549);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setLocation(null);
+        //setLocation(null);
 
         // Panel principal
         JPanel panel = new JPanel();
@@ -91,7 +91,7 @@ public class altaUsuario extends JInternalFrame {
         deportistaPanel.add(new JLabel("Profesional:"));
         checkBoxProfesional = new JCheckBox();
         deportistaPanel.add(checkBoxProfesional);
-        deportistaPanel.setVisible(true);
+        deportistaPanel.setVisible(false);
         panel.add(deportistaPanel);
 
         // Panel extra para entrenador
@@ -103,7 +103,7 @@ public class altaUsuario extends JInternalFrame {
         entrenadorPanel.add(new JLabel("Sitio Web (opcional):"));
         txtUrl = new JTextField();
         entrenadorPanel.add(txtUrl);
-        entrenadorPanel.setVisible(true);
+        entrenadorPanel.setVisible(false);
         panel.add(entrenadorPanel);
 
         // Botón de registro
@@ -114,7 +114,7 @@ public class altaUsuario extends JInternalFrame {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                setVisible(false);
             }
         });
 
@@ -124,7 +124,7 @@ public class altaUsuario extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 deportistaPanel.setVisible(true);
                 entrenadorPanel.setVisible(false);
-                pack(); // Ajusta el tamaño de la ventana
+                //pack(); // Ajusta el tamaño de la ventana
             }
         });
 
@@ -133,7 +133,7 @@ public class altaUsuario extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 entrenadorPanel.setVisible(true);
                 deportistaPanel.setVisible(false);
-                pack(); // Ajusta el tamaño de la ventana
+               // pack(); // Ajusta el tamaño de la ventana
             }
         });
 
@@ -142,7 +142,7 @@ public class altaUsuario extends JInternalFrame {
         btnRegistrar = new JButton("Registrar");
         btnRegistrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		registrarUsuario();
+        		//registrarUsuario();
         	}
         });
         panel.add(btnRegistrar);
@@ -150,7 +150,7 @@ public class altaUsuario extends JInternalFrame {
         
     }
     
-    
+ /*   
 //REGISTRAR USUARIO
     private void registrarUsuario() {
     	String nickname = nicknameField.getText();
@@ -171,5 +171,5 @@ public class altaUsuario extends JInternalFrame {
 
         }
     }
+    */
 }
-    
