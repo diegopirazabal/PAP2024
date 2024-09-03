@@ -3,7 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
-
+//asdad
 @Entity
 @Table(name = "ACTIVIDADES")
 public class Actividad {
