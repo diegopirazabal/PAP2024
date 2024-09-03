@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.List;
 
+import dtos.dataTypeUsuario;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 
@@ -18,5 +19,5 @@ public interface IControladorUsuario {
 	
 	public List<Usuario> listarTodos();
 	
-	public DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
+	public dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException;
 }

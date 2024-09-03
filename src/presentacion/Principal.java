@@ -3,12 +3,10 @@ package presentacion;
 import java.awt.EventQueue;  // La clase EventQueue es para manejo de eventos, pone eventos en cola
 import java.awt.event.ActionEvent; // Para indicar que el usuario quiere que ocurra alguna acción.
 import java.awt.event.ActionListener; // Permite quedar a la espera de una accion
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import logica.Fabrica;
 import logica.IControladorUsuario;
 
@@ -49,8 +47,8 @@ public class Principal {
     public Principal() {   // Constructor de la clase
         initialize();     // Inicializa la interface
 
-        Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
-        ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
+        //Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
+        //ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -193,8 +191,7 @@ public class Principal {
                 creUsrInternalFrame.setVisible(true);
             }
         });
-        menuClaseDeportiva.add(menuConsultaInscripciones);
-        
+        menuClaseDeportiva.add(menuConsultaInscripciones); 
     }
     
 }
