@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import excepciones.UsuarioNoExisteException;
-import logica.DataUsuario;
+import dtos.dataTypeUsuario;
 import logica.IControladorUsuario;
 
 import java.awt.BorderLayout;
@@ -30,7 +30,7 @@ public class ListarUsuarios extends JInternalFrame {
     
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.
-    private JComboBox<DataUsuario> comboBoxUsuarios;
+    private JComboBox<dataTypeUsuario> comboBoxUsuarios;
     private JLabel lblUsuarios;
     private JButton btnCerrar;
 
@@ -61,7 +61,7 @@ public class ListarUsuarios extends JInternalFrame {
         // Un combo (JComboBox) muestra la lista de usuarios registrados en el sistema.
         // Es posible utilizar otros componentes graficos, esta es salto una opcion.
         // Se ubica al centro del layout.
-        comboBoxUsuarios = new JComboBox<DataUsuario>();
+        comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
         getContentPane().add(comboBoxUsuarios, BorderLayout.CENTER);
 
         // Un boton (JButton) con un evento asociado que permite limpiar la lista 
@@ -82,9 +82,9 @@ public class ListarUsuarios extends JInternalFrame {
     // Se invoca el metodo antes de hacer visible el JInternalFrame
     
     public void cargarUsuarios() {
-        DefaultComboBoxModel<DataUsuario> model; // Este modelo se crea para carga el combo 
+        DefaultComboBoxModel<dataTypeUsuario> model; // Este modelo se crea para carga el combo 
         try {                                    // En model esta lo que vamos a carga al combo
-            model = new DefaultComboBoxModel<DataUsuario>(controlUsr.getUsuarios()); //Aca se carga
+            model = new DefaultComboBoxModel<dataTypeUsuario>(controlUsr.getUsuarios()); //Aca se carga
             comboBoxUsuarios.setModel(model);        //VER EN LA API DefaultComboBoxModel
         } catch (UsuarioNoExisteException e) {
             // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
