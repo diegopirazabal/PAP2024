@@ -1,5 +1,4 @@
 package logica;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity 
+@Table(name = "USUARIOS")  // VA A HABER TABLA USUARIOS?
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario {
     @Id
@@ -22,23 +22,20 @@ public abstract class Usuario {
     private String email;
     
     @Column (name = "fechaNac", nullable = false)
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     
     @Column (name = "Contrasena", nullable = false, length = 20)
     private String contrasena;
-<<<<<<< HEAD
-
-    public Usuario(){}
-=======
-;
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
+};
     
-public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, String contrasena) {
+public Usuario(){};
+    
+public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
-    this.fechaNacimiento = fechaNacimiento2;
+    this.fechaNacimiento = fechaNacimiento;
     this.contrasena = contrasena;
 }
 
@@ -75,11 +72,11 @@ public void setEmail(String email) {
         this.email = email;
     }
 
-public String getFechaNacimiento() {
+public LocalDate getFechaNacimiento() {
     return fechaNacimiento;
 }
 
-public void setFechaNacimiento(String fechaNacimiento) {
+public void setFechaNacimiento(LocalDate fechaNacimiento) {
     this.fechaNacimiento = fechaNacimiento;
 }
 
@@ -90,9 +87,6 @@ public void setContrasena(String contrasena){
 public String getContrasena(){
     return contrasena;
 }
-<<<<<<< HEAD
-}
-=======
 
 // Subclase Deportista
 @Entity
@@ -154,5 +148,5 @@ class Entrenador extends Usuario {
         this.linkSitioWeb = linkSitioWeb;
     }
 }
-};
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
+}
+

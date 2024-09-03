@@ -1,88 +1,80 @@
 package presentacion;
-<<<<<<< HEAD
-import javax.swing.*;
-
-import excepciones.UsuarioRepetidoException;
-
-import java.awt.*;
-=======
 import java.awt.GridLayout;
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-
-import logica.controladorUsuario;
-=======
 import java.time.LocalDate;
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import logica.controladorUsuario;
 
-public class altaUsuario extends JFrame {
+import logica.ControladorUsuario;
+import logica.IControladorUsuario;
+
+
+public class altaUsuario extends JInternalFrame {
 	 private JTextField nicknameField;
 	 private JTextField nombreField;
-	    private JTextField apellidoField;
-	    private JTextField correoField;
-	    private JTextField fechaNacimientoField;
-        private JTextField contrasenaField;
-	    private JRadioButton deportistaRadio;
-	    private JRadioButton entrenadorRadio;
-	    private JCheckBox checkBoxProfesional;
-	    private JTextField txtDisciplina;
-	    private JTextField txtUrl;
-	    private JButton btnCancelar;
-	    private JPanel deportistaPanel;
-	    private JPanel entrenadorPanel;
-	    private JButton btnRegistrar;
-	    private JTextField contrasena;
-	   // CONTROLADOR USUARIO
-	    controladorUsuario cntrlUsuario;
+	 private JTextField apellidoField;
+	 private JTextField correoField;
+	 private JTextField fechaNacimientoField;
+   	 private JTextField contrasenaField;
+	 private JRadioButton deportistaRadio;
+	 private JRadioButton entrenadorRadio;
+	 private JCheckBox checkBoxProfesional;
+	 private JTextField txtDisciplina;
+	 private JTextField txtUrl;
+	 private JButton btnCancelar;
+	 private JPanel deportistaPanel;
+	 private JPanel entrenadorPanel;
+	 private JButton btnRegistrar;
+	 private IControladorUsuario IcntrlUsuario;
 
-    public altaUsuario() {
+    public altaUsuario(IControladorUsuario icu) {
     	setTitle("Alta de Usuario");
         setSize(561, 549);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setLocation(null);
 
         // Panel principal
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(9, 2, 10, 10));
 
         // Etiquetas y campos de texto
-        panel.add(new JLabel("Nickname:"));
+        panel.add(new JLabel("Nombre:"));
         nicknameField = new JTextField();
         panel.add(nicknameField);
 
-        panel.add(new JLabel("Nombre:"));
+        panel.add(new JLabel("Apellido:"));
         nombreField = new JTextField();
         panel.add(nombreField);
 
-        panel.add(new JLabel("Apellido:"));
+        panel.add(new JLabel("Nickname:"));
         apellidoField = new JTextField();
         panel.add(apellidoField);
 
         panel.add(new JLabel("Correo:"));
         correoField = new JTextField();
         panel.add(correoField);
-
+        
         panel.add(new JLabel("Fecha de Nacimiento (dd/mm/yyyy):"));
-        fechaNacimientoField = new JFormattedTextField();
+        fechaNacimientoField = new JTextField();
         panel.add(fechaNacimientoField);
         
-                // Radio buttons para seleccionar si es deportista o entrenador
-                JLabel label = new JLabel("Tipo de Usuario:");
-                panel.add(label);
+        panel.add(new JLabel("Contraseña:"));
         contrasenaField = new JTextField();
-        panel.add(contrasena);
+        panel.add(contrasenaField);
+       
+        // Radio buttons para seleccionar si es deportista o entrenador
+        JLabel label = new JLabel("Tipo de Usuario:");
+        panel.add(label);
+       
         JPanel radioPanel = new JPanel();
         deportistaRadio = new JRadioButton("Deportista");
         entrenadorRadio = new JRadioButton("Entrenador");
@@ -99,7 +91,7 @@ public class altaUsuario extends JFrame {
         deportistaPanel.add(new JLabel("Profesional:"));
         checkBoxProfesional = new JCheckBox();
         deportistaPanel.add(checkBoxProfesional);
-        deportistaPanel.setVisible(false);
+        deportistaPanel.setVisible(true);
         panel.add(deportistaPanel);
 
         // Panel extra para entrenador
@@ -111,7 +103,7 @@ public class altaUsuario extends JFrame {
         entrenadorPanel.add(new JLabel("Sitio Web (opcional):"));
         txtUrl = new JTextField();
         entrenadorPanel.add(txtUrl);
-        entrenadorPanel.setVisible(false);
+        entrenadorPanel.setVisible(true);
         panel.add(entrenadorPanel);
 
         // Botón de registro
@@ -150,12 +142,7 @@ public class altaUsuario extends JFrame {
         btnRegistrar = new JButton("Registrar");
         btnRegistrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {
-					registrarUsuario();
-				} catch (UsuarioRepetidoException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+        		registrarUsuario();
         	}
         });
         panel.add(btnRegistrar);
@@ -165,27 +152,24 @@ public class altaUsuario extends JFrame {
     
     
 //REGISTRAR USUARIO
-    private void registrarUsuario() throws UsuarioRepetidoException {
+    private void registrarUsuario() {
     	String nickname = nicknameField.getText();
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String correo = correoField.getText();
-        String fechaNacimiento = fechaNacimientoField.getText();
+        LocalDate fechaNacimiento = fechaNacimientoField.getDate();
 		String contrasena = contrasenaField.getText();
         String tipoUsuario = deportistaRadio.isSelected() ? "Deportista" : "Entrenador";
         //FALTA CHECKEAR EXCEPCIONES
         if(tipoUsuario.equals("Deportista")) {
         	boolean esProfesional = checkBoxProfesional.isSelected();
-        	cntrlUsuario.crearDeportista(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, esProfesional);
+        	IcntrlUsuario.crearDeportista(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, esProfesional);
         } else if (tipoUsuario.equals("Entrenador")) {
             String disciplina = txtDisciplina.getText();
             String url = txtUrl.getText();
-        	cntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
+        	IcntrlUsuario.crearEntrenador(nickname, nombre, apellido, correo, fechaNacimiento, contrasena, disciplina, url);
 
         }
-<<<<<<< HEAD
-=======
-    
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
     }
 }
+    
