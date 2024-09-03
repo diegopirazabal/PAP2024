@@ -1,0 +1,112 @@
+package presentacion;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import dtos.dataTypeUsuario;
+import excepciones.UsuarioNoExisteException;
+import logica.IControladorUsuario;
+
+/**
+ * JInternalFrame que permite listar todos los usuarios del sistema.
+ * @author TProg2017
+ *
+ */
+
+@SuppressWarnings("serial")
+public class altaActividad extends JInternalFrame {
+
+    // Controlador de usuarios que se utilizará para las acciones del JFrame
+    private IControladorUsuario controlUsr;
+    
+    // Los componentes gráficos se agregan como atributos de la clase
+    // para facilitar su acceso desde diferentes métodos de la misma.
+    private JComboBox<dataTypeUsuario> comboBoxUsuarios;
+    private JLabel lblUsuarios;
+    private JButton btnCerrar;
+    private JTextField lblnombre;
+    private JTextField lbldescripción;
+    private JTextField lblduración;
+    private JTextField lblcosto;
+    private JTextField lblubicacion; 
+    private JTextField lblFecha;
+  
+    public altaActividad() { // nos falta crear el controlador de usuarios!
+        // Se inicializa con el controlador de usuarios
+        
+        
+        // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
+        setResizable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setClosable(true);
+        setTitle("Consultar un Usuario");
+        //setBounds(30, 30, 300, 100);
+        setSize(561, 549);
+        
+        // En este caso se utiliza un BorderLayout en donde los componentes se ubican segun una orientacion.
+        getContentPane().setLayout(new BorderLayout(0, 0));
+
+        // Una etiqueta (JLabel) muestra el titulo de la lista que vendra despues.
+        // Se ubica al norte del layout y el texto se centra horizontalmente.
+        lblUsuarios = new JLabel("Usuarios Registrados");
+        lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(lblUsuarios, BorderLayout.NORTH);
+
+        // Un combo (JComboBox) muestra la lista de usuarios registrados en el sistema.
+        // Es posible utilizar otros componentes graficos, esta es salto una opcion.
+        // Se ubica al centro del layout.
+        comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
+        getContentPane().add(comboBoxUsuarios, BorderLayout.CENTER);
+
+        // Un boton (JButton) con un evento asociado que permite limpiar la lista 
+        // de usuarios y cerrar la ventana (solo la oculta).
+        // Se ubica al sur del layout.
+        btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                comboBoxUsuarios.removeAllItems();
+                setVisible(false);
+            }
+        });
+        getContentPane().add(btnCerrar, BorderLayout.SOUTH);
+        
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(9, 2, 10, 10));
+        
+        panel.add(new JLabel("Nombre Actividad:"));
+        lblnombre = new JTextField();
+        getContentPane().add(lblnombre, BorderLayout.WEST);
+    }
+
+    // Metodo que permite cargar un nuevo modelo para el combo con la informacion
+    // actualizada de usuarios, provista por la operacion del sistema getUsuarios(). 
+    // Se invoca el metodo antes de hacer visible el JInternalFrame
+    
+    public void cargarUsuarios() {
+        DefaultComboBoxModel<dataTypeUsuario> model; // Este modelo se crea para carga el combo 
+        try {                                    // En model esta lo que vamos a carga al combo
+            model = new DefaultComboBoxModel<dataTypeUsuario>(controlUsr.getUsuarios()); //Aca se carga
+            comboBoxUsuarios.setModel(model);        //VER EN LA API DefaultComboBoxModel
+        } catch (UsuarioNoExisteException e) {
+            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
+        }
+
+    }
+    
+
+}
