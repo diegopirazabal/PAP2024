@@ -1,5 +1,5 @@
 package logica;
-
+// A VER SI LO ARREGLO
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
