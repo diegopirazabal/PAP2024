@@ -1,14 +1,14 @@
-package logica;
+package dtos;
 
 import java.time.LocalDate;
 
-public class DataInscripcion {
+public class dataTypeInscripcion {
 	 private LocalDate fechaInscripcion;
 	 private int cantidadDeportistas;
 	 private double costo;
 	 
 	 
-	 public DataInscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo) {
+	 public dataTypeInscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo) {
 		this.fechaInscripcion = fechaInscripcion;
 		this.cantidadDeportistas = cantidadDeportistas;
 		this.costo = costo;
@@ -43,15 +43,5 @@ public class DataInscripcion {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
 	 
 }

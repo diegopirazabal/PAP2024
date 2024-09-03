@@ -1,9 +1,9 @@
-package logica;
+package dtos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class DataClase {
+public class dataTypeClase {
     
 	private LocalDate fecha;
     private LocalTime hora;
@@ -12,9 +12,10 @@ public class DataClase {
     private LocalDate fechaAlta;
     private int cupo;
     
-    public DataClase(){}
+   	
+    public dataTypeClase(){}
     
-	public DataClase(LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo) {
+    public dataTypeClase(LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo){
 		super();
 		this.fecha = fecha;
 		this.hora = hora;
@@ -22,7 +23,8 @@ public class DataClase {
 		this.imagen = imagen;
 		this.fechaAlta = fechaAlta;
 		this.cupo = cupo;
-	}
+	 }
+
 
 	public LocalDate getFecha() {
 		return fecha;
@@ -72,9 +74,5 @@ public class DataClase {
 		this.cupo = cupo;
 	}
     
-    
-    
-    
-    
-    
 }
+
