@@ -1,6 +1,5 @@
 package dtos;
 import java.time.LocalDate;
-import logica.Actividad.estadoActividad;
 
 public class dataTypeActividad {
 
@@ -11,7 +10,6 @@ public class dataTypeActividad {
     private double costo;
     private String lugar;
     private LocalDate fechaAlta;
-    private estadoActividad estado;
     private String imagen;
     private Long entrenadorId; // Puedes almacenar solo el ID del entrenador si no necesitas toda la información del entrenador
 
@@ -20,7 +18,7 @@ public class dataTypeActividad {
     }
 
     // Constructor con todos los parámetros necesarios
-    public dataTypeActividad(Long id, String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, estadoActividad estado, String imagen, Long entrenadorId) {
+    public dataTypeActividad(Long id, String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Long entrenadorId) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -28,7 +26,6 @@ public class dataTypeActividad {
         this.costo = costo;
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
-        this.estado = estado;
         this.imagen = imagen;
         this.entrenadorId = entrenadorId;
     }
@@ -54,9 +51,6 @@ public class dataTypeActividad {
 
     public LocalDate getFechaAlta() { return fechaAlta; }
     public void setFechaAlta(LocalDate fechaAlta) { this.fechaAlta = fechaAlta; }
-
-    public estadoActividad getEstado() { return estado; }
-    public void setEstado(estadoActividad estado) { this.estado = estado; }
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }

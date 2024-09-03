@@ -2,7 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 
-import logica.Usuario.Deportista;
+import logica.Deportista;
 
 public class Inscripcion {
     private LocalDate fechaInscripcion;

@@ -40,14 +40,14 @@ public class ControladorUsuario  implements IControladorUsuario{
         Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
 
         if (usrs != null) {
-        	dataTypeUsuario[] du = new DataUsuario[usrs.length];
+        	dataTypeUsuario[] du = new dataTypeUsuario[usrs.length];
             Usuario usuario;
 
             // Para separar logica de presentacion, no se deben devolver los Usuario,
             // sino los DataUsuario
             for (int i = 0; i < usrs.length; i++) {
                 usuario = usrs[i];
-                du[i] = new dataTypeUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCedulaIdentidad());
+                du[i] = new dataTypeUsuario(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getFechaNacimiento());
                 // pasa el array de objetos a array de DataUsuaios
             }
 
