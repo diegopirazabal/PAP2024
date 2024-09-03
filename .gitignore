@@ -9,6 +9,7 @@
 # Ignorar archivos de compilación
 /build/
 /target/
+/bin/
 
 # Ignorar archivos temporales
 *.log
