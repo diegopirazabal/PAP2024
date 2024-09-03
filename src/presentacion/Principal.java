@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import logica.Fabrica;
 import logica.IControladorUsuario;
 
 //import logica.Fabrica;   // Uso Fabricas de la clase logica
@@ -42,7 +43,6 @@ public class Principal {
             }
         });
     }
-
     /**
      * Create the application.
      */
