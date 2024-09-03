@@ -17,12 +17,6 @@ import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-/**
- * JInternalFrame que permite registrar un nuevo usuario al sistema.
- * 
- * @author TProg2017
- *
- */
 
 @SuppressWarnings("serial")
 public class CrearUsuario extends JInternalFrame {
@@ -244,4 +238,3 @@ public class CrearUsuario extends JInternalFrame {
         textFieldCI.setText("");
     }
 }
-*/

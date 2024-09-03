@@ -2,6 +2,8 @@ package logica;
 
 import java.time.LocalDate;
 
+import logica.Usuario.Deportista;
+
 public class Inscripcion {
     private LocalDate fechaInscripcion;
     private int cantidadDeportistas;

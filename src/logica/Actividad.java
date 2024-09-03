@@ -1,10 +1,10 @@
 package logica;
 import jakarta.persistence.*;
-
+import logica.Usuario;
 import logica.Clase;
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.*;
+import java.persistence.*;
 
 @Entity
 @Table(name = "ACTIVIDADES")
@@ -38,11 +38,9 @@ public class Actividad {
     @OneToMany( targetEntity=Clase.class)
     private List<Clase> clases; // Relación con las clases
     
-<<<<<<< HEAD
-=======
-    public Actividad(){};
+
+    //public Actividad(){};
     
->>>>>>> refs/heads/cantomauro
     public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -55,10 +53,8 @@ public class Actividad {
         this.entrenador = entrenador;
         this.clases = clases;
     }
-<<<<<<< HEAD
-=======
+
     
->>>>>>> refs/heads/cantomauro
     // Getters y Setters
 
     public String getNombre() {
