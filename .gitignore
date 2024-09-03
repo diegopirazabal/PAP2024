@@ -1,0 +1,17 @@
+# Eclipse specific files
+.project
+.classpath
+.settings/
+.idea/
+.vscode/
+
+# Ignore build directories
+/bin/
+/target/
+
+# Other IDEs (if relevant)
+*.iml
+*.ipr
+*.iws
+.factorypath
+.externalToolBuilders/
