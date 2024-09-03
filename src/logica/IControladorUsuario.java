@@ -18,5 +18,5 @@ public interface IControladorUsuario {
 	
 	public List<Usuario> listarTodos();
 	
-	public void altaUsuario(); 
+	public DataUsuario[] getUsuarios() throws UsuarioNoExisteException;
 }

@@ -47,15 +47,15 @@ public class altaUsuario extends JInternalFrame {
         panel.setLayout(new GridLayout(9, 2, 10, 10));
 
         // Etiquetas y campos de texto
-        panel.add(new JLabel("Nickname:"));
+        panel.add(new JLabel("Nombre:"));
         nicknameField = new JTextField();
         panel.add(nicknameField);
 
-        panel.add(new JLabel("Nombre:"));
+        panel.add(new JLabel("Apellido:"));
         nombreField = new JTextField();
         panel.add(nombreField);
 
-        panel.add(new JLabel("Apellido:"));
+        panel.add(new JLabel("Nickname:"));
         apellidoField = new JTextField();
         panel.add(apellidoField);
 
@@ -91,7 +91,7 @@ public class altaUsuario extends JInternalFrame {
         deportistaPanel.add(new JLabel("Profesional:"));
         checkBoxProfesional = new JCheckBox();
         deportistaPanel.add(checkBoxProfesional);
-        deportistaPanel.setVisible(false);
+        deportistaPanel.setVisible(true);
         panel.add(deportistaPanel);
 
         // Panel extra para entrenador
@@ -103,7 +103,7 @@ public class altaUsuario extends JInternalFrame {
         entrenadorPanel.add(new JLabel("Sitio Web (opcional):"));
         txtUrl = new JTextField();
         entrenadorPanel.add(txtUrl);
-        entrenadorPanel.setVisible(false);
+        entrenadorPanel.setVisible(true);
         panel.add(entrenadorPanel);
 
         // Botón de registro

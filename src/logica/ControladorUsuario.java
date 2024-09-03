@@ -35,8 +35,28 @@ public class ControladorUsuario  implements IControladorUsuario{
     	return manejador.obtenerTodos();
     }
     
-    public void altaUsuario() {}
+    public DataUsuario[] getUsuarios() throws UsuarioNoExisteException {
+        manejadorUsuario mu = manejador.getinstance();
+        Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
+
+        if (usrs != null) {
+            DataUsuario[] du = new DataUsuario[usrs.length];
+            Usuario usuario;
+
+            // Para separar logica de presentacion, no se deben devolver los Usuario,
+            // sino los DataUsuario
+            for (int i = 0; i < usrs.length; i++) {
+                usuario = usrs[i];
+                du[i] = new DataUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCedulaIdentidad());
+                // pasa el array de objetos a array de DataUsuaios
+            }
+
+            return du;
+        } else
+            throw new UsuarioNoExisteException("No existen usuarios registrados");
+    }
 }
+
 	
 /*
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("airelibre.uy");

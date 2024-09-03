@@ -24,7 +24,7 @@ public class Principal {
     private IControladorUsuario ICU;           // Objeto de tipo controlador para manipulacion de objetos
     private CrearUsuario creUsrInternalFrame;  // Frame interno para dar de alta usuario
     private altaUsuario altUsrInternalFrame; // Frame interno para consultar por usuario
-    private ListaUsuarios lisUsrInternalFrame;    // Frame interno para listar usuario 
+    private ListarUsuarios lisUsrInternalFrame;    // Frame interno para listar usuario 
 
     /**
      * Launch the application.
@@ -49,8 +49,8 @@ public class Principal {
     public Principal() {   // Constructor de la clase
         initialize();     // Inicializa la interface
 
-        //Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
-        //ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
+        Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
+        ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia unica controlador de usuario
         
         // Se crean los tres InternalFrame y se incluyen al Frame principal ocultos.
         // De esta forma, no es necesario crear y destruir objetos lo que enlentece la ejecución.
@@ -62,12 +62,14 @@ public class Principal {
 		 */
         altUsrInternalFrame = new altaUsuario(ICU);
         altUsrInternalFrame.setLocation(10, 247);
-        altUsrInternalFrame.setVisible(false);
+        altUsrInternalFrame.setVisible(true);
 
-        lisUsrInternalFrame = new ListaUsuarios(ICU);
+		
+        lisUsrInternalFrame = new ListarUsuarios(ICU);
         lisUsrInternalFrame.setLocation(24, 10);
         lisUsrInternalFrame.setVisible(false);
         frmGestionDeUsuarios.getContentPane().setLayout(null);
+		 
 
         frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame); /*Agrego los 3 internos al principal */
         frmGestionDeUsuarios.getContentPane().add(creUsrInternalFrame);
@@ -108,7 +110,7 @@ public class Principal {
         menuItemRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para registrar un usuario
-                creUsrInternalFrame.setVisible(true);
+            	altUsrInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemRegistrar);
@@ -117,7 +119,7 @@ public class Principal {
         menuConsultarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-            	altUsrInternalFrame.setVisible(true);
+            	lisUsrInternalFrame.setVisible(false);
             }
         });
         menuUsuarios.add(menuConsultarUsuario);

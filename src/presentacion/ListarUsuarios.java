@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
  */
 
 @SuppressWarnings("serial")
-public class ListaUsuarios extends JInternalFrame {
+public class ListarUsuarios extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
     private IControladorUsuario controlUsr;
@@ -36,7 +36,7 @@ public class ListaUsuarios extends JInternalFrame {
 
    
   
-    public ListaUsuarios(IControladorUsuario icu) { // nos falta crear el controlador de usuarios!
+    public ListarUsuarios(IControladorUsuario icu) { // nos falta crear el controlador de usuarios!
         // Se inicializa con el controlador de usuarios
         controlUsr = icu;
         
