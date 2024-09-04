@@ -36,10 +36,8 @@ public class ListarUsuarios extends JInternalFrame {
 
    
   
-    public ListarUsuarios(IControladorUsuario icu) { // nos falta crear el controlador de usuarios!
-        // Se inicializa con el controlador de usuarios
-        controlUsr = icu;
-        
+    public ListarUsuarios() { // nos falta crear el controlador de usuarios!
+        // Se inicializa con el controlador de usuarios        
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
         setIconifiable(true);

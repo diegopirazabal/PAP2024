@@ -34,7 +34,6 @@ public class CrearUsuario extends JInternalFrame {
     private JLabel lblIngreseCi;
     private JButton btnAceptar;
     private JButton btnCancelar;
-
     
     public CrearUsuario(IControladorUsuario icu) {
         // Se inicializa con el controlador de usuarios

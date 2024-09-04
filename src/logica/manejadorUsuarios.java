@@ -6,10 +6,7 @@ import java.util.stream.Collectors;
 
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 import dtos.*;
 import dtos.dataTypeUsuario;
 import persistencia.*;
@@ -19,11 +16,11 @@ public class manejadorUsuarios {
     private EntityManager em;
     private static manejadorUsuarios instancia = null;
 
-    public manejadorUsuarios() {
-        this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
-        this.em = emf.createEntityManager();
-    }
-    
+//    public manejadorUsuarios() {
+//        this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
+//        this.em = emf.createEntityManager();
+//    }
+//    
     public static manejadorUsuarios getinstance() {
         if (instancia == null)
             instancia = new manejadorUsuarios();      // Constructor solo se llama de aca

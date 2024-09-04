@@ -48,7 +48,7 @@ public class altaUsuario extends JInternalFrame {
 	 private JButton btnRegistrar;
 	 private IControladorUsuario IcntrlUsuario;
 
-    public altaUsuario(IControladorUsuario icu) {
+    public altaUsuario() {
     	setTitle("Alta de Usuario");
         setSize(561, 549);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

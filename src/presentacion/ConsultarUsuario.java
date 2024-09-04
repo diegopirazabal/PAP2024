@@ -1,11 +1,11 @@
 package presentacion;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-/*
+
 import excepciones.UsuarioNoExisteException;
-import logica.DataUsuario;
+import dtos.dataTypeUsuario;
 import logica.IControladorUsuario;
+import logica.Usuario;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,13 +14,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-*/
+
 /**
  * JInternalFrame que permite consultar la información de un usuario del sistema.
  * @author TProg2017
  *
- **/
-/*
+ */
 @SuppressWarnings("serial")
 public class ConsultarUsuario extends JInternalFrame {
 
@@ -39,7 +38,9 @@ public class ConsultarUsuario extends JInternalFrame {
     private JButton btnCerrar;
     private JLabel lblInfoUsuario;
 
-
+    /**
+     * Create the frame.
+     */
     public ConsultarUsuario(IControladorUsuario icu) {
         // Se inicializa con el controlador de usuarios
         controlUsr = icu;
@@ -132,9 +133,9 @@ public class ConsultarUsuario extends JInternalFrame {
     // No es necesario verificar que el campo con la cédula sea un número ya
     // que internamente el sistema almacena la cédula como un string.
     protected void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
-        DataUsuario du;
+        Usuario du;
         try {
-            du = controlUsr.verInfoUsuario(textFieldCI.getText());
+            du = controlUsr.consultarUsuario(textFieldCI.getText());
             textFieldNombre.setText(du.getNombre());
             textFieldApellido.setText(du.getApellido());
         } catch (UsuarioNoExisteException e1) {
@@ -156,4 +157,3 @@ public class ConsultarUsuario extends JInternalFrame {
         textFieldCI.setText("");
     }
 }
-*/
