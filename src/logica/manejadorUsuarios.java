@@ -27,20 +27,26 @@ public class manejadorUsuarios {
         return instancia;
     }
     
-    public Usuario[] getUsuarios() {
-		System.out.print("Va a devolver null hay que implementar esto");
-    	return null;      // Devuelve la coleccion completa de los usuarios en array
-		/*
-		 * if (usuariosCI.isEmpty()) return null; else { Collection<Usuario> usrs =
-		 * usuariosCI.values(); // Metodo values devuelve la coleccion entera Object[] o
-		 * = usrs.toArray(); // Devuelve los objetos a una array Usuario[] usuarios =
-		 * new Usuario[o.length]; // Creo un array de usuarios for (int i = 0; i <
-		 * o.length; i++) { usuarios[i] = (Usuario) o[i]; // Cargo con la salida de
-		 * toArray }
-		 * 
-		 * return usuarios; }
-		 */
+    public List<dataTypeUsuario> getUsuarios() {
+        try {
+            // Recuperar todos los usuarios desde la base de datos
+            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+
+            // Transformar cada usuario en un dataTypeUsuario
+            return usuarios.stream()
+                    .map(usuario -> new dataTypeUsuario(
+                            usuario.getNickname(),
+                            usuario.getNombre(),
+                            usuario.getApellido(),
+                            usuario.getEmail(),
+                            usuario.getFechaNacimiento()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>(); // Retornar una lista vacía en caso de excepción
+        }
     }
+
 
     public void agregar(Usuario usuario) throws UsuarioRepetidoException {
         // Verificar si el usuario ya existe en la base de datos

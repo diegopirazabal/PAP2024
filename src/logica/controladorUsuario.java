@@ -1,6 +1,4 @@
 package logica;
-import logica.Usuario;
-import java.time.LocalDate;
 import java.util.*;
 import dtos.dataTypeUsuario;
 import excepciones.*;
@@ -35,26 +33,18 @@ public class controladorUsuario  implements IControladorUsuario{
     	return manejador.obtenerTodos();
     }
     
-    public dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException {
-        manejadorUsuarios mu = manejador.getinstance();
-        Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
+    public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException {
+        manejadorUsuarios mu = manejadorUsuarios.getinstance();
+        List<dataTypeUsuario> usuarios = mu.obtenerTodos(); // Método que devuelve List<dataTypeUsuario>
 
-        if (usrs != null) {
-        	dataTypeUsuario[] du = new dataTypeUsuario[usrs.length];
-            Usuario usuario;
-
-            // Para separar logica de presentacion, no se deben devolver los Usuario,
-            // sino los DataUsuario
-            for (int i = 0; i < usrs.length; i++) {
-                usuario = usrs[i];
-                du[i] = new dataTypeUsuario(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getFechaNacimiento());
-                // pasa el array de objetos a array de DataUsuaios
-            }
-
-            return du;
-        } else
+        if (usuarios != null && !usuarios.isEmpty()) {
+            return usuarios;
+        } else {
             throw new UsuarioNoExisteException("No existen usuarios registrados");
+        }
     }
+
+
 }
 
 	

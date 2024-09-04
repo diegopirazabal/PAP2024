@@ -89,7 +89,4 @@ public Usuario(String nickname, String nombre, String apellido, String email, St
 	public String getContrasena(){
 	    return contrasena;
 	}
-
-
 }
-

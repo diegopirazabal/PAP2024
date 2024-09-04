@@ -37,7 +37,7 @@ public class Actividad {
     
     private String imagen; // URL o nombre de archivo de la imagen
     
-    @OneToOne
+    @ManyToOne
     private Entrenador entrenador; // Relación con el entrenador
     
     @OneToMany( targetEntity=Clase.class)
@@ -56,7 +56,6 @@ public class Actividad {
         this.imagen = imagen;
         this.entrenador = entrenador;
     }
-
     
     public Long getId() {
 		return id;

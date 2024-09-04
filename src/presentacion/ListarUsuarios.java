@@ -1,20 +1,18 @@
 package presentacion;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-
-import excepciones.UsuarioNoExisteException;
-import dtos.dataTypeUsuario;
-import logica.IControladorUsuario;
-
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import dtos.dataTypeUsuario;
+import logica.IControladorUsuario;
 
 /**
  * JInternalFrame que permite listar todos los usuarios del sistema.
@@ -34,11 +32,11 @@ public class ListarUsuarios extends JInternalFrame {
     private JLabel lblUsuarios;
     private JButton btnCerrar;
 
-   
-  
-    public ListarUsuarios() { // nos falta crear el controlador de usuarios!
+
+    public ListarUsuarios(IControladorUsuario controlUsr) { // nos falta crear el controlador de usuarios!
         // Se inicializa con el controlador de usuarios        
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
+    	this.controlUsr = controlUsr; // Inicializa el controlador de usuarios
         setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -80,14 +78,23 @@ public class ListarUsuarios extends JInternalFrame {
     // Se invoca el metodo antes de hacer visible el JInternalFrame
     
     public void cargarUsuarios() {
-        DefaultComboBoxModel<dataTypeUsuario> model; // Este modelo se crea para carga el combo 
-        try {                                    // En model esta lo que vamos a carga al combo
-            model = new DefaultComboBoxModel<dataTypeUsuario>(controlUsr.getUsuarios()); //Aca se carga
-            comboBoxUsuarios.setModel(model);        //VER EN LA API DefaultComboBoxModel
-        } catch (UsuarioNoExisteException e) {
-            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
+        try {
+            List<dataTypeUsuario> usuarios = controlUsr.getUsuarios();  // Obtiene la lista de usuarios
+            if (usuarios != null && !usuarios.isEmpty()) {
+                // Convierte la lista a un array
+                dataTypeUsuario[] usuariosArray = usuarios.toArray(new dataTypeUsuario[0]);
+                // Crea el modelo con el array
+                DefaultComboBoxModel<dataTypeUsuario> model = new DefaultComboBoxModel<>(usuariosArray);
+                // Establece el modelo al JComboBox
+                comboBoxUsuarios.setModel(model);
+            } else {
+                // Manejar el caso en que no hay usuarios
+                DefaultComboBoxModel<dataTypeUsuario> model = new DefaultComboBoxModel<>();
+                comboBoxUsuarios.setModel(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
 }

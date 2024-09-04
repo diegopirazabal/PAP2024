@@ -56,4 +56,9 @@ public class dataTypeUsuario {
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    @Override
+    public String toString() {
+        return nickname + " " + nombre + " - " + apellido; // Personaliza esto según lo que quieras mostrar
+    }
 }
