@@ -6,8 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/eclipselink-4.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/hsqldb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/cantomauro/Desktop/jars no borres mauro/eclipselink-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/cantomauro/Desktop/jars no borres mauro/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/cantomauro/Desktop/jars no borres mauro/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/cantomauro/Downloads/mysql-connector-j-8.0.31-javadoc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

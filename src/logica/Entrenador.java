@@ -1,6 +1,5 @@
 package logica;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -10,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ENTRENADORES")
-class Entrenador extends Usuario {
+public class Entrenador extends Usuario {
     @Column (name = "Disciplina", nullable = false, length = 50)
     private String disciplina;
     

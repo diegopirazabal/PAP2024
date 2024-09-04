@@ -44,7 +44,7 @@ public class Actividad {
     private List<Clase> clases; // Relación con las clases
     
 
-    //public Actividad(){};
+    public Actividad(){};
     
     public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Entrenador entrenador) {
         this.nombre = nombre;

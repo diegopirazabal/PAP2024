@@ -5,9 +5,10 @@ import logica.Entrenador;
 import java.time.LocalDate;
 import jakarta.persistence.*;
 import java.persistence.*;
-
 import logica.Deportista;
 
+@Entity
+@Table(name = "INSCRIPCIONES")
 public class Inscripcion {
 
     @Id

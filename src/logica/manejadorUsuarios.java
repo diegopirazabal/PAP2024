@@ -16,11 +16,11 @@ public class manejadorUsuarios {
     private EntityManager em;
     private static manejadorUsuarios instancia = null;
 
-//    public manejadorUsuarios() {
-//        this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
-//        this.em = emf.createEntityManager();
-//    }
-//    
+    public manejadorUsuarios() {
+        this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
+        this.em = emf.createEntityManager();
+    }
+    
     public static manejadorUsuarios getinstance() {
         if (instancia == null)
             instancia = new manejadorUsuarios();      // Constructor solo se llama de aca
