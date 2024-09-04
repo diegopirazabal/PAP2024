@@ -11,29 +11,28 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import dtos.*;
-<<<<<<< HEAD
 import dtos.dataTypeUsuario;
-=======
 import persistencia.*;
->>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
 
 public class manejadorUsuarios {
     private EntityManagerFactory emf;
     private EntityManager em;
-    private static manejadorUsuario instancia = null;
+    private static manejadorUsuarios instancia = null;
 
     public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
         this.em = emf.createEntityManager();
     }
     
-    public static manejadorUsuario getinstance() {
+    public static manejadorUsuarios getinstance() {
         if (instancia == null)
-            instancia = new manejadorUsuario();      // Constructor solo se llama de aca
+            instancia = new manejadorUsuarios();      // Constructor solo se llama de aca
         return instancia;
     }
     
-    public Usuario[] getUsuarios() {      // Devuelve la coleccion completa de los usuarios en array
+    public Usuario[] getUsuarios() {
+		System.out.print("Va a devolver null hay que implementar esto");
+    	return null;      // Devuelve la coleccion completa de los usuarios en array
 		/*
 		 * if (usuariosCI.isEmpty()) return null; else { Collection<Usuario> usrs =
 		 * usuariosCI.values(); // Metodo values devuelve la coleccion entera Object[] o
@@ -102,7 +101,6 @@ public class manejadorUsuarios {
         }
     }
 
-<<<<<<< HEAD
     public List<dataTypeUsuario> obtenerTodos() {
         try {
             List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
@@ -119,9 +117,6 @@ public class manejadorUsuarios {
             return new ArrayList<>();
         }
     }
-=======
-
->>>>>>> f2924bd8f36b4e0d337f024e585a0ce3a0645a81
 
     public void cerrar() {
         if (em.isOpen()) em.close();

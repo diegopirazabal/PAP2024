@@ -19,7 +19,7 @@ public class Fabrica {
 	    }
 	    /*Metodo publico para devolver el controlador*/
 	    public IControladorUsuario getIControladorUsuario() {
-	        return new ControladorUsuario();
+	        return new controladorUsuario();
 	    }
 }
 

@@ -181,10 +181,9 @@ public class CrearUsuario extends JInternalFrame {
         String nombreU = this.textFieldNombre.getText();
         String apellidoU = this.textFieldApellido.getText();
         String ciU = this.textFieldCI.getText();
-
         if (checkFormulario()) {
             try {
-                controlUsr.registrarUsuario(nombreU, apellidoU, ciU);
+                controlUsr.crearEntrenador(nombreU, apellidoU, ciU, ciU, ciU, ciU, ciU, ciU);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",

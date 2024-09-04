@@ -14,7 +14,7 @@ class Deportista extends Usuario {
 
     public Deportista() {};
     
-    public Deportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) {
+    public Deportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, boolean esProfesional) {
         super(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
         this.esProfesional = esProfesional;
     }
@@ -27,4 +27,3 @@ class Deportista extends Usuario {
         this.esProfesional = esProfesional;
     }
 }
-

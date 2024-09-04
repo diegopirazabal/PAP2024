@@ -17,8 +17,8 @@ public class controladorActividades {
         manejador = new manejadorActividades();
     }
 
-    public void crearActividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, estadoActividad estado, String imagen, Entrenador entrenador) {
-    	Actividad actividad = new Actividad(nombre, descripcion, duracion, costo, lugar, fechaAlta, estado, imagen, entrenador);
+    public void crearActividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Entrenador entrenador) {
+    	Actividad actividad = new Actividad(nombre, descripcion, duracion, costo, lugar, fechaAlta, imagen, entrenador);
     	manejador.agregarActividad(actividad);
     }
     

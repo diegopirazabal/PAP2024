@@ -30,6 +30,8 @@ public abstract class Usuario {
     private String contrasena;
 ;
     
+public Usuario(){};
+
 public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, String contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
@@ -72,11 +74,11 @@ public Usuario(String nickname, String nombre, String apellido, String email, St
 	    this.email = email;
 	}
 	
-	public LocalDate getFechaNacimiento() {
+	public String getFechaNacimiento() {
 	    return fechaNacimiento;
 	}
 	
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 	    this.fechaNacimiento = fechaNacimiento;
 	}
 	

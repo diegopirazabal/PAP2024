@@ -3,7 +3,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
->>>>>>> branch 'cantomauro' of https://github.com/diegopirazabal/PAP2024/
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import excepciones.UsuarioRepetidoException;
 import logica.controladorUsuario;
 
 import javax.swing.ButtonGroup;
@@ -25,7 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import logica.ControladorUsuario;
+import logica.controladorUsuario;
 import logica.IControladorUsuario;
 
 
@@ -75,7 +76,7 @@ public class altaUsuario extends JInternalFrame {
         panel.add(correoField);
         
         panel.add(new JLabel("Fecha de Nacimiento (dd/mm/yyyy):"));
-        fechaNacimientoField = new JFormattedTextField();
+        fechaNacimientoField = new JTextField();
         panel.add(fechaNacimientoField);
         
         panel.add(new JLabel("Contraseña:"));
@@ -173,7 +174,7 @@ public class altaUsuario extends JInternalFrame {
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String correo = correoField.getText();
-        LocalDate fechaNacimiento = fechaNacimientoField.getDate();
+        String fechaNacimiento = fechaNacimientoField.getText();
 		String contrasena = contrasenaField.getText();
         String tipoUsuario = deportistaRadio.isSelected() ? "Deportista" : "Entrenador";
         //FALTA CHECKEAR EXCEPCIONES

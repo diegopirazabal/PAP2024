@@ -46,14 +46,13 @@ public class Actividad {
 
     //public Actividad(){};
     
-    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String estado, String imagen, Entrenador entrenador, List<Clase> clases) {
+    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Entrenador entrenador) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.costo = costo;
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
-        this.estado = estado;
         this.imagen = imagen;
         this.entrenador = entrenador;
     }
@@ -129,14 +128,14 @@ public class Actividad {
 	}
 
 
-	public estadoActividad getEstado() {
-		return estado;
-	}
-
-
-	public void setEstado(estadoActividad estado) {
-		this.estado = estado;
-	}
+//	public estadoActividad getEstado() {
+//		return estado;
+//	}
+//
+//
+//	public void setEstado(estadoActividad estado) {
+//		this.estado = estado;
+//	}
 
 
 	public String getImagen() {

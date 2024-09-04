@@ -5,20 +5,20 @@ import java.util.*;
 import dtos.dataTypeUsuario;
 import excepciones.*;
 
-public class ControladorUsuario  implements IControladorUsuario{
-    private manejadorUsuario manejador;
+public class controladorUsuario  implements IControladorUsuario{
+    private manejadorUsuarios manejador;
 
-    public ControladorUsuario() {
-        manejador = new manejadorUsuario();
+    public controladorUsuario() {
+        manejador = new manejadorUsuarios();
     }
 
-    public void crearDeportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
+    public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
         Usuario deportista = new Deportista(nickname, nombre, apellido, email, fechaNacimiento, contrasena, esProfesional);
        
         manejador.agregar(deportista);
     }
 
-    public void crearEntrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
+    public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
     	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }
@@ -31,12 +31,12 @@ public class ControladorUsuario  implements IControladorUsuario{
     	 manejador.eliminar(nickname);
     }
     
-    public List<Usuario> listarTodos(){
+    public List<dataTypeUsuario> listarTodos(){
     	return manejador.obtenerTodos();
     }
     
     public dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException {
-        manejadorUsuario mu = manejador.getinstance();
+        manejadorUsuarios mu = manejador.getinstance();
         Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
 
         if (usrs != null) {

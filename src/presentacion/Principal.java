@@ -192,6 +192,5 @@ public class Principal {
             }
         });
         menuClaseDeportiva.add(menuConsultaInscripciones); 
-    }
-    
+    } 
 }
