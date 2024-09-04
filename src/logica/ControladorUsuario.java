@@ -1,70 +1,50 @@
 package logica;
-import logica.Usuario;
-import java.time.LocalDate;
-import java.util.*;
-import dtos.dataTypeUsuario;
-import excepciones.*;
 
-public class ControladorUsuario  implements IControladorUsuario{
-    private manejadorUsuario manejador;
+import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioRepetidoException;
 
-    public ControladorUsuario() {
-        manejador = new manejadorUsuario();
-    }
 
-    public void crearDeportista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
-        Usuario deportista = new Deportista(nickname, nombre, apellido, email, fechaNacimiento, contrasena, esProfesional);
-       
-        manejador.agregar(deportista);
-    }
+public class ControladorUsuario implements IControladorUsuario {
 
-    public void crearEntrenador(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
-    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
-    	manejador.agregar(entrenador);    	
-    }
-    
-    public Usuario consultarUsuario(String nickname) throws UsuarioNoExisteException {
-    	return manejador.buscarUsuario(nickname);
-    }
+	 public ControladorUsuario() {		 
+	 }
+	 
+	 public void registrarUsuario(String nom, String ap, String nick, String email, String fnac, boolean EsEntrenador) throws UsuarioRepetidoException {
+	        manejadorUsuario mu = manejadorUsuario.getinstance();
+	        Usuario u = mu.obtenerUsuario(nick);  // Lo voy a buscar a la coleccion
+	        if (u != null)  // Si lo encontre es porque ya existe
+	            throw new UsuarioRepetidoException("El usuario " + nick + " ya esta registrado");
 
-    public void eliminarUsuario(String nickname) throws UsuarioNoExisteException{
-    	 manejador.eliminar(nickname);
-    }
-    
-    public List<Usuario> listarTodos(){
-    	return manejador.obtenerTodos();
-    }
-    
-    public dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException {
-        manejadorUsuario mu = manejador.getinstance();
-        Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
+	        u = new Usuario(nom, ap, nick, email, fnac, EsEntrenador);  // Creo el objeto con el contructor de la clase Usuario
+	        mu.addUsuario(u);
+	 }
+	 
+	 public dataTypeUsuario verInfoUsuario(String nick) throws UsuarioNoExisteException {
+	        manejadorUsuario mu = manejadorUsuario.getinstance();  // mu tiene la coleccion
+	        Usuario u = mu.obtenerUsuario(nick);                     // u obtiene el usuario pasado por parametro 
+	        if (u != null) // Si lo encontre es porque ya existe, solo traigo sus datos
+	            return new dataTypeUsuario(u.getNombre(), u.getApellido(), u.getNickname(), u.getEmail(), u.getFnacimiento());
+	        else
+	            throw new UsuarioNoExisteException("El usuario " + nick + " no existe");
 
-        if (usrs != null) {
-        	dataTypeUsuario[] du = new dataTypeUsuario[usrs.length];
-            Usuario usuario;
+	 }
+	 
+	   public dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException {
+	        manejadorUsuario mu = manejadorUsuario.getinstance();
+	        Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
 
-            // Para separar logica de presentacion, no se deben devolver los Usuario,
-            // sino los DataUsuario
-            for (int i = 0; i < usrs.length; i++) {
-                usuario = usrs[i];
-                du[i] = new dataTypeUsuario(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getFechaNacimiento());
-                // pasa el array de objetos a array de DataUsuaios
-            }
+	        if (usrs != null) {
+	        	dataTypeUsuario[] du = new dataTypeUsuario[usrs.length];
+	            Usuario usuario;
 
-            return du;
-        } else
-            throw new UsuarioNoExisteException("No existen usuarios registrados");
-    }
+	            // Para separar logica de presentacion, no se deben devolver los Usuario, sino los DataUsuario.
+	            for (int i = 0; i < usrs.length; i++) {
+	                usuario = usrs[i];
+	                du[i] = new dataTypeUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getEmail(), usuario.getFnacimiento());
+	                // pasa el array de objetos a array de DataUsuaios
+	            }
+	            return du;
+	        } else
+	            throw new UsuarioNoExisteException("No existen usuarios registrados");
+	    }
 }
-
-	
-/*
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("airelibre.uy");
-    private EntityManager em = emf.createEntityManager();
-    private EntityTransaction tx = em.getTransaction();
-    //tx.begin();
-    //em.persist(usu);
-    //tx.commit();
-    //em.close();
-    //emf.close();
-*/

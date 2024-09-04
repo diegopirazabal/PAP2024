@@ -1,47 +1,49 @@
 package logica;
-import java.time.LocalDate;
+/**Representa a un usuario en el sistema. */
+public class Usuario {
 
-import java.util.List;
-
-//Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
-import jakarta.persistence.*;
-
-
-@Entity 
-@Table(name = "USUARIOS")  // VA A HABER TABLA USUARIOS?
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
-    @Id
-    private String nickname;
-    
-    @Column (name = "Nombre", nullable = false, length = 50) 
     private String nombre;
-    
-    @Column (name = "Apellido", nullable = false, length = 50)
     private String apellido;
-    
-    @Column (name = "Email", nullable = false, length = 50)
+    private String nickname;
     private String email;
-    
-    @Column (name = "fechaNac", nullable = false)
-    private LocalDate fechaNacimiento;
-    
-    @Column (name = "Contrasena", nullable = false, length = 20)
-    private String contrasena;
-;
-    
-public Usuario(){};
-    
-public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String contrasena) {
-    this.nickname = nickname;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.email = email;
-    this.fechaNacimiento = fechaNacimiento;
-    this.contrasena = contrasena;
-}
+    private String fnacimiento;
+    private boolean EsEntrenador = false;
 
-// Getters y Setters
+    public Usuario(String n, String ap, String nickname, String email, String fnacimiento, boolean EsEntrenador) {
+        this.nombre = n;
+        this.apellido = ap;
+        this.nickname = nickname;
+        this.email = email;
+        this.fnacimiento = fnacimiento;
+        this.EsEntrenador = EsEntrenador;
+    }
+    
+    
+    
+	public boolean isEsEntrenador() {
+		return EsEntrenador;
+	}
+
+	public void setEsEntrenador(boolean esEntrenador) {
+		EsEntrenador = esEntrenador;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -50,46 +52,21 @@ public Usuario(String nickname, String nombre, String apellido, String email, Lo
 		this.nickname = nickname;
 	}
 
-	public String getNombre() {
-	    return nombre;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNombre(String nombre) {
-	    this.nombre = nombre;
-	}
-	
-	public String getApellido() {
-	    return apellido;
-	}
-	
-	public void setApellido(String apellido) {
-	    this.apellido = apellido;
-	}
-	
-	public String getEmail() {
-	    return email;
-	}
-	
 	public void setEmail(String email) {
-	    this.email = email;
+		this.email = email;
 	}
-	
-	public LocalDate getFechaNacimiento() {
-	    return fechaNacimiento;
+
+	public String getFnacimiento() {
+		return fnacimiento;
 	}
-	
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-	    this.fechaNacimiento = fechaNacimiento;
-	}
-	
-	public void setContrasena(String contrasena){
-	    this.contrasena = contrasena;
-	}
-	
-	public String getContrasena(){
-	    return contrasena;
+
+	public void setFnacimiento(String fnacimiento) {
+		this.fnacimiento = fnacimiento;
 	}
 
 
 }
-

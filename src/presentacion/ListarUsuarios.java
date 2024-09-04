@@ -1,44 +1,56 @@
 package presentacion;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import excepciones.UsuarioNoExisteException;
-import dtos.dataTypeUsuario;
-import logica.IControladorUsuario;
-
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JDesktopPane;
 
-/**
- * JInternalFrame que permite listar todos los usuarios del sistema.
- * @author TProg2017
- *
- */
 
-@SuppressWarnings("serial")
+import excepciones.UsuarioNoExisteException;
+import logica.IControladorUsuario;
+import logica.dataTypeUsuario;
+
 public class ListarUsuarios extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
     private IControladorUsuario controlUsr;
     
     // Los componentes gráficos se agregan como atributos de la clase
-    // para facilitar su acceso desde diferentes métodos de la misma.
+    // para facilitar su acceso desde diferentes métodos de la misma.  
     private JComboBox<dataTypeUsuario> comboBoxUsuarios;
     private JLabel lblUsuarios;
     private JButton btnCerrar;
+    private JTextField textFieldNick;
+    private JLabel lblNewLabel;
+    private JLabel label;
+    private JLabel label_1;
+    private JLabel label_2;
+  	private JTextField textFieldNom;
+	private JTextField textFieldApe;
+	private JTextField textFieldMail;
+	private JTextField textFieldFNac;
+	private DesplegarDatosUsuario despUsrJInternalFrame;
+	private IControladorUsuario ICU;
+	//SOLUCION NAHUEL
+	private JDesktopPane panelDespUsu;
+	private String nick;
+    //private DesplegarDatosUsuario despDatosInternalFrame;
 
-   
-  
-    public ListarUsuarios() { // nos falta crear el controlador de usuarios!
+    /**
+     * Create the frame.
+     */
+    public ListarUsuarios(IControladorUsuario icu) {
         // Se inicializa con el controlador de usuarios
-        
+        controlUsr = icu;
         
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
@@ -47,34 +59,73 @@ public class ListarUsuarios extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consultar un Usuario");
-        setBounds(30, 30, 300, 100);
+        setBounds(30, 30, 6001, 200);
+        getContentPane().setLayout(null);
+
+        despUsrJInternalFrame = new DesplegarDatosUsuario(ICU);
+        despUsrJInternalFrame.setLocation(30, 35);
+        despUsrJInternalFrame.setVisible(false);
         
-        // En este caso se utiliza un BorderLayout en donde los componentes se ubican segun una orientacion.
-        getContentPane().setLayout(new BorderLayout(0, 0));
+        //SOLUCION NAHUEL
+        panelDespUsu = new JDesktopPane();
+        setContentPane(panelDespUsu);
+        
 
-        // Una etiqueta (JLabel) muestra el titulo de la lista que vendra despues.
-        // Se ubica al norte del layout y el texto se centra horizontalmente.
         lblUsuarios = new JLabel("Usuarios Registrados");
+        lblUsuarios.setBounds(20, 9, 132, 13);
         lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(lblUsuarios, BorderLayout.NORTH);
+        getContentPane().add(lblUsuarios);
 
-        // Un combo (JComboBox) muestra la lista de usuarios registrados en el sistema.
-        // Es posible utilizar otros componentes graficos, esta es salto una opcion.
-        // Se ubica al centro del layout.
+        
         comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
-        getContentPane().add(comboBoxUsuarios, BorderLayout.CENTER);
+        comboBoxUsuarios.setBounds(216, 5, 177, 21);
+        getContentPane().add(comboBoxUsuarios);
 
         // Un boton (JButton) con un evento asociado que permite limpiar la lista 
         // de usuarios y cerrar la ventana (solo la oculta).
         // Se ubica al sur del layout.
         btnCerrar = new JButton("Cerrar");
+        btnCerrar.setBounds(279, 76, 114, 21);
         btnCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 comboBoxUsuarios.removeAllItems();
                 setVisible(false);
             }
         });
-        getContentPane().add(btnCerrar, BorderLayout.SOUTH);
+        getContentPane().add(btnCerrar);
+        
+        lblNewLabel = new JLabel("Ingrese Nickname:");
+        lblNewLabel.setBounds(20, 48, 132, 16);
+        getContentPane().add(lblNewLabel);
+        
+        textFieldNick = new JTextField();
+        textFieldNick.setBounds(216, 47, 177, 19);
+        getContentPane().add(textFieldNick);
+        textFieldNick.setColumns(10);
+        
+        label = new JLabel("");
+        label.setBounds(189, 40, 0, 0);
+        getContentPane().add(label);
+        
+        label_1 = new JLabel("");
+        label_1.setBounds(194, 40, 0, 0);
+        getContentPane().add(label_1);
+        
+        label_2 = new JLabel("");
+        label_2.setBounds(199, 40, 0, 0);
+        getContentPane().add(label_2);
+        
+        JButton btnNewButton = new JButton("Buscar Usuario");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//SOLUCION NAHUEL
+        		DesplegarDatosUsuario nuevo = new DesplegarDatosUsuario(ICU);
+        		panelDespUsu.add(nuevo);
+        		nuevo.setVisible(true);
+        	}
+        });
+        btnNewButton.setBounds(50, 76, 132, 21);
+        getContentPane().add(btnNewButton);
     }
 
     // Metodo que permite cargar un nuevo modelo para el combo con la informacion
@@ -89,7 +140,14 @@ public class ListarUsuarios extends JInternalFrame {
         } catch (UsuarioNoExisteException e) {
             // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
         }
-
     }
-
+        
+        private void limpiarFormulario() {
+        	textFieldNom.setText("");
+        	textFieldApe.setText("");
+        	textFieldNick.setText("");
+            textFieldMail.setText("");
+            textFieldFNac.setText("");
+        }
 }
+

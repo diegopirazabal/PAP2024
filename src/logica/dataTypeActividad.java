@@ -1,6 +1,6 @@
 package logica;
 
-public class Actividad {
+public class dataTypeActividad {
 	private String nombre;
 	private String descripcion;
 	private int duracion;
@@ -9,8 +9,9 @@ public class Actividad {
 	private String fechaAlta;
 	private String imagen;
 	
-	public Actividad(String nombre, String descripcion, int duracion, String lugar, int costo, String fechaAlta,
+	public dataTypeActividad(String nombre, String descripcion, int duracion, String lugar, int costo, String fechaAlta,
 			String imagen) {
+		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;

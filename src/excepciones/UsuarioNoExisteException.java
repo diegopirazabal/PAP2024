@@ -1,9 +1,5 @@
 package excepciones;
 
-/**
- * Excepcion utilizada para indicar la inexistencia de un usuario en el sistema.
- 
- */
 @SuppressWarnings("serial")
 public class UsuarioNoExisteException extends Exception {
 
