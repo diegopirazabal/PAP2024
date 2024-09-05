@@ -23,7 +23,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	        manejadorUsuario mu = manejadorUsuario.getinstance();  // mu tiene la coleccion
 	        Usuario u = mu.obtenerUsuario(nick);                     // u obtiene el usuario pasado por parametro 
 	        if (u != null) // Si lo encontre es porque ya existe, solo traigo sus datos
-	            return new dataTypeUsuario(u.getNombre(), u.getApellido(), u.getNickname(), u.getEmail(), u.getFnacimiento());
+	            return new dataTypeUsuario(u.getNombre(), u.getApellido(), u.getNickname(), u.getEmail(), u.getFnacimiento(), u.getTipo());
 	        else
 	            throw new UsuarioNoExisteException("El usuario " + nick + " no existe");
 
@@ -40,7 +40,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	            // Para separar logica de presentacion, no se deben devolver los Usuario, sino los DataUsuario.
 	            for (int i = 0; i < usrs.length; i++) {
 	                usuario = usrs[i];
-	                du[i] = new dataTypeUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getEmail(), usuario.getFnacimiento());
+	                du[i] = new dataTypeUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getNickname(), usuario.getEmail(), usuario.getFnacimiento(), usuario.getTipo());
 	                // pasa el array de objetos a array de DataUsuaios
 	            }
 	            return du;

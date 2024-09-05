@@ -1,5 +1,7 @@
 package presentacion;
 
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,8 +34,16 @@ public class ListarUsuarios extends JInternalFrame {
     private JTextField textFieldNick;
     private JLabel lblNewLabel;
     private JLabel label;
+    private JLabel lblMostrarNombre;
     private JLabel label_1;
     private JLabel label_2;
+    private JLabel lblMostrarApellido;
+    private JLabel lblMostrarMail;
+    private JLabel lblMostrarTipo;
+    private JTextField txtMostrarTipo;
+    private JTextField txtMostrarMail;
+    private JTextField txtMostrarApellido;
+    private JTextField txtMostrarNombre;
   	private JTextField textFieldNom;
 	private JTextField textFieldApe;
 	private JTextField textFieldMail;
@@ -59,7 +69,7 @@ public class ListarUsuarios extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consultar un Usuario");
-        setBounds(30, 30, 6001, 200);
+        setBounds(300, 300, 600, 200);
         getContentPane().setLayout(null);
 
         despUsrJInternalFrame = new DesplegarDatosUsuario(ICU);
@@ -115,13 +125,55 @@ public class ListarUsuarios extends JInternalFrame {
         label_2.setBounds(199, 40, 0, 0);
         getContentPane().add(label_2);
         
+        lblMostrarNombre = new JLabel("Nombre:");
+        lblMostrarNombre.setBounds(20, 100, 182, 16);
+        getContentPane().add(lblMostrarNombre);
+        
+        txtMostrarNombre = new JTextField();
+        txtMostrarNombre.setBounds(216, 100, 182, 16);
+        getContentPane().add(txtMostrarNombre);
+        txtMostrarNombre.setEditable(false);
+        txtMostrarNombre.setText("");
+        txtMostrarNombre.setColumns(10);
+        
+        lblMostrarApellido = new JLabel("Apellido:");
+        lblMostrarApellido.setBounds(20, 120, 182, 16);
+        getContentPane().add(lblMostrarApellido);
+        
+        txtMostrarApellido = new JTextField();
+        txtMostrarApellido.setBounds(216, 120, 182, 16);
+        getContentPane().add(txtMostrarApellido);
+        txtMostrarApellido.setEditable(false);
+        txtMostrarApellido.setText("");
+        txtMostrarApellido.setColumns(10);
+        
+        lblMostrarMail = new JLabel("Mail:");
+        lblMostrarMail.setBounds(20, 140, 182, 16);
+        getContentPane().add(lblMostrarMail);
+        
+        txtMostrarMail = new JTextField();
+        txtMostrarMail.setBounds(216, 140, 182, 16);
+        getContentPane().add(txtMostrarMail);
+        txtMostrarMail.setEditable(false);
+        txtMostrarMail.setText("");
+        txtMostrarMail.setColumns(10);
+        
+        lblMostrarTipo = new JLabel("Tipo de Usuario:");
+        lblMostrarTipo.setBounds(20, 160, 182, 16);
+        getContentPane().add(lblMostrarTipo);
+        
+        txtMostrarTipo = new JTextField();
+        txtMostrarTipo.setBounds(216, 160, 182, 16);
+        getContentPane().add(txtMostrarTipo);
+        txtMostrarTipo.setEditable(false);
+        txtMostrarTipo.setText("");
+        txtMostrarTipo.setColumns(10);
+        
         JButton btnNewButton = new JButton("Buscar Usuario");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//SOLUCION NAHUEL
-        		DesplegarDatosUsuario nuevo = new DesplegarDatosUsuario(ICU);
-        		panelDespUsu.add(nuevo);
-        		nuevo.setVisible(true);
+        		cmdBuscarUsuarioActionPerformed(e);
         	}
         });
         btnNewButton.setBounds(50, 76, 132, 21);
@@ -141,6 +193,31 @@ public class ListarUsuarios extends JInternalFrame {
             // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
         }
     }
+    
+    protected void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
+        dataTypeUsuario du;
+        try {
+        	System.out.print(nick);
+            du = controlUsr.verInfoUsuario(textFieldNick.getText());
+            if (du.getTipo()) {
+            	txtMostrarTipo.setText("Entrenador");
+            }else {
+            	txtMostrarTipo.setText("Deportista");
+            }
+            
+            txtMostrarNombre.setText(du.getNombre());
+            txtMostrarApellido.setText(du.getApellido());
+            txtMostrarMail.setText(du.getEmail());
+           // textFieldFNac.setText(du.getFnacimiento());
+        } catch (UsuarioNoExisteException e1) {
+            // Si el usuario no existe, se muestra mensaje de error y se limpia el
+            // formulario.
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Buscar Usuario", JOptionPane.ERROR_MESSAGE);
+           // limpiarFormulario();
+        }
+    }
+
+
         
         private void limpiarFormulario() {
         	textFieldNom.setText("");

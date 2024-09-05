@@ -7,14 +7,20 @@ public class dataTypeUsuario {
 	 private String nickname;
 	 private String email;
 	 private String fnacimiento;
+	 private Boolean esEntrenador;
 	
-	 public dataTypeUsuario(String nombre, String apellido, String nickname, String email, String fnacimiento) {
+	 public dataTypeUsuario(String nombre, String apellido, String nickname, String email, String fnacimiento, Boolean esEntrenador) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nickname = nickname;
 		this.email = email;
 		this.fnacimiento = fnacimiento;
+		this.esEntrenador = esEntrenador;
 	 }
+	 
+	public Boolean getTipo() {
+		return esEntrenador;
+	}
 
 	public String getNombre() {
 		return nombre;

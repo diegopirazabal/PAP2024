@@ -8,15 +8,21 @@ public class dataTypeUsuario {
     private String apellido;
     private String email;
     private LocalDate fechaNacimiento;
+    private Boolean esEntrenador;
 
-    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
+    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, boolean esEntrenador) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.esEntrenador = esEntrenador;
     }
 
+    public Boolean getTipo() {
+    	return esEntrenador;
+    }
+    
     public String getNickname() {
         return nickname;
     }

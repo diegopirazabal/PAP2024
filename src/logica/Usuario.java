@@ -20,7 +20,7 @@ public class Usuario {
     
     
     
-	public boolean isEsEntrenador() {
+	public boolean getTipo() {
 		return EsEntrenador;
 	}
 
