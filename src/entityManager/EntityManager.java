@@ -1,4 +1,4 @@
-package java.persistence;
+package entityManager;
 
 public class EntityManager {
 

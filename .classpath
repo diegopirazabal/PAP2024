@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/eclipselink-4.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/hsqldb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/eclipselink-4.0.2.jar"/>
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/Users/diego/Developer/jars entrega 1/jakarta.persistence-api-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

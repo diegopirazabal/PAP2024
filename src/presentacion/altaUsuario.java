@@ -38,8 +38,8 @@ public class altaUsuario extends JInternalFrame {
     private JLabel lblIngreseFNac;
     private JButton btnAceptar;
     private JButton btnCancelar;
-    private JRadioButton rdbtnNewRadioButton;
-    private JRadioButton rdbtnNewRadioButton_1;
+    private JRadioButton rdbtnEsEntrenador;
+    private JRadioButton rdbtnEsDeportista;
     private JLabel lblNewLabel;
 
     /**
@@ -201,19 +201,19 @@ public class altaUsuario extends JInternalFrame {
             }
         });
         
-        rdbtnNewRadioButton = new JRadioButton("Entrenador");
+        rdbtnEsEntrenador = new JRadioButton("Entrenador");
         GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
         gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
         gbc_rdbtnNewRadioButton.gridx = 1;
         gbc_rdbtnNewRadioButton.gridy = 5;
-        getContentPane().add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
+        getContentPane().add(rdbtnEsEntrenador, gbc_rdbtnNewRadioButton);
         
-        rdbtnNewRadioButton_1 = new JRadioButton("Deportista");
+        rdbtnEsDeportista = new JRadioButton("Deportista");
         GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
         gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 0);
         gbc_rdbtnNewRadioButton_1.gridx = 2;
         gbc_rdbtnNewRadioButton_1.gridy = 5;
-        getContentPane().add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
+        getContentPane().add(rdbtnEsDeportista, gbc_rdbtnNewRadioButton_1);
 
         GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
         gbc_btnAceptar.fill = GridBagConstraints.BOTH;
@@ -255,6 +255,7 @@ public class altaUsuario extends JInternalFrame {
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
         String fnac = this.textFieldFNac.getText();
+        Boolean esEntrenador = this.rdbtnEsEntrenador.isSelected();
         //boolean esEtrenador; 
         if (checkFormulario()) {
             try {
@@ -286,6 +287,7 @@ public class altaUsuario extends JInternalFrame {
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
         String fnac = this.textFieldFNac.getText();
+         
 
         if (nombreU.isEmpty() || apellidoU.isEmpty() || nick.isEmpty() || mail.isEmpty() || fnac.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
