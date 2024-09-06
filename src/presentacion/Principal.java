@@ -18,6 +18,7 @@ public class Principal {
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
 	 private DesplegarDatosUsuario despUsrInternalFrame;
+	 private altaActividad altActInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
@@ -51,9 +52,14 @@ public class Principal {
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
 	     
+	     altActInternalFrame = new altaActividad(); //crear controlador de actividad y pasale el icont
+	     altActInternalFrame.setLocation(30, 35);
+	     altActInternalFrame.setVisible(false);
+	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     
 	 }
 	 
@@ -120,6 +126,19 @@ public class Principal {
 	        
 	        JMenu menuActividad = new JMenu("Actividad");
 	        menuBar.add(menuActividad);
+	        
+	        JMenuItem mntmaltaActividad = new JMenuItem("Registrar Actividad");
+	        mntmaltaActividad.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
+	                // cargando previamente la lista
+	            	altActInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuActividad.add(mntmaltaActividad);
+	        
+	        JMenu menuClase = new JMenu("Clase");
+	        menuBar.add(menuClase);
 	    }
 	 }
 

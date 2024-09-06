@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import excepciones.UsuarioRepetidoException;
 import logica.IControladorUsuario;
-import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class altaUsuario extends JInternalFrame {
@@ -287,14 +287,20 @@ public class altaUsuario extends JInternalFrame {
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
         String fnac = this.textFieldFNac.getText();
-         
-
-        if (nombreU.isEmpty() || apellidoU.isEmpty() || nick.isEmpty() || mail.isEmpty() || fnac.isEmpty() ) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
+        
+        if(mail.contains("@")) {
+	        if (nombreU.isEmpty() || apellidoU.isEmpty() || nick.isEmpty() || mail.isEmpty() || fnac.isEmpty() ) {
+	            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
+	                    JOptionPane.ERROR_MESSAGE);
+	            return false;
+	        }
         }
-        return true;
+        else {
+        	JOptionPane.showMessageDialog(this, "Por favor ingrese un email valido", "Registrar Usuario",
+                    JOptionPane.ERROR_MESSAGE);
+        	return false;
+        }
+       return true;
     }
 
     // Permite borrar el contenido de un formulario antes de cerrarlo.

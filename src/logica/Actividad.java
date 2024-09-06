@@ -5,12 +5,13 @@ public class Actividad {
 	private String descripcion;
 	private int duracion;
 	private String lugar;
-	private int costo;
+	private double costo;
 	private String fechaAlta;
 	private String imagen;
+	private String nomEntrenador;
 	
-	public Actividad(String nombre, String descripcion, int duracion, String lugar, int costo, String fechaAlta,
-			String imagen) {
+	public Actividad(String nombre, String descripcion, int duracion, String lugar, double costo, String fechaAlta,
+			String imagen, String nomEntrenador) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
@@ -18,6 +19,7 @@ public class Actividad {
 		this.costo = costo;
 		this.fechaAlta = fechaAlta;
 		this.imagen = imagen;
+		this.nomEntrenador = nomEntrenador;
 	}
 
 	public String getNombre() {
@@ -52,11 +54,11 @@ public class Actividad {
 		this.lugar = lugar;
 	}
 
-	public int getCosto() {
+	public double getCosto() {
 		return costo;
 	}
 
-	public void setCosto(int costo) {
+	public void setCosto(double costo) {
 		this.costo = costo;
 	}
 
@@ -75,5 +77,14 @@ public class Actividad {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+
+	public String getNomEntrenador() {
+		return nomEntrenador;
+	}
+
+	public void setNomEntrenador(String nomEntrenador) {
+		this.nomEntrenador = nomEntrenador;
+	}
+	
 	
 }

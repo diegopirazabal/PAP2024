@@ -1,5 +1,5 @@
 package dtos;
-import java.time.LocalDate;
+
 
 public class dataTypeActividad {
 
@@ -9,17 +9,16 @@ public class dataTypeActividad {
     private int duracion; // En minutos
     private double costo;
     private String lugar;
-    private LocalDate fechaAlta;
+    private String fechaAlta;
     private String imagen;
-    private Long entrenadorId; // Puedes almacenar solo el ID del entrenador si no necesitas toda la información del entrenador
+    private String entrenadorNick; // Puedes almacenar solo el ID del entrenador si no necesitas toda la información del entrenador
 
     // Constructor sin argumentos
     public dataTypeActividad() {
     }
 
     // Constructor con todos los parámetros necesarios
-    public dataTypeActividad(Long id, String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Long entrenadorId) {
-        this.id = id;
+    public dataTypeActividad(String nombre, String descripcion, int duracion, double costo, String lugar, String fechaAlta, String imagen, String entrenadorNick) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -27,7 +26,7 @@ public class dataTypeActividad {
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
         this.imagen = imagen;
-        this.entrenadorId = entrenadorId;
+        this.entrenadorNick = entrenadorNick;
     }
 
     // Getters y setters
@@ -49,12 +48,12 @@ public class dataTypeActividad {
     public String getLugar() { return lugar; }
     public void setLugar(String lugar) { this.lugar = lugar; }
 
-    public LocalDate getFechaAlta() { return fechaAlta; }
-    public void setFechaAlta(LocalDate fechaAlta) { this.fechaAlta = fechaAlta; }
+    public String getFechaAlta() { return fechaAlta; }
+    public void setFechaAlta(String fechaAlta) { this.fechaAlta = fechaAlta; }
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
-    public Long getEntrenadorId() { return entrenadorId; }
-    public void setEntrenadorId(Long entrenadorId) { this.entrenadorId = entrenadorId; }
+    public String getEntrenadorId() { return entrenadorNick; }
+    public void setEntrenadorId(String entrenadorNick) { this.entrenadorNick = entrenadorNick; }
 }
