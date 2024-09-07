@@ -133,7 +133,7 @@ public class ConsultarUsuario extends JInternalFrame {
     // No es necesario verificar que el campo con la cédula sea un número ya
     // que internamente el sistema almacena la cédula como un string.
     protected void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
-        Usuario du;
+        dataTypeUsuario du;
         try {
             du = controlUsr.consultarUsuario(textFieldCI.getText());
             textFieldNombre.setText(du.getNombre());

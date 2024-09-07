@@ -1,13 +1,18 @@
 package logica;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
+@DiscriminatorValue("DEPORTISTA")
 @Table(name = "DEPORTISTAS")
 public class Deportista extends Usuario {
-    @Column (name = "Profesional", nullable = false)
+	@Column(name = "DISCIPLINA", nullable = true)
+	private String disciplina;
+
+	@Column (name = "PROFESIONAL", nullable = true)
     private boolean esProfesional;
 
     public Deportista() {};
@@ -24,4 +29,8 @@ public class Deportista extends Usuario {
     public void setProfesional(boolean esProfesional) {
         this.esProfesional = esProfesional;
     }
+
+	protected Boolean getTipo() {
+		return this.esEntrenador;
+	}
 }

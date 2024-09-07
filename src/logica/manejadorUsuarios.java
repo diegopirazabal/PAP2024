@@ -9,12 +9,24 @@ import excepciones.UsuarioRepetidoException;
 import jakarta.persistence.*;
 import dtos.*;
 import dtos.dataTypeUsuario;
-import persistencia.*;
+import jakarta.persistence.*;
 
 public class manejadorUsuarios {
     private EntityManagerFactory emf;
     private EntityManager em;
     private static manejadorUsuarios instancia = null;
+    private Usuario obtenerUsuarioPorNickname(String nickname) {
+        try {
+            return em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                     .setParameter("nickname", nickname)
+                     .getResultStream()
+                     .findFirst()
+                     .orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
@@ -39,7 +51,8 @@ public class manejadorUsuarios {
                             usuario.getNombre(),
                             usuario.getApellido(),
                             usuario.getEmail(),
-                            usuario.getFechaNacimiento()))
+                            usuario.getFNacimiento(),
+                            usuario.getTipo()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,8 +62,8 @@ public class manejadorUsuarios {
 
 
     public void agregar(Usuario usuario) throws UsuarioRepetidoException {
-        // Verificar si el usuario ya existe en la base de datos
-        Usuario usuarioExistente = buscarUsuarioPorNickname(usuario.getNickname());
+        // Verificar si el usuario ya existe en la base de datos utilizando la nueva función
+        Usuario usuarioExistente = obtenerUsuarioPorNickname(usuario.getNickname());
         if (usuarioExistente != null) {
             throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() + " ya existe.");
         }
@@ -67,32 +80,51 @@ public class manejadorUsuarios {
         }
     }
 
-    public Usuario buscarUsuarioPorNickname(String nickname) {
+
+    public dataTypeUsuario buscarUsuarioPorNickname(String nickname) {
         try {
-            return em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-                     .setParameter("nickname", nickname)
-                     .getResultStream()
-                     .findFirst()
-                     .orElse(null);
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                    .setParameter("nickname", nickname)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (usuario != null) {
+                return new dataTypeUsuario(
+                        usuario.getNickname(),
+                        usuario.getNombre(),
+                        usuario.getApellido(),
+                        usuario.getEmail(),
+                        usuario.getFNacimiento(),
+                        usuario.getTipo()
+                );
+            }
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Usuario buscarUsuario(String nickname) throws UsuarioNoExisteException {
-        Usuario usuario = buscarUsuarioPorNickname(nickname);
+
+    public dataTypeUsuario buscarUsuario(String nickname) throws UsuarioNoExisteException {
+        dataTypeUsuario usuario = buscarUsuarioPorNickname(nickname);
         if (usuario == null) {
             throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
         }
         return usuario;
     }
 
+
     public void eliminar(String nickname) throws UsuarioNoExisteException {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
-            Usuario usuario = buscarUsuarioPorNickname(nickname);
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                    .setParameter("nickname", nickname)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
             if (usuario == null) {
                 throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
             }
@@ -104,6 +136,7 @@ public class manejadorUsuarios {
         }
     }
 
+
     public List<dataTypeUsuario> obtenerTodos() {
         try {
             List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
@@ -113,7 +146,8 @@ public class manejadorUsuarios {
                             usuario.getNombre(),
                             usuario.getApellido(),
                             usuario.getEmail(),
-                            usuario.getFechaNacimiento()))
+                            usuario.getFNacimiento(),
+                            usuario.getTipo()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();

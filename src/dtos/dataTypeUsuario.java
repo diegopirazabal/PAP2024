@@ -8,15 +8,25 @@ public class dataTypeUsuario {
     private String apellido;
     private String email;
     private String fechaNacimiento;
+    private Boolean esEntrenador;
 
-    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento) {
+    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.esEntrenador = esEntrenador;
     }
 
+    public Boolean getTipo() {
+    	return esEntrenador;
+    }
+    
+    public void setTipo(Boolean tipo) {
+        this.esEntrenador = tipo;
+    }
+    
     public String getNickname() {
         return nickname;
     }
@@ -49,11 +59,11 @@ public class dataTypeUsuario {
         this.email = email;
     }
 
-    public String getFechaNacimiento() {
+    public String getFNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     

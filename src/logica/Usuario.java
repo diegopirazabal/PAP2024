@@ -1,15 +1,15 @@
 package logica;
 import java.sql.Date;
-import java.time.LocalDate;
-
 import java.util.List;
 
 //Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
 import jakarta.persistence.*;
 
 
-@Entity 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Tipo_Usuario", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "USUARIOS")
 public abstract class Usuario {
     @Id
     private String nickname;
@@ -28,6 +28,9 @@ public abstract class Usuario {
     
     @Column (name = "Contrasena", nullable = false, length = 20)
     private String contrasena;
+    
+    @Column (name = "Entrenador")
+	protected Boolean esEntrenador;
 ;
     
 public Usuario(){};
@@ -74,11 +77,11 @@ public Usuario(String nickname, String nombre, String apellido, String email, St
 	    this.email = email;
 	}
 	
-	public String getFechaNacimiento() {
+	public String getFNacimiento() {
 	    return fechaNacimiento;
 	}
 	
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFNacimiento(String fechaNacimiento) {
 	    this.fechaNacimiento = fechaNacimiento;
 	}
 	
@@ -89,4 +92,6 @@ public Usuario(String nickname, String nombre, String apellido, String email, St
 	public String getContrasena(){
 	    return contrasena;
 	}
+
+	protected abstract Boolean getTipo();
 }

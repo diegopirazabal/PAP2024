@@ -22,4 +22,3 @@ public class Fabrica {
 	        return new controladorUsuario();
 	    }
 }
-

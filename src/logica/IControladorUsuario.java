@@ -13,11 +13,13 @@ public interface IControladorUsuario {
 	
 	public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException ;
 
-	public Usuario consultarUsuario(String nickname) throws UsuarioNoExisteException;
+	public dataTypeUsuario consultarUsuario(String nickname) throws UsuarioNoExisteException;
 	
 	public void eliminarUsuario(String nickname) throws UsuarioNoExisteException;
 	
-	public List<dataTypeUsuario> listarTodos();
+	public List<dataTypeUsuario> listarTodos() throws UsuarioNoExisteException;
+
+	public dataTypeUsuario verInfoUsuario(String nickname) throws UsuarioNoExisteException;
 	
-	public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException;
+//	public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException;
 }

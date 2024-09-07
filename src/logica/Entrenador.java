@@ -3,17 +3,19 @@ package logica;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@DiscriminatorValue("ENTRENADOR")
 @Table(name = "ENTRENADORES")
 public class Entrenador extends Usuario {
-    @Column (name = "Disciplina", nullable = false, length = 50)
+    @Column (name = "Disciplina", nullable = true, length = 50)
     private String disciplina;
     
-    @Column (name = "URL", nullable = false, length = 75)
+    @Column (name = "URL", nullable = true, length = 75)
     private String linkSitioWeb;
     
     @OneToMany(targetEntity=Actividad.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
@@ -42,4 +44,8 @@ public class Entrenador extends Usuario {
     public void setLinkSitioWeb(String linkSitioWeb) {
         this.linkSitioWeb = linkSitioWeb;
     }
+
+	protected Boolean getTipo() {
+		return this.esEntrenador;
+	}
 }

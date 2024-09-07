@@ -1,107 +1,145 @@
 package presentacion;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import logica.Fabrica;
 import logica.IControladorUsuario;
 
 public class Principal {
-    private IControladorUsuario ICU;
-    private JFrame frmGestionDeUsuarios;  
-    private CrearUsuario creUsrInternalFrame;  // Frame interno para dar de alta usuario
-    private ConsultarUsuario conUsrInternalFrame; // Frame interno para consultar por usuario
-    private ListarUsuarios lisUsrInternalFrame;    // Frame interno para listar usuarios 
+	 private JFrame frmGestionDeUsuarios;    
+	 private IControladorUsuario ICU;           
+	 private altaUsuario altUsrInternalFrame;
+	 private ListarUsuarios listUsrInternalFrame;
+	 private desplegarDatosUsuario despUsrInternalFrame;
+	 private altaActividad altActInternalFrame;
+	 
+	 
+	 public static void main(String[] args) {
+	    	System.out.print("Entre al main");
+	        EventQueue.invokeLater(new Runnable() {  /* se utiliza para poner en cola una tarea */
+	            public void run() {                  /* para ser ejecutada en el hilo de eventos EDT */
+	                try {
+	                    Principal window = new Principal();   // Crea una instancia del objeto principal
+	                    window.frmGestionDeUsuarios.setVisible(true); // Pone la ventana visible
+	                } catch (Exception e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        });
+	 }
+	 
+	 public Principal(){
+		 initialize();
+		 Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
+	     ICU = fabrica.getIControladorUsuario();
+	     
+	     altUsrInternalFrame = new altaUsuario(ICU);
+	     altUsrInternalFrame.setLocation(30, 35);
+	     altUsrInternalFrame.setVisible(false);
+	     
+	     listUsrInternalFrame = new ListarUsuarios(ICU);
+	     listUsrInternalFrame.setLocation(30, 35);
+	     listUsrInternalFrame.setVisible(false);
+	     
+	     despUsrInternalFrame = new desplegarDatosUsuario(ICU);
+	     despUsrInternalFrame.setLocation(30, 35);
+	     despUsrInternalFrame.setVisible(false);
+	     
+	     altActInternalFrame = new altaActividad(); //crear controlador de actividad y pasale el icont
+	     altActInternalFrame.setLocation(30, 35);
+	     altActInternalFrame.setVisible(false);
+	     
+	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
+	     
+	 }
+	 
+	 private void initialize() {
+		 frmGestionDeUsuarios = new JFrame();
+	        frmGestionDeUsuarios.setTitle("Gestion de Usuarios 1.0");
+	        frmGestionDeUsuarios.setBounds(100, 100, 450, 400);
+	        frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {  /* se utiliza para poner en cola una tarea */
-            public void run() {                  /* para ser ejecutada en el hilo de eventos EDT */
-                try {
-                    Principal window = new Principal();   // Crea una instancia del objeto principal
-                    window.frmGestionDeUsuarios.setVisible(true); // Pone la ventana visible
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    
-    private void initialize() {
-        frmGestionDeUsuarios = new JFrame();
-        frmGestionDeUsuarios.setTitle("Gestion de Usuarios 1.0");
-        frmGestionDeUsuarios.setBounds(100, 100, 800, 600);  // Ajusta el tamaño según sea necesario
-        frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
+	        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
+	        // evento asociado que permite realizar una acción una vez se seleccionan. 
+	        JMenuBar menuBar = new JMenuBar();
+	        frmGestionDeUsuarios.setJMenuBar(menuBar);
 
-        JMenuBar menuBar = new JMenuBar();
-        frmGestionDeUsuarios.setJMenuBar(menuBar);
+	        JMenu menuSistema = new JMenu("Sistema");
+	        menuBar.add(menuSistema);
 
-        JMenu menuSistema = new JMenu("Sistema");
-        menuBar.add(menuSistema);
+	        JMenuItem menuSalir = new JMenuItem("Salir");
+	        menuSalir.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent arg0) {
+	                // Salgo de la aplicacion
+	                frmGestionDeUsuarios.setVisible(false);
+	                frmGestionDeUsuarios.dispose();
+	            }
+	        });
+	        menuSistema.add(menuSalir);
 
-        JMenuItem menuSalir = new JMenuItem("Salir");
-        menuSalir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                frmGestionDeUsuarios.setVisible(false);
-                frmGestionDeUsuarios.dispose();
-            }
-        });
-        menuSistema.add(menuSalir);
+	        JMenu menuUsuarios = new JMenu("Usuarios");
+	        menuBar.add(menuUsuarios);
 
-        JMenu menuUsuarios = new JMenu("Usuarios");
-        menuBar.add(menuUsuarios);
+	        JMenuItem menuItemRegistrar = new JMenuItem("Registrar Usuario");
+	        menuItemRegistrar.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Muestro el InternalFrame para registrar un usuario
+	                altUsrInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuUsuarios.add(menuItemRegistrar);
+	        
+	        JMenuItem mntmListaUsuarios = new JMenuItem("Listar Usuarios");
+	        mntmListaUsuarios.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
+	                // cargando previamente la lista
+	            	listUsrInternalFrame.cargarUsuarios();
+	            	listUsrInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuUsuarios.add(mntmListaUsuarios);
+	        
+	        
+	        JMenuItem mntmConsultarUsuarios = new JMenuItem("Consultar Usuarios");
+	        mntmConsultarUsuarios.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
+	                // cargando previamente la lista
+	            	//listUsrInternalFrame.cargarUsuarios();
+	            	
+	            	despUsrInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuUsuarios.add(mntmConsultarUsuarios);
+	        
+	        JMenu menuActividad = new JMenu("Actividad");
+	        menuBar.add(menuActividad);
+	        
+	        JMenuItem mntmaltaActividad = new JMenuItem("Registrar Actividad");
+	        mntmaltaActividad.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
+	                // cargando previamente la lista
+	            	altActInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuActividad.add(mntmaltaActividad);
+	        
+	        JMenu menuClase = new JMenu("Clase");
+	        menuBar.add(menuClase);
+	    }
+	 }
 
-        JMenuItem menuItemRegistrar = new JMenuItem("Registrar Usuario");
-        menuItemRegistrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                creUsrInternalFrame.setVisible(true);
-            }
-        });
-        menuUsuarios.add(menuItemRegistrar);
 
-        JMenuItem menuItemVerInfo = new JMenuItem("Ver Informacion");
-        menuItemVerInfo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                conUsrInternalFrame.setVisible(true);
-            }
-        });
-        menuUsuarios.add(menuItemVerInfo);
-
-        JMenuItem mntmListaUsuarios = new JMenuItem("ListarUsuarios");
-        mntmListaUsuarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                lisUsrInternalFrame.cargarUsuarios();
-                lisUsrInternalFrame.setVisible(true);
-            }
-        });
-        menuUsuarios.add(mntmListaUsuarios);
-    }
-    
-    public Principal() {   // Constructor de la clase
-        initialize();     // Inicializa la interfaz
-
-        // Inicialización del controlador de usuarios
-        Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia única de fábrica
-        ICU = fabrica.getIControladorUsuario();   // Se devuelve una instancia única del controlador de usuarios
-
-        // Se crean los InternalFrames y se incluyen al Frame principal
-        creUsrInternalFrame = new CrearUsuario(ICU);
-        creUsrInternalFrame.setLocation(30, 35);
-        creUsrInternalFrame.setVisible(false);
-
-        conUsrInternalFrame = new ConsultarUsuario(ICU);
-        conUsrInternalFrame.setLocation(62, 11);
-        conUsrInternalFrame.setVisible(false);
-
-        lisUsrInternalFrame = new ListarUsuarios(ICU);  // Pasar el controlador al ListarUsuarios
-        lisUsrInternalFrame.setLocation(30, 35);  // Ajusta la posición según sea necesario
-        lisUsrInternalFrame.setVisible(false);
-        
-        frmGestionDeUsuarios.getContentPane().setLayout(null);
-        frmGestionDeUsuarios.getContentPane().add(conUsrInternalFrame); /* Agrega los InternalFrames al principal */
-        frmGestionDeUsuarios.getContentPane().add(creUsrInternalFrame);
-        frmGestionDeUsuarios.getContentPane().add(lisUsrInternalFrame);
-    }
-}
