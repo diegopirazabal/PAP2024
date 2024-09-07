@@ -1,5 +1,9 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import dtos.dataTypeUsuario;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 
@@ -47,4 +51,35 @@ public class ControladorUsuario implements IControladorUsuario {
 	        } else
 	            throw new UsuarioNoExisteException("No existen usuarios registrados");
 	    }
+
+	    // Asumiendo que dataTypeUsuario ya está definido y tiene un constructor adecuado.
+	     public dataTypeUsuario[] getUsuariosEntrenadores() throws UsuarioNoExisteException {
+	           manejadorUsuario mu = manejadorUsuario.getinstance();
+	           Usuario[] usrs = mu.getUsuarios();  // Usa el getUsuarios que devuelve array de objetos
+	           if (usrs != null) {
+	               List<dataTypeUsuario> entrenadores = new ArrayList<>();
+	               for (Usuario usuario : usrs) {
+	                   if (usuario.getTipo()) {  // Suponiendo que isEntrenador() es el método para verificar si el usuario es entrenador
+	                       dataTypeUsuario du = new dataTypeUsuario(
+	                           usuario.getNombre(),
+	                           usuario.getApellido(),
+	                           usuario.getNickname(),
+	                           usuario.getEmail(),
+	                           usuario.getFnacimiento(),
+	                           usuario.getTipo()
+	                       );
+	                       entrenadores.add(du);
+	                   }
+	               }
+	               if (!entrenadores.isEmpty()) {
+	                   return entrenadores.toArray(new dataTypeUsuario[0]);
+	               } else {
+	                   throw new UsuarioNoExisteException("No existen usuarios entrenadores registrados");
+	               }
+	           } else {
+	               throw new UsuarioNoExisteException("No existen usuarios registrados");
+	           }
+	       }
 }
+
+

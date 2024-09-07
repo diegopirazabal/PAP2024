@@ -7,10 +7,10 @@ public class dataTypeUsuario {
     private String nombre;
     private String apellido;
     private String email;
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     private Boolean esEntrenador;
 
-    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, boolean esEntrenador) {
+    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento, boolean esEntrenador) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -55,11 +55,25 @@ public class dataTypeUsuario {
         this.email = email;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    public String toString() {
+		 return getNickname() + " (" + getNombre() + " " + getApellido() + ")";
+	 }
+
+	public Boolean getEsEntrenador() {
+		return esEntrenador;
+	}
+
+	public void setEsEntrenador(Boolean esEntrenador) {
+		this.esEntrenador = esEntrenador;
+	}
+    
+    
 }

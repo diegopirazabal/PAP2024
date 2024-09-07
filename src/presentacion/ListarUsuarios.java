@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import dtos.dataTypeUsuario;
 import excepciones.UsuarioNoExisteException;
 import logica.IControladorUsuario;
-import logica.dataTypeUsuario;
 
 public class ListarUsuarios extends JInternalFrame {
 
@@ -210,18 +210,18 @@ public class ListarUsuarios extends JInternalFrame {
             // Si el usuario no existe, se muestra mensaje de error y se limpia el
             // formulario.
             JOptionPane.showMessageDialog(this, e1.getMessage(), "Buscar Usuario", JOptionPane.ERROR_MESSAGE);
-           // limpiarFormulario();
+           limpiarFormulario();
         }
     }
 
 
         
         private void limpiarFormulario() {
-        	textFieldNom.setText("");
-        	textFieldApe.setText("");
-        	textFieldNick.setText("");
-            textFieldMail.setText("");
-            textFieldFNac.setText("");
+        	textFieldNom.setText(" ");
+        	textFieldApe.setText(" ");
+        	textFieldNick.setText(" ");
+            textFieldMail.setText(" ");
+            textFieldFNac.setText(" ");
         }
 }
 

@@ -1,5 +1,6 @@
 package logica;
 
+import dtos.dataTypeUsuario;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioRepetidoException;
 
@@ -30,6 +31,8 @@ public interface IControladorUsuario {
 	     * @throws UsuarioNoExisteException Si no existen usuarios registrados en el sistema.
 	     */
 	    public abstract dataTypeUsuario[] getUsuarios() throws UsuarioNoExisteException;
+	    
+	    public dataTypeUsuario[] getUsuariosEntrenadores() throws UsuarioNoExisteException;
 
 		
 	}

@@ -11,10 +11,12 @@ import javax.swing.JMenuItem;
 
 import logica.Fabrica;
 import logica.IControladorUsuario;
+import logica.IControladorActividad;
 
 public class Principal {
 	 private JFrame frmGestionDeUsuarios;    
-	 private IControladorUsuario ICU;           
+	 private IControladorUsuario ICU;
+	 private IControladorActividad ICA;
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
 	 private DesplegarDatosUsuario despUsrInternalFrame;
@@ -39,6 +41,7 @@ public class Principal {
 		 initialize();
 		 Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
 	     ICU = fabrica.getIControladorUsuario();
+	     ICA = fabrica.getIControladorActividad();
 	     
 	     altUsrInternalFrame = new altaUsuario(ICU);
 	     altUsrInternalFrame.setLocation(30, 35);
@@ -52,7 +55,7 @@ public class Principal {
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
 	     
-	     altActInternalFrame = new altaActividad(); //crear controlador de actividad y pasale el icont
+	     altActInternalFrame = new altaActividad(ICA, ICU); //crear controlador de actividad y pasale el icont
 	     altActInternalFrame.setLocation(30, 35);
 	     altActInternalFrame.setVisible(false);
 	     
@@ -132,6 +135,7 @@ public class Principal {
 	            public void actionPerformed(ActionEvent e) {
 	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
 	                // cargando previamente la lista
+	            	altActInternalFrame.cargarUsuarios();
 	            	altActInternalFrame.setVisible(true);
 	            }
 	        });

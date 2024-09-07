@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dtos.dataTypeUsuario;
+import excepciones.UsuarioNoExisteException;
+import logica.IControladorActividad;
 import logica.IControladorUsuario;
 
 /**
@@ -26,6 +29,7 @@ import logica.IControladorUsuario;
 public class altaActividad extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
+    private IControladorActividad controlAct;
     private IControladorUsuario controlUsr;
     
     // Los componentes gráficos se agregan como atributos de la clase
@@ -41,16 +45,12 @@ public class altaActividad extends JInternalFrame {
     private JTextField lblFecha;
     private JTextField lbllugar;
     private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JTextField textField_5;
+    private JButton btnNewButton_1;
   
-    public altaActividad() { // nos falta crear el controlador de usuarios!
-        // Se inicializa con el controlador de usuarios
-        
-        
+    public altaActividad(IControladorActividad ica, IControladorUsuario icu) { // nos falta crear el controlador de usuarios!
+        // Se inicializa con el controlador de actividad
+        controlAct = ica;
+        controlUsr = icu;
         // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
         setIconifiable(true);
@@ -59,13 +59,13 @@ public class altaActividad extends JInternalFrame {
         setClosable(true);
         setTitle("Alta Actividad Deportiva");
         //setBounds(30, 30, 300, 100);
-        setSize(561, 286);
+        setSize(506, 270);
         getContentPane().setLayout(null);
 
         // Una etiqueta (JLabel) muestra el titulo de la lista que vendra despues.
         // Se ubica al norte del layout y el texto se centra horizontalmente.
         lblUsuarios = new JLabel("Entrenadores Registrados");
-        lblUsuarios.setBounds(0, 0, 549, 13);
+        lblUsuarios.setBounds(84, 0, 410, 13);
         lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
         getContentPane().add(lblUsuarios);
 
@@ -73,7 +73,7 @@ public class altaActividad extends JInternalFrame {
         // Es posible utilizar otros componentes graficos, esta es salto una opcion.
         // Se ubica al centro del layout.
         comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
-        comboBoxUsuarios.setBounds(7, 13, 542, 33);
+        comboBoxUsuarios.setBounds(84, 13, 410, 33);
         getContentPane().add(comboBoxUsuarios);
 
         // Un boton (JButton) con un evento asociado que permite limpiar la lista 
@@ -83,7 +83,7 @@ public class altaActividad extends JInternalFrame {
         btnCerrar.setBounds(0, 499, 549, 21);
         btnCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                comboBoxUsuarios.removeAllItems();
+            	comboBoxUsuarios.removeAllItems();
                 setVisible(false);
             }
         });
@@ -98,11 +98,11 @@ public class altaActividad extends JInternalFrame {
         getContentPane().add(lblnombre);
         
         JLabel lblNewLabel = new JLabel("Entrenador a cargo: ");
-        lblNewLabel.setBounds(62, 67, 116, 13);
+        lblNewLabel.setBounds(62, 67, 170, 13);
         getContentPane().add(lblNewLabel);
         
         JLabel lblNewLabel_1 = new JLabel("Nombre de la actividad: ");
-        lblNewLabel_1.setBounds(62, 90, 116, 13);
+        lblNewLabel_1.setBounds(62, 90, 170, 13);
         getContentPane().add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("Descripcion: ");
@@ -126,29 +126,51 @@ public class altaActividad extends JInternalFrame {
         getContentPane().add(textField);
         textField.setColumns(10);
         
-        textField_1 = new JTextField();
-        textField_1.setBounds(309, 87, 170, 19);
-        getContentPane().add(textField_1);
-        textField_1.setColumns(10);
+        lblnombre = new JTextField();
+        lblnombre.setBounds(309, 87, 170, 19);
+        getContentPane().add(lblnombre);
+        lblnombre.setColumns(10);
         
-        textField_2 = new JTextField();
-        textField_2.setBounds(309, 110, 170, 19);
-        getContentPane().add(textField_2);
-        textField_2.setColumns(10);
+        lbldescripción = new JTextField();
+        lbldescripción.setBounds(309, 110, 170, 19);
+        getContentPane().add(lbldescripción);
+        lbldescripción.setColumns(10);
         
-        textField_3 = new JTextField();
-        textField_3.setBounds(309, 133, 170, 19);
-        getContentPane().add(textField_3);
-        textField_3.setColumns(10);
+        lblubicacion = new JTextField();
+        lblubicacion.setBounds(309, 133, 170, 19);
+        getContentPane().add(lblubicacion);
+        lblubicacion.setColumns(10);
         
-        textField_4 = new JTextField();
-        textField_4.setBounds(309, 156, 170, 19);
-        getContentPane().add(textField_4);
-        textField_4.setColumns(10);
+        lblcosto = new JTextField();
+        lblcosto.setBounds(309, 156, 170, 19);
+        getContentPane().add(lblcosto);
+        lblcosto.setColumns(10);
         
-        textField_5 = new JTextField();
-        textField_5.setBounds(309, 179, 170, 19);
-        getContentPane().add(textField_5);
-        textField_5.setColumns(10);
+        lbllugar = new JTextField();
+        lbllugar.setBounds(309, 179, 170, 19);
+        getContentPane().add(lbllugar);
+        lbllugar.setColumns(10);
+        
+        JButton btnNewButton = new JButton("Aceptar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton.setBounds(309, 210, 85, 21);
+        getContentPane().add(btnNewButton);
+        
+        btnNewButton_1 = new JButton("Cancelar");
+        btnNewButton_1.setBounds(394, 210, 85, 21);
+        getContentPane().add(btnNewButton_1);
+    }
+    
+    public void cargarUsuarios() {
+        DefaultComboBoxModel<dataTypeUsuario> model; // Este modelo se crea para carga el combo 
+        try {                                    // En model esta lo que vamos a carga al combo
+            model = new DefaultComboBoxModel<dataTypeUsuario>(controlUsr.getUsuariosEntrenadores());//Aca se carga
+            comboBoxUsuarios.setModel(model);        //VER EN LA API DefaultComboBoxModel
+        } catch (UsuarioNoExisteException e) {
+            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
+        }
     }
 }
