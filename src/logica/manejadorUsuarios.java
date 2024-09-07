@@ -71,11 +71,11 @@ public class manejadorUsuarios {
         // Persistir el nuevo usuario
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();
-            em.persist(usuario);
-            transaction.commit();
+            transaction.begin();  // Inicia la transacción
+            em.persist(usuario);  // Persiste el nuevo usuario
+            transaction.commit(); // Confirma la transacción
         } catch (Exception e) {
-            if (transaction.isActive()) transaction.rollback();
+            if (transaction.isActive()) transaction.rollback();  // Si hay error, hacer rollback
             e.printStackTrace();
         }
     }

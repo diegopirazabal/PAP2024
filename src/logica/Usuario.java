@@ -35,13 +35,14 @@ public abstract class Usuario {
     
 public Usuario(){};
 
-public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, String contrasena) {
+public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, Boolean esEntrenador, String contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
     this.fechaNacimiento = fechaNacimiento2;
     this.contrasena = contrasena;
+    this.esEntrenador = esEntrenador;
 }
 
 // Getters y Setters

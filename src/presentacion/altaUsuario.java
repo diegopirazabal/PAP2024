@@ -266,12 +266,12 @@ public class altaUsuario extends JInternalFrame {
                 if (esEntrenador) {
                     String disciplina = JOptionPane.showInputDialog(this, "Ingrese la disciplina");
                     String linkSitioWeb = JOptionPane.showInputDialog(this, "Ingrese el link del sitio web");
-                    controlUsr.crearEntrenador(nick, nombreU, apellidoU, mail, fnac, "defaultPassword", disciplina, linkSitioWeb);
+                    controlUsr.crearEntrenador(nick, nombreU, apellidoU, mail, fnac, esEntrenador, "defaultPassword", disciplina, linkSitioWeb);
                 } 
                 // Si se seleccionó "Deportista"
                 else if (esDeportista) {
                     Boolean esProfesional = JOptionPane.showConfirmDialog(this, "¿Es un deportista profesional?", "Profesional", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
-                    controlUsr.crearDeportista(nick, nombreU, apellidoU, mail, fnac, "defaultPassword", esProfesional);
+                    controlUsr.crearDeportista(nick, nombreU, apellidoU, mail, fnac, esEntrenador, "defaultPassword", esProfesional);
                 }
 
                 // Muestro éxito de la operación

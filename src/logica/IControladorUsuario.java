@@ -9,9 +9,9 @@ import excepciones.UsuarioRepetidoException;
 
 public interface IControladorUsuario {
 	
-	public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, boolean esProfesional) throws UsuarioRepetidoException ;
+	public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, boolean esProfesional) throws UsuarioRepetidoException ;
 	
-	public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException ;
+	public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException ;
 
 	public dataTypeUsuario consultarUsuario(String nickname) throws UsuarioNoExisteException;
 	
