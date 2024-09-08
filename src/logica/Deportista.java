@@ -1,5 +1,9 @@
 package logica;
 
+import java.util.Date;
+
+import com.toedter.calendar.JDateChooser;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -17,8 +21,8 @@ public class Deportista extends Usuario {
 
     public Deportista() {};
     
-    public Deportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador,  String contrasena, boolean esProfesional) {
-        super(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena);
+    public Deportista(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador,  char[] contrasena, boolean esProfesional) {
+        super(nickname, nombre, apellido, email, (Date) fechaNacimiento, esEntrenador, contrasena);
         this.esProfesional = esProfesional;
     }
 

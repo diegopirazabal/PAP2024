@@ -1,5 +1,6 @@
 package dtos;
 
+import java.util.Date;
 import java.time.LocalDate;
 
 public class dataTypeUsuario {
@@ -7,10 +8,10 @@ public class dataTypeUsuario {
     private String nombre;
     private String apellido;
     private String email;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private Boolean esEntrenador;
 
-    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador) {
+    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -59,11 +60,11 @@ public class dataTypeUsuario {
         this.email = email;
     }
 
-    public String getFNacimiento() {
+    public Date getFNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFNacimiento(String fechaNacimiento) {
+    public void setFNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     

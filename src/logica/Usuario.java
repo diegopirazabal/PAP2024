@@ -1,6 +1,8 @@
 package logica;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
+
+import com.toedter.calendar.JDateChooser;
 
 //Imports para persistencia, los saqué de google ni idea si son todos necesarios lol
 import jakarta.persistence.*;
@@ -24,10 +26,10 @@ public abstract class Usuario {
     private String email;
     
     @Column (name = "fechaNac", nullable = false)
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     
     @Column (name = "Contrasena", nullable = false, length = 20)
-    private String contrasena;
+    private char[] contrasena;
     
     @Column (name = "Entrenador")
 	protected Boolean esEntrenador;
@@ -35,12 +37,12 @@ public abstract class Usuario {
     
 public Usuario(){};
 
-public Usuario(String nickname, String nombre, String apellido, String email, String fechaNacimiento2, Boolean esEntrenador, String contrasena) {
+public Usuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
-    this.fechaNacimiento = fechaNacimiento2;
+    this.fechaNacimiento = fechaNacimiento;
     this.contrasena = contrasena;
     this.esEntrenador = esEntrenador;
 }
@@ -78,19 +80,19 @@ public Usuario(String nickname, String nombre, String apellido, String email, St
 	    this.email = email;
 	}
 	
-	public String getFNacimiento() {
+	public Date getFNacimiento() {
 	    return fechaNacimiento;
 	}
 	
-	public void setFNacimiento(String fechaNacimiento) {
+	public void setFNacimiento(Date fechaNacimiento) {
 	    this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	public void setContrasena(String contrasena){
+	public void setContrasena(char[] contrasena){
 	    this.contrasena = contrasena;
 	}
 	
-	public String getContrasena(){
+	public char[] getContrasena(){
 	    return contrasena;
 	}
 

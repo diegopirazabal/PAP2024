@@ -103,7 +103,7 @@ public class Principal {
 	        });
 	        menuUsuarios.add(menuItemRegistrar);
 	        
-	        JMenuItem mntmListaUsuarios = new JMenuItem("Listar Usuarios");
+	        JMenuItem mntmListaUsuarios = new JMenuItem("Consultar Usuarios");
 	        mntmListaUsuarios.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	listUsrInternalFrame.cargarUsuarios();
@@ -112,13 +112,13 @@ public class Principal {
 	        });
 	        menuUsuarios.add(mntmListaUsuarios);
 	        
-	        JMenuItem mntmConsultarUsuarios = new JMenuItem("Consultar Usuarios");
-	        mntmConsultarUsuarios.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	            	despUsrInternalFrame.setVisible(true);
-	            }
-	        });
-	        menuUsuarios.add(mntmConsultarUsuarios);
+//	        JMenuItem mntmConsultarUsuarios = new JMenuItem("Consultar Usuarios");
+//	        mntmConsultarUsuarios.addActionListener(new ActionListener() {
+//	            public void actionPerformed(ActionEvent e) {
+//	            	despUsrInternalFrame.setVisible(true);
+//	            }
+//	        });
+//	        menuUsuarios.add(mntmConsultarUsuarios);
 	        
 	        // Añadir un nuevo ítem para listar entrenadores
 	        JMenuItem mntmListarEntrenadores = new JMenuItem("Listar Entrenadores");

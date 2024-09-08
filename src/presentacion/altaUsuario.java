@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -15,12 +16,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.SwingConstants;
 
+import com.toedter.calendar.JCalendar;
 import excepciones.UsuarioRepetidoException;
 import logica.Fabrica;
 import logica.IControladorUsuario;
-
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JMonthChooser;
 @SuppressWarnings("serial")
 public class altaUsuario extends JInternalFrame {
 
@@ -33,7 +39,7 @@ public class altaUsuario extends JInternalFrame {
     private JTextField textFieldApellido;
     private JTextField textFieldNick;
     private JTextField textFieldEmail;
-    private JTextField textFieldFNac;
+//    private JCalendar textFieldFNac;
     private JLabel lblIngreseNombre;
     private JLabel lblIngreseApellido;
     private JLabel lblIngreseNick;
@@ -46,6 +52,8 @@ public class altaUsuario extends JInternalFrame {
     private ButtonGroup grupoRoles; 
     private JPasswordField passwordField;
     private JLabel lblIngreseContrasena; 
+    private JDateChooser fechaNacimiento;
+    
     
 //   private JLabel lblNewLabel; NO SE USA
 
@@ -60,13 +68,13 @@ public class altaUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Registrar un Usuario");
-        setBounds(10, 40, 371, 276);
+        setBounds(10, 40, 477, 357);
 
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{100, 120, 120, 0};
         gridBagLayout.rowHeights = new int[]{30, 30, 30, 30, 0, 0, 0};
-        gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0};
+        gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
         getContentPane().setLayout(gridBagLayout);
 
         lblIngreseNombre = new JLabel("Nombre:");
@@ -176,19 +184,29 @@ public class altaUsuario extends JInternalFrame {
         gbc_lblIngreseFNac.gridx = 0;
         gbc_lblIngreseFNac.gridy = 5;
         getContentPane().add(lblIngreseFNac, gbc_lblIngreseFNac);
-
-        textFieldFNac = new JTextField();
-        textFieldFNac.setToolTipText("Ingrese su fecha de nacimiento");
-        textFieldFNac.setColumns(10);
-        GridBagConstraints gbc_textFieldFNac = new GridBagConstraints();
-        gbc_textFieldFNac.gridwidth = 2;
-        gbc_textFieldFNac.fill = GridBagConstraints.BOTH;
-        gbc_textFieldFNac.insets = new Insets(0, 0, 5, 0);
-        gbc_textFieldFNac.gridx = 1;
-        gbc_textFieldFNac.gridy = 5;
-        getContentPane().add(textFieldFNac, gbc_textFieldFNac);
+//        textFieldFNac = new UtilDateModel();
+//        textFieldFNac.setToolTipText("Ingrese su fecha de nacimiento");
+//        textFieldFNac.setColumns(10);
+//        GridBagConstraints gbc_textFieldFNac = new GridBagConstraints();
+//        gbc_textFieldFNac.gridwidth = 2;
+//        gbc_textFieldFNac.fill = GridBagConstraints.BOTH;
+//        gbc_textFieldFNac.insets = new Insets(0, 0, 5, 0);
+//        gbc_textFieldFNac.gridx = 1;
+//        gbc_textFieldFNac.gridy = 5;
+//        getContentPane().add(textFieldFNac, gbc_textFieldFNac);
 
         grupoRoles = new ButtonGroup();
+        
+        fechaNacimiento = new JDateChooser();
+        fechaNacimiento.setToolTipText("Seleccione su fecha de nacimiento");
+        GridBagConstraints gbc_fechaNacimiento = new GridBagConstraints();
+        gbc_fechaNacimiento.insets = new Insets(0, 0, 5, 5);
+        gbc_fechaNacimiento.fill = GridBagConstraints.BOTH;
+        gbc_fechaNacimiento.gridx = 1;
+        gbc_fechaNacimiento.gridy = 5;
+        getContentPane().add(fechaNacimiento, gbc_fechaNacimiento);
+
+        
         rdbtnEsEntrenador = new JRadioButton("Entrenador");
         GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
         gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
@@ -242,46 +260,37 @@ public class altaUsuario extends JInternalFrame {
     // Tanto en caso de que haya un error (de verificación o de registro) o no, se despliega
     // un mensaje utilizando un panel de mensaje (JOptionPane).
     protected void cmdRegistroUsuarioActionPerformed(ActionEvent arg0) {
-        // Obtengo datos de los controles Swing
         String nombreU = this.textFieldNombre.getText();
         String apellidoU = this.textFieldApellido.getText();
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
-        String fnac = this.textFieldFNac.getText();
+        char[] contrasena = this.passwordField.getPassword();
+        Date fechaNac = this.fechaNacimiento.getDate(); // Obtén la fecha seleccionada
         
-        // Verifico si el usuario ha seleccionado "Entrenador" o "Deportista"
+        // Verifica si el usuario ha seleccionado "Entrenador" o "Deportista"
         Boolean esEntrenador = this.rdbtnEsEntrenador.isSelected();
         Boolean esDeportista = this.rdbtnEsDeportista.isSelected();
 
-        // Verifico que los campos no estén vacíos
         if (checkFormulario()) {
             try {
-                // Si se seleccionó "Entrenador"
                 if (esEntrenador) {
                     String disciplina = JOptionPane.showInputDialog(this, "Ingrese la disciplina");
                     String linkSitioWeb = JOptionPane.showInputDialog(this, "Ingrese el link del sitio web");
-                    controlUsr.crearEntrenador(nick, nombreU, apellidoU, mail, fnac, esEntrenador, "defaultPassword", disciplina, linkSitioWeb);
-                } 
-                // Si se seleccionó "Deportista"
-                else if (esDeportista) {
+                    controlUsr.crearEntrenador(nick, nombreU, apellidoU, mail, fechaNac, esEntrenador, contrasena, disciplina, linkSitioWeb);
+                } else if (esDeportista) {
                     Boolean esProfesional = JOptionPane.showConfirmDialog(this, "¿Es un deportista profesional?", "Profesional", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
-                    controlUsr.crearDeportista(nick, nombreU, apellidoU, mail, fnac, esEntrenador, "defaultPassword", esProfesional);
+                    controlUsr.crearDeportista(nick, nombreU, apellidoU, mail, fechaNac, esEntrenador, contrasena, esProfesional);
                 }
-
-                // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
                         JOptionPane.INFORMATION_MESSAGE);
-
             } catch (UsuarioRepetidoException e) {
-                // Muestro error de registro
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
             }
-
-            // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();
             setVisible(false);
         }
     }
+
 
 
     // Permite validar la información introducida en los campos e indicar
@@ -294,10 +303,10 @@ public class altaUsuario extends JInternalFrame {
         String apellidoU = this.textFieldApellido.getText();
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
-        String fnac = this.textFieldFNac.getText();
+        Calendar fnac = this.fechaNacimiento.getCalendar();
         
         if(mail.contains("@")) {
-	        if (nombreU.isEmpty() || apellidoU.isEmpty() || nick.isEmpty() || mail.isEmpty() || fnac.isEmpty() ) {
+	        if (nombreU.isEmpty() || apellidoU.isEmpty() || nick.isEmpty() || mail.isEmpty()) {
 	            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
 	                    JOptionPane.ERROR_MESSAGE);
 	            return false;
@@ -321,7 +330,7 @@ public class altaUsuario extends JInternalFrame {
         textFieldApellido.setText("");
         textFieldNick.setText("");
         textFieldEmail.setText("");
-        textFieldFNac.setText("");
+        fechaNacimiento.setDate(null);
         passwordField.setText("");
         grupoRoles.clearSelection();  // Esto desmarca los botones de radio
     }

@@ -1,5 +1,8 @@
 package logica;
 import java.util.*;
+
+import com.toedter.calendar.JDateChooser;
+
 import dtos.dataTypeUsuario;
 import excepciones.*;
 
@@ -10,12 +13,12 @@ public class controladorUsuario implements IControladorUsuario{
         manejador = new manejadorUsuarios();
     }
 
-    public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, boolean esProfesional) throws UsuarioRepetidoException {
+    public void crearDeportista(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena, boolean esProfesional) throws UsuarioRepetidoException {
         Usuario deportista = new Deportista(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena, esProfesional);
         manejador.agregar(deportista);
     }
 
-    public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
+    public void crearEntrenador(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
     	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }

@@ -1,6 +1,6 @@
 package logica;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import dtos.dataTypeUsuario;
@@ -9,9 +9,9 @@ import excepciones.UsuarioRepetidoException;
 
 public interface IControladorUsuario {
 	
-	public void crearDeportista(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, boolean esProfesional) throws UsuarioRepetidoException ;
+	public void crearDeportista(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena, boolean esProfesional) throws UsuarioRepetidoException ;
 	
-	public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException ;
+	public void crearEntrenador(String nickname, String nombre, String apellido, String email, Date fechaNac, Boolean esEntrenador, char[] contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException ;
 
 	public dataTypeUsuario consultarUsuario(String nickname) throws UsuarioNoExisteException;
 	
