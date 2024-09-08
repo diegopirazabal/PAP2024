@@ -16,7 +16,7 @@ public class controladorUsuario implements IControladorUsuario{
     }
 
     public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
-    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
+    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }
     

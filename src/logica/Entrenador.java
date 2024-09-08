@@ -22,7 +22,7 @@ public class Entrenador extends Usuario {
     private List<Actividad> actividades;
     
     private Boolean esEntrenador = true;
-    public Entrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina2, String linkSitioWeb2) {};
+    public Entrenador() {};
     
     public Entrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena);

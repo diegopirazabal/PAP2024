@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -18,25 +17,19 @@ import javax.swing.SwingConstants;
 import excepciones.UsuarioNoExisteException;
 import logica.Fabrica;
 import logica.IControladorUsuario;
-import logica.controladorUsuario;
 import dtos.dataTypeUsuario;
 import java.awt.Dimension;
 
 public class ListarUsuarios extends JInternalFrame {
 
-    // Controlador de usuarios que se utilizará para las acciones del JFrame
-	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
-    // Los componentes gráficos se agregan como atributos de la clase
-    // para facilitar su acceso desde diferentes métodos de la misma.  
+    private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
     private JComboBox<dataTypeUsuario> comboBoxUsuarios;
     private JLabel lblUsuarios;
-    private JButton btnCerrar;
+    private JButton btnBuscar;
+    private JButton btnLimpiar;
     private JTextField textFieldNick;
     private JLabel lblNewLabel;
-    private JLabel label;
     private JLabel lblMostrarNombre;
-    private JLabel label_1;
-    private JLabel label_2;
     private JLabel lblMostrarApellido;
     private JLabel lblMostrarMail;
     private JLabel lblMostrarTipo;
@@ -44,186 +37,147 @@ public class ListarUsuarios extends JInternalFrame {
     private JTextField txtMostrarMail;
     private JTextField txtMostrarApellido;
     private JTextField txtMostrarNombre;
-//  private JTextField textFieldNom;  NO SE USAN
-//	private JTextField textFieldApe;
-//	private JTextField textFieldMail;
-//	private JTextField textFieldFNac;
-	private desplegarDatosUsuario despUsrJInternalFrame;
-	private IControladorUsuario ICU;
-	//SOLUCION NAHUEL
-	private JDesktopPane panelDespUsu;
-	private String nick;
-    //private DesplegarDatosUsuario despDatosInternalFrame;
 
-    /**
-     * Create the frame.
-     */
     public ListarUsuarios(IControladorUsuario icu) {
-        // Se inicializa con el controlador de usuarios
         controlUsr = icu;
-        
-        // Propiedades del JInternalFrame como dimensión, posición dentro del frame, etc.
         setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consultar un Usuario");
-        setBounds(300, 300, 462, 247);
+        setBounds(300, 300, 406, 272);
         getContentPane().setLayout(null);
 
-        despUsrJInternalFrame = new desplegarDatosUsuario(ICU);
-        despUsrJInternalFrame.setLocation(30, 35);
-        despUsrJInternalFrame.setVisible(false);
-        
-        //SOLUCION NAHUEL
-        panelDespUsu = new JDesktopPane();
-        setContentPane(panelDespUsu);
-        
-
         lblUsuarios = new JLabel("Usuarios Registrados");
-        lblUsuarios.setBounds(20, 9, 132, 13);
-        lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
+        lblUsuarios.setBounds(10, 9, 132, 13);
         getContentPane().add(lblUsuarios);
+
         comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
         comboBoxUsuarios.setMinimumSize(new Dimension(40, 22));
-        comboBoxUsuarios.setBounds(216, 5, 177, 21);
+        comboBoxUsuarios.setBounds(171, 5, 182, 21);
         getContentPane().add(comboBoxUsuarios);
         comboBoxUsuarios.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		//SOLUCION NAHUEL
-        		cargarUsuarios();
-        	}
-        });
-
-        // Un boton (JButton) con un evento asociado que permite limpiar la lista 
-        // de usuarios y cerrar la ventana (solo la oculta).
-        // Se ubica al sur del layout.
-        btnCerrar = new JButton("Cerrar");
-        btnCerrar.setBounds(279, 76, 114, 21);
-        btnCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                comboBoxUsuarios.removeAllItems();
-                setVisible(false);
+                dataTypeUsuario seleccionado = (dataTypeUsuario) comboBoxUsuarios.getSelectedItem();
+                if (seleccionado != null) {
+                    completarCampos(seleccionado);
+                }
             }
         });
-        getContentPane().add(btnCerrar);
-        
+
+        btnBuscar = new JButton("Buscar Usuario");
+        btnBuscar.setBounds(171, 65, 103, 24);
+        btnBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cmdBuscarUsuarioActionPerformed(e);
+            }
+        });
+        getContentPane().add(btnBuscar);
+
+        btnLimpiar = new JButton("Limpiar");
+        btnLimpiar.setBounds(171, 210, 132, 21);
+        btnLimpiar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                limpiarCampos();
+            }
+        });
+        getContentPane().add(btnLimpiar);
+
         lblNewLabel = new JLabel("Ingrese Nickname:");
-        lblNewLabel.setBounds(20, 48, 132, 16);
+        lblNewLabel.setBounds(10, 39, 132, 16);
         getContentPane().add(lblNewLabel);
-        
+
         textFieldNick = new JTextField();
-        textFieldNick.setBounds(216, 47, 177, 19);
+        textFieldNick.setBounds(171, 37, 182, 19);
         getContentPane().add(textFieldNick);
         textFieldNick.setColumns(10);
-        
-        label = new JLabel("");
-        label.setBounds(189, 40, 0, 0);
-        getContentPane().add(label);
-        
-        label_1 = new JLabel("");
-        label_1.setBounds(194, 40, 0, 0);
-        getContentPane().add(label_1);
-        
-        label_2 = new JLabel("");
-        label_2.setBounds(199, 40, 0, 0);
-        getContentPane().add(label_2);
-        
+
         lblMostrarNombre = new JLabel("Nombre:");
-        lblMostrarNombre.setBounds(20, 100, 182, 16);
+        lblMostrarNombre.setBounds(10, 102, 182, 16);
         getContentPane().add(lblMostrarNombre);
-        
+
         txtMostrarNombre = new JTextField();
-        txtMostrarNombre.setBounds(216, 100, 182, 16);
+        txtMostrarNombre.setBounds(171, 100, 182, 20);
         getContentPane().add(txtMostrarNombre);
         txtMostrarNombre.setEditable(false);
         txtMostrarNombre.setText("");
         txtMostrarNombre.setColumns(10);
-        
+
         lblMostrarApellido = new JLabel("Apellido:");
-        lblMostrarApellido.setBounds(20, 120, 182, 16);
+        lblMostrarApellido.setBounds(10, 129, 182, 16);
         getContentPane().add(lblMostrarApellido);
-        
+
         txtMostrarApellido = new JTextField();
-        txtMostrarApellido.setBounds(216, 120, 182, 16);
+        txtMostrarApellido.setBounds(171, 127, 182, 20);
         getContentPane().add(txtMostrarApellido);
         txtMostrarApellido.setEditable(false);
         txtMostrarApellido.setText("");
         txtMostrarApellido.setColumns(10);
-        
+
         lblMostrarMail = new JLabel("Mail:");
-        lblMostrarMail.setBounds(20, 140, 182, 16);
+        lblMostrarMail.setBounds(10, 156, 182, 16);
         getContentPane().add(lblMostrarMail);
-        
+
         txtMostrarMail = new JTextField();
-        txtMostrarMail.setBounds(216, 140, 182, 16);
+        txtMostrarMail.setBounds(171, 154, 182, 20);
         getContentPane().add(txtMostrarMail);
         txtMostrarMail.setEditable(false);
         txtMostrarMail.setText("");
         txtMostrarMail.setColumns(10);
-        
+
         lblMostrarTipo = new JLabel("Tipo de Usuario:");
-        lblMostrarTipo.setBounds(20, 160, 182, 16);
+        lblMostrarTipo.setBounds(10, 183, 182, 16);
         getContentPane().add(lblMostrarTipo);
-        
+
         txtMostrarTipo = new JTextField();
-        txtMostrarTipo.setBounds(216, 160, 182, 16);
+        txtMostrarTipo.setBounds(171, 182, 182, 20);
         getContentPane().add(txtMostrarTipo);
         txtMostrarTipo.setEditable(false);
         txtMostrarTipo.setText("");
         txtMostrarTipo.setColumns(10);
-        
-        JButton btnNewButton = new JButton("Buscar Usuario");
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		//SOLUCION NAHUEL
-        		cmdBuscarUsuarioActionPerformed(e);
-        	}
-        });
-        btnNewButton.setBounds(50, 76, 132, 21);
-        getContentPane().add(btnNewButton);
+
     }
 
-    // Metodo que permite cargar un nuevo modelo para el combo con la informacion
-    // actualizada de usuarios, provista por la operacion del sistema getUsuarios(). 
-    // Se invoca el metodo antes de hacer visible el JInternalFrame
-    
     public void cargarUsuarios() {
-        DefaultComboBoxModel<dataTypeUsuario> model; // Este modelo se crea para cargar el combo
+        DefaultComboBoxModel<dataTypeUsuario> model;
         try {
-            // Aquí llamas al método que obtiene la lista de usuarios desde el controlador
-            List<dataTypeUsuario> usuarios = controlUsr.listarTodos();  // Supongo que tienes un método listarTodos en tu controlador
+            List<dataTypeUsuario> usuarios = controlUsr.listarTodos();
             model = new DefaultComboBoxModel<dataTypeUsuario>();
             for (dataTypeUsuario usuario : usuarios) {
-                model.addElement(usuario);  // Agregas cada usuario al modelo
+                model.addElement(usuario);
             }
-            comboBoxUsuarios.setModel(model);  // Asignas el modelo al ComboBox
+            comboBoxUsuarios.setModel(model);
         } catch (UsuarioNoExisteException e) {
-            // Manejas la excepción en caso de que no existan usuarios
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    protected void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
+
+    private void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
         dataTypeUsuario du;
         try {
-        	System.out.print(nick);
             du = controlUsr.verInfoUsuario(textFieldNick.getText());
-            if (du.getTipo()) {
-            	txtMostrarTipo.setText("Entrenador");
-            }else {
-            	txtMostrarTipo.setText("Deportista");
-            }
-            txtMostrarNombre.setText(du.getNombre());
-            txtMostrarApellido.setText(du.getApellido());
-            txtMostrarMail.setText(du.getEmail());
-           // textFieldFNac.setText(du.getFnacimiento());
+            completarCampos(du);
         } catch (UsuarioNoExisteException e1) {
-            // Si el usuario no existe, se muestra mensaje de error y se limpia el
-            // formulario.
             JOptionPane.showMessageDialog(this, e1.getMessage(), "Buscar Usuario", JOptionPane.ERROR_MESSAGE);
-           // limpiarFormulario();
+            limpiarCampos();
         }
+    }
+
+    private void completarCampos(dataTypeUsuario usuario) {
+        if (usuario != null) {
+            txtMostrarTipo.setText(usuario.getTipo() ? "Entrenador" : "Deportista");
+            txtMostrarNombre.setText(usuario.getNombre());
+            txtMostrarApellido.setText(usuario.getApellido());
+            txtMostrarMail.setText(usuario.getEmail());
+        }
+    }
+
+    private void limpiarCampos() {
+        txtMostrarTipo.setText("");
+        txtMostrarNombre.setText("");
+        txtMostrarApellido.setText("");
+        txtMostrarMail.setText("");
+        textFieldNick.setText("");
     }
 }

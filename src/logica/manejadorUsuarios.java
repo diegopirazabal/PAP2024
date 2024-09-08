@@ -159,21 +159,27 @@ public class manejadorUsuarios {
 
     public List<dataTypeUsuario> obtenerEntrenadores() {
         try {
-            List<Usuario> entrenadores = em.createQuery("SELECT u FROM Usuario u WHERE Entrenador = true", Usuario.class).getResultList();
+            List<Entrenador> entrenadores = em.createQuery("SELECT u FROM Entrenador u", Entrenador.class)
+                    .getResultList();
+
+            // Convertir la lista de Usuarios a una lista de dataTypeUsuario
             return entrenadores.stream()
-                    .map(usuario -> new dataTypeUsuario(
-                            usuario.getNickname(),
-                            usuario.getNombre(),
-                            usuario.getApellido(),
-                            usuario.getEmail(),
-                            usuario.getFNacimiento(),
-                            usuario.getTipo()))
+                    .map(entrenador -> new dataTypeUsuario(
+                            entrenador.getNickname(),
+                            entrenador.getNombre(),
+                            entrenador.getApellido(),
+                            entrenador.getEmail(),
+                            entrenador.getFNacimiento(),
+                            entrenador.getTipo()))  // Asume que tienes un método getTipo() para determinar si es entrenador
                     .collect(Collectors.toList());
+            
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
     }
+
+
 
 
     public List<dataTypeUsuario> obtenerDeportistas() {

@@ -14,20 +14,23 @@ import logica.IControladorUsuario;
 
 public class Principal {
 	 private JFrame frmGestionDeUsuarios;    
-	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
+	 private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
+	 
+	 // Nuevas ventanas internas
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
+	 private listarEntrenadores listEntrenadoresInternalFrame; // InternalFrame para listar entrenadores
 	 private desplegarDatosUsuario despUsrInternalFrame;
 	 private altaActividad altActInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
 	    	System.out.print("Entre al main");
-	        EventQueue.invokeLater(new Runnable() {  /* se utiliza para poner en cola una tarea */
-	            public void run() {                  /* para ser ejecutada en el hilo de eventos EDT */
+	        EventQueue.invokeLater(new Runnable() {  
+	            public void run() {                 
 	                try {
-	                    Principal window = new Principal();   // Crea una instancia del objeto principal
-	                    window.frmGestionDeUsuarios.setVisible(true); // Pone la ventana visible
+	                    Principal window = new Principal();   
+	                    window.frmGestionDeUsuarios.setVisible(true); 
 	                } catch (Exception e) {
 	                    e.printStackTrace();
 	                }
@@ -37,7 +40,7 @@ public class Principal {
 	 
 	 public Principal(){
 		 initialize();
-		 Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
+		 Fabrica fabrica = Fabrica.getInstance(); 
 		 controlUsr = fabrica.getIControladorUsuario();
 	     
 	     altUsrInternalFrame = new altaUsuario(controlUsr);
@@ -48,16 +51,21 @@ public class Principal {
 	     listUsrInternalFrame.setLocation(30, 35);
 	     listUsrInternalFrame.setVisible(false);
 	     
+	     listEntrenadoresInternalFrame = new listarEntrenadores(controlUsr); // Instancia de la nueva ventana para listar entrenadores
+	     listEntrenadoresInternalFrame.setLocation(30, 35);
+	     listEntrenadoresInternalFrame.setVisible(false);
+	     
 	     despUsrInternalFrame = new desplegarDatosUsuario(controlUsr);
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
 	     
-	     altActInternalFrame = new altaActividad(controlUsr); //crear controlador de actividad y pasale el icont
+	     altActInternalFrame = new altaActividad(controlUsr); 
 	     altActInternalFrame.setLocation(30, 35);
 	     altActInternalFrame.setVisible(false);
 	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     
@@ -69,9 +77,6 @@ public class Principal {
 	        frmGestionDeUsuarios.setBounds(100, 100, 450, 400);
 	        frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	        // Se crea una barra de menú (JMenuBar) con dos menú (JMenu) desplegables.
-	        // Cada menú contiene diferentes opciones (JMenuItem), los cuales tienen un 
-	        // evento asociado que permite realizar una acción una vez se seleccionan. 
 	        JMenuBar menuBar = new JMenuBar();
 	        frmGestionDeUsuarios.setJMenuBar(menuBar);
 
@@ -81,7 +86,6 @@ public class Principal {
 	        JMenuItem menuSalir = new JMenuItem("Salir");
 	        menuSalir.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent arg0) {
-	                // Salgo de la aplicacion
 	                frmGestionDeUsuarios.setVisible(false);
 	                frmGestionDeUsuarios.dispose();
 	            }
@@ -94,7 +98,6 @@ public class Principal {
 	        JMenuItem menuItemRegistrar = new JMenuItem("Registrar Usuario");
 	        menuItemRegistrar.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                // Muestro el InternalFrame para registrar un usuario
 	                altUsrInternalFrame.setVisible(true);
 	            }
 	        });
@@ -103,35 +106,36 @@ public class Principal {
 	        JMenuItem mntmListaUsuarios = new JMenuItem("Listar Usuarios");
 	        mntmListaUsuarios.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-	                // cargando previamente la lista
 	            	listUsrInternalFrame.cargarUsuarios();
 	            	listUsrInternalFrame.setVisible(true);
 	            }
 	        });
 	        menuUsuarios.add(mntmListaUsuarios);
 	        
-	        
 	        JMenuItem mntmConsultarUsuarios = new JMenuItem("Consultar Usuarios");
 	        mntmConsultarUsuarios.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-	                // cargando previamente la lista
-	            	//listUsrInternalFrame.cargarUsuarios();
-	            	
 	            	despUsrInternalFrame.setVisible(true);
 	            }
 	        });
 	        menuUsuarios.add(mntmConsultarUsuarios);
 	        
+	        // Añadir un nuevo ítem para listar entrenadores
+	        JMenuItem mntmListarEntrenadores = new JMenuItem("Listar Entrenadores");
+	        mntmListarEntrenadores.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	listEntrenadoresInternalFrame.cargarEntrenadores(); // Llamar la función para cargar entrenadores
+	            	listEntrenadoresInternalFrame.setVisible(true);
+	            }
+	        });
+	        menuUsuarios.add(mntmListarEntrenadores); // Agregar al menú
+
 	        JMenu menuActividad = new JMenu("Actividad");
 	        menuBar.add(menuActividad);
 	        
 	        JMenuItem mntmaltaActividad = new JMenuItem("Registrar Actividad");
 	        mntmaltaActividad.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                // Muestro el InternalFrame para ver la lista de todos los usuarios,
-	                // cargando previamente la lista
 	            	altActInternalFrame.setVisible(true);
 	            }
 	        });
@@ -140,6 +144,4 @@ public class Principal {
 	        JMenu menuClase = new JMenu("Clase");
 	        menuBar.add(menuClase);
 	    }
-	 }
-
-
+}
