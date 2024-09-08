@@ -16,13 +16,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import excepciones.UsuarioRepetidoException;
+import logica.Fabrica;
 import logica.IControladorUsuario;
 
 @SuppressWarnings("serial")
 public class altaUsuario extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-    private IControladorUsuario controlUsr;
+	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
     
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.
@@ -40,7 +41,7 @@ public class altaUsuario extends JInternalFrame {
     private JButton btnCancelar;
     private JRadioButton rdbtnEsEntrenador;
     private JRadioButton rdbtnEsDeportista;
-    private JLabel lblNewLabel;
+//   private JLabel lblNewLabel; NO SE USA
 
     /**
      * Create the frame.

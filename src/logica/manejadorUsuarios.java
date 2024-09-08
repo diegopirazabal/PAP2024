@@ -17,16 +17,16 @@ public class manejadorUsuarios {
     private static manejadorUsuarios instancia = null;
     private Usuario obtenerUsuarioPorNickname(String nickname) {
         try {
-            return em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-                     .setParameter("nickname", nickname)
-                     .getResultStream()
-                     .findFirst()
-                     .orElse(null);
+            List<Usuario> resultados = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                                         .setParameter("nickname", nickname)
+                                         .getResultList();
+            return resultados.isEmpty() ? null : resultados.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
@@ -155,8 +155,49 @@ public class manejadorUsuarios {
         }
     }
 
-    public void cerrar() {
-        if (em.isOpen()) em.close();
-        if (emf.isOpen()) emf.close();
+
+
+    public List<dataTypeUsuario> obtenerEntrenadores() {
+        try {
+            List<Usuario> entrenadores = em.createQuery("SELECT u FROM Usuario u WHERE Entrenador = true", Usuario.class).getResultList();
+            return entrenadores.stream()
+                    .map(usuario -> new dataTypeUsuario(
+                            usuario.getNickname(),
+                            usuario.getNombre(),
+                            usuario.getApellido(),
+                            usuario.getEmail(),
+                            usuario.getFNacimiento(),
+                            usuario.getTipo()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
+
+
+    public List<dataTypeUsuario> obtenerDeportistas() {
+        try {
+            // Consulta que selecciona solo los Deportistas
+            List<Deportista> deportistas = em.createQuery("SELECT d FROM Deportista d", Deportista.class).getResultList();
+            // Convertimos cada Deportista a dataTypeUsuario
+            return deportistas.stream()
+                    .map(deportista -> new dataTypeUsuario(
+                            deportista.getNickname(),
+                            deportista.getNombre(),
+                            deportista.getApellido(),
+                            deportista.getEmail(),
+                            deportista.getFNacimiento(),
+                            deportista.getTipo()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+public void cerrar() {
+    if (em.isOpen()) em.close();
+    if (emf.isOpen()) emf.close();
+}
 }

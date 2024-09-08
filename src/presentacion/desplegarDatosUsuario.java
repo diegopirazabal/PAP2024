@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import excepciones.UsuarioNoExisteException;
+import logica.Fabrica;
 import logica.IControladorUsuario;
 
 
@@ -19,7 +20,7 @@ public class desplegarDatosUsuario extends JInternalFrame {
     private JTextField textFieldApe;
     private JTextField textFieldMail;
     private JTextField textFieldFNac;
-    private IControladorUsuario controlUsr;
+	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
 
     public desplegarDatosUsuario(IControladorUsuario icu) {
         setResizable(true);

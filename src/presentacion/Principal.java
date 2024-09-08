@@ -14,7 +14,7 @@ import logica.IControladorUsuario;
 
 public class Principal {
 	 private JFrame frmGestionDeUsuarios;    
-	 private IControladorUsuario ICU;           
+	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
 	 private desplegarDatosUsuario despUsrInternalFrame;
@@ -38,21 +38,21 @@ public class Principal {
 	 public Principal(){
 		 initialize();
 		 Fabrica fabrica = Fabrica.getInstance();  // Se crea una instancia unica de fabrica, se guarda en la varible fabrica
-	     ICU = fabrica.getIControladorUsuario();
+		 controlUsr = fabrica.getIControladorUsuario();
 	     
-	     altUsrInternalFrame = new altaUsuario(ICU);
+	     altUsrInternalFrame = new altaUsuario(controlUsr);
 	     altUsrInternalFrame.setLocation(30, 35);
 	     altUsrInternalFrame.setVisible(false);
 	     
-	     listUsrInternalFrame = new ListarUsuarios(ICU);
+	     listUsrInternalFrame = new ListarUsuarios(controlUsr);
 	     listUsrInternalFrame.setLocation(30, 35);
 	     listUsrInternalFrame.setVisible(false);
 	     
-	     despUsrInternalFrame = new desplegarDatosUsuario(ICU);
+	     despUsrInternalFrame = new desplegarDatosUsuario(controlUsr);
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
 	     
-	     altActInternalFrame = new altaActividad(); //crear controlador de actividad y pasale el icont
+	     altActInternalFrame = new altaActividad(controlUsr); //crear controlador de actividad y pasale el icont
 	     altActInternalFrame.setLocation(30, 35);
 	     altActInternalFrame.setVisible(false);
 	     

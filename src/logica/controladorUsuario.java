@@ -16,7 +16,7 @@ public class controladorUsuario implements IControladorUsuario{
     }
 
     public void crearEntrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) throws UsuarioRepetidoException {
-    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena, disciplina, linkSitioWeb);
+    	Usuario entrenador = new Entrenador(nickname, nombre, apellido, email, fechaNacimiento, contrasena, disciplina, linkSitioWeb);
     	manejador.agregar(entrenador);    	
     }
     
@@ -36,6 +36,18 @@ public class controladorUsuario implements IControladorUsuario{
     	return manejador.buscarUsuario(nickname);
     }
     
+    public List<dataTypeUsuario> listarEntrenadores() {
+        return manejador.obtenerEntrenadores();
+    }
+
+//    public List<dataTypeUsuario> listarEntrenadores() {
+//        return manejadorUsuarios.getinstance().obtenerEntrenadores();
+//    }
+
+    public List<dataTypeUsuario> listarDeportistas() {
+        return manejador.obtenerDeportistas();
+    }
+
 //    public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException {
 //        manejadorUsuarios mu = manejadorUsuarios.getinstance();
 //        List<dataTypeUsuario> usuarios = mu.obtenerTodos(); // Método que devuelve List<dataTypeUsuario>

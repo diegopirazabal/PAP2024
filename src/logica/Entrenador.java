@@ -21,7 +21,8 @@ public class Entrenador extends Usuario {
     @OneToMany(targetEntity=Actividad.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
     private List<Actividad> actividades;
     
-    public Entrenador() {};
+    private Boolean esEntrenador = true;
+    public Entrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, String contrasena, String disciplina2, String linkSitioWeb2) {};
     
     public Entrenador(String nickname, String nombre, String apellido, String email, String fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena);

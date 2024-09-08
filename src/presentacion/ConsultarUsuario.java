@@ -4,6 +4,7 @@ import javax.swing.JInternalFrame;
 
 import excepciones.UsuarioNoExisteException;
 import dtos.dataTypeUsuario;
+import logica.Fabrica;
 import logica.IControladorUsuario;
 import logica.Usuario;
 
@@ -24,7 +25,7 @@ import java.awt.event.ActionEvent;
 public class ConsultarUsuario extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-    private IControladorUsuario controlUsr;
+	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
     
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.

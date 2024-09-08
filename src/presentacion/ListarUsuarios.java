@@ -16,14 +16,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import excepciones.UsuarioNoExisteException;
+import logica.Fabrica;
 import logica.IControladorUsuario;
+import logica.controladorUsuario;
 import dtos.dataTypeUsuario;
+import java.awt.Dimension;
 
 public class ListarUsuarios extends JInternalFrame {
 
     // Controlador de usuarios que se utilizará para las acciones del JFrame
-    private IControladorUsuario controlUsr;
-    
+	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
     // Los componentes gráficos se agregan como atributos de la clase
     // para facilitar su acceso desde diferentes métodos de la misma.  
     private JComboBox<dataTypeUsuario> comboBoxUsuarios;
@@ -42,10 +44,10 @@ public class ListarUsuarios extends JInternalFrame {
     private JTextField txtMostrarMail;
     private JTextField txtMostrarApellido;
     private JTextField txtMostrarNombre;
-  	private JTextField textFieldNom;
-	private JTextField textFieldApe;
-	private JTextField textFieldMail;
-	private JTextField textFieldFNac;
+//  private JTextField textFieldNom;  NO SE USAN
+//	private JTextField textFieldApe;
+//	private JTextField textFieldMail;
+//	private JTextField textFieldFNac;
 	private desplegarDatosUsuario despUsrJInternalFrame;
 	private IControladorUsuario ICU;
 	//SOLUCION NAHUEL
@@ -83,11 +85,16 @@ public class ListarUsuarios extends JInternalFrame {
         lblUsuarios.setBounds(20, 9, 132, 13);
         lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
         getContentPane().add(lblUsuarios);
-
-        
         comboBoxUsuarios = new JComboBox<dataTypeUsuario>();
+        comboBoxUsuarios.setMinimumSize(new Dimension(40, 22));
         comboBoxUsuarios.setBounds(216, 5, 177, 21);
         getContentPane().add(comboBoxUsuarios);
+        comboBoxUsuarios.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//SOLUCION NAHUEL
+        		cargarUsuarios();
+        	}
+        });
 
         // Un boton (JButton) con un evento asociado que permite limpiar la lista 
         // de usuarios y cerrar la ventana (solo la oculta).
@@ -197,7 +204,6 @@ public class ListarUsuarios extends JInternalFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
     
     protected void cmdBuscarUsuarioActionPerformed(ActionEvent e) {
         dataTypeUsuario du;
@@ -209,7 +215,6 @@ public class ListarUsuarios extends JInternalFrame {
             }else {
             	txtMostrarTipo.setText("Deportista");
             }
-            
             txtMostrarNombre.setText(du.getNombre());
             txtMostrarApellido.setText(du.getApellido());
             txtMostrarMail.setText(du.getEmail());
@@ -221,15 +226,4 @@ public class ListarUsuarios extends JInternalFrame {
            // limpiarFormulario();
         }
     }
-
-
-        
-        private void limpiarFormulario() {
-        	textFieldNom.setText("");
-        	textFieldApe.setText("");
-        	textFieldNick.setText("");
-            textFieldMail.setText("");
-            textFieldFNac.setText("");
-        }
 }
-
