@@ -60,7 +60,7 @@ public class altaUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Registrar un Usuario");
-        setBounds(10, 40, 360, 260);
+        setBounds(10, 40, 371, 276);
 
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{100, 120, 120, 0};
@@ -72,7 +72,8 @@ public class altaUsuario extends JInternalFrame {
         lblIngreseNombre = new JLabel("Nombre:");
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         GridBagConstraints gbc_lblIngreseNombre = new GridBagConstraints();
-        gbc_lblIngreseNombre.fill = GridBagConstraints.BOTH;
+        gbc_lblIngreseNombre.anchor = GridBagConstraints.SOUTH;
+        gbc_lblIngreseNombre.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblIngreseNombre.insets = new Insets(0, 0, 5, 5);
         gbc_lblIngreseNombre.gridx = 0;
         gbc_lblIngreseNombre.gridy = 0;
@@ -80,8 +81,9 @@ public class altaUsuario extends JInternalFrame {
 
         textFieldNombre = new JTextField();
         GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
+        gbc_textFieldNombre.anchor = GridBagConstraints.SOUTH;
         gbc_textFieldNombre.gridwidth = 2;
-        gbc_textFieldNombre.fill = GridBagConstraints.BOTH;
+        gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldNombre.gridx = 1;
         gbc_textFieldNombre.gridy = 0;
@@ -168,7 +170,8 @@ public class altaUsuario extends JInternalFrame {
         lblIngreseFNac = new JLabel("Fecha de nacimiento:");
         lblIngreseFNac.setHorizontalAlignment(SwingConstants.RIGHT);
         GridBagConstraints gbc_lblIngreseFNac = new GridBagConstraints();
-        gbc_lblIngreseFNac.fill = GridBagConstraints.BOTH;
+        gbc_lblIngreseFNac.anchor = GridBagConstraints.EAST;
+        gbc_lblIngreseFNac.fill = GridBagConstraints.VERTICAL;
         gbc_lblIngreseFNac.insets = new Insets(0, 0, 5, 5);
         gbc_lblIngreseFNac.gridx = 0;
         gbc_lblIngreseFNac.gridy = 5;
@@ -210,7 +213,8 @@ public class altaUsuario extends JInternalFrame {
         });
 
         GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-        gbc_btnAceptar.fill = GridBagConstraints.BOTH;
+        gbc_btnAceptar.anchor = GridBagConstraints.NORTH;
+        gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
         gbc_btnAceptar.gridx = 1;
         gbc_btnAceptar.gridy = 7;
@@ -224,7 +228,8 @@ public class altaUsuario extends JInternalFrame {
             }
         });
         GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-        gbc_btnCancelar.fill = GridBagConstraints.BOTH;
+        gbc_btnCancelar.anchor = GridBagConstraints.NORTH;
+        gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnCancelar.gridx = 2;
         gbc_btnCancelar.gridy = 7;
         getContentPane().add(btnCancelar, gbc_btnCancelar);
