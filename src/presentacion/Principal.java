@@ -3,14 +3,12 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import logica.Entrenador;
 import logica.Fabrica;
 import logica.IControladorActividad;
 import logica.IControladorUsuario;
@@ -28,6 +26,7 @@ public class Principal {
 	 private altaActividad altActInternalFrame;
 	 private listarActividades consActInternalFrame;
 	 private AltaClase altClaInternalFrame;
+	 private consultaClase consClaInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
@@ -77,6 +76,10 @@ public class Principal {
 	     altClaInternalFrame.setLocation(30, 35);
 	     altClaInternalFrame.setVisible(false);
 	     
+	     consClaInternalFrame = new consultaClase(); 
+	     consClaInternalFrame.setLocation(30, 35);
+	     consClaInternalFrame.setVisible(false);
+	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
@@ -84,7 +87,7 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altClaInternalFrame);
-	     
+	     frmGestionDeUsuarios.getContentPane().add(consClaInternalFrame);
 	 }
 	 
 	 private void initialize() {
@@ -175,9 +178,22 @@ public class Principal {
 	        mntmaltaClase.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	altClaInternalFrame.setVisible(true);
+	            	consClaInternalFrame.cargarClases();
+	            	consClaInternalFrame.cargarActividades();
 
 	            }
 	        });
+	        
+	        JMenuItem mntmconsultaClase = new JMenuItem("Consulta Clase");
+	        mntmconsultaClase.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	consClaInternalFrame.setVisible(true);
+	            	consClaInternalFrame.cargarActividades();
+	            	consClaInternalFrame.cargarClases();
+	            }
+	        });
+	        
 	        menuClase.add(mntmaltaClase);
+	        menuClase.add(mntmconsultaClase);
 	    }
 }

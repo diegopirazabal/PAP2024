@@ -33,6 +33,7 @@ public class AltaClase extends JInternalFrame{
 	private JTextField textFieldFecha;
 	private JTextField textFieldHora;
 	private JTextField textFieldLugar;
+	private JTextField textFieldNombre;
 	private JTextField textFieldCupos;
 	private JComboBox<dataTypeActividad> comboBoxActividades;
 	private JTextField textFieldId;
@@ -63,60 +64,66 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblActividades);
 		
 		JLabel lblFecja = new JLabel("Fecha de la clase: ");
-		lblFecja.setBounds(50, 88, 121, 13);
+		lblFecja.setBounds(52, 140, 121, 13);
 		getContentPane().add(lblFecja);
 		
 		JLabel lblHora = new JLabel("Hora de la clase: ");
-		lblHora.setBounds(50, 121, 121, 13);
+		lblHora.setBounds(52, 173, 121, 13);
 		getContentPane().add(lblHora);
 		
 		JLabel lblLugar = new JLabel("Lugar: ");
-		lblLugar.setBounds(50, 189, 121, 13);
+		lblLugar.setBounds(52, 241, 121, 13);
 		getContentPane().add(lblLugar);
 		
 		JLabel lblCupos = new JLabel("Cupos");
-		lblCupos.setBounds(50, 230, 121, 13);
+		lblCupos.setBounds(52, 282, 121, 13);
 		getContentPane().add(lblCupos);
 		
 		textFieldFecha = new JTextField();
-		textFieldFecha.setBounds(210, 83, 180, 19);
+		textFieldFecha.setBounds(212, 135, 180, 19);
 		getContentPane().add(textFieldFecha);
 		textFieldFecha.setColumns(10);
 		
 		JDateChooser campoFecha = new JDateChooser();
-        campoFecha.setBounds(178, 146, 236, 25);
+        campoFecha.setBounds(180, 198, 236, 25);
         campoFecha.setToolTipText("Seleccione la fecha");
         getContentPane().add(campoFecha);
 		
 		textFieldHora = new JTextField();
-		textFieldHora.setBounds(210, 116, 180, 19);
+		textFieldHora.setBounds(212, 168, 180, 19);
 		getContentPane().add(textFieldHora);
 		textFieldHora.setColumns(10);
 		
 		textFieldLugar = new JTextField();
-		textFieldLugar.setBounds(210, 189, 180, 19);
+		textFieldLugar.setBounds(212, 241, 180, 19);
 		getContentPane().add(textFieldLugar);
 		textFieldLugar.setColumns(10);
 		
 		textFieldCupos = new JTextField();
-		textFieldCupos.setBounds(210, 230, 180, 19);
+		textFieldCupos.setBounds(212, 282, 180, 19);
 		getContentPane().add(textFieldCupos);
 		textFieldCupos.setColumns(10);
 		
+		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(212, 75, 180, 19);
+		getContentPane().add(textFieldNombre);
+		textFieldNombre.setColumns(10);
+		
 		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.setBounds(210, 260, 85, 21);
+		btnNewButton.setBounds(212, 312, 85, 21);
 		btnNewButton.addActionListener(new ActionListener() {
 	          public void actionPerformed(ActionEvent e) {
 	              try {
 	                  String lugar = textFieldLugar.getText();
-	                  LocalTime hora = LocalTime.now();
+	                  String hora = textFieldHora.getText();
 	                  int cupos = Integer.parseInt(textFieldCupos.getText());
 	                  Date fecha = (Date) campoFecha.getDate();
 	                  Long id = (long) Integer.parseInt(textFieldId.getText());
 	                  Date fechaAlta = fecha;
-	                  controlCla.crearClase(id, fecha, hora, lugar, fechaAlta, lugar, cupos);
+	                  String nombre = textFieldNombre.getText();
+	                  controlCla.crearClase(id, nombre,fecha, hora, lugar, fechaAlta, lugar, cupos);
 	                  String imagen = "";
-					  Clase clase = new Clase(id, fecha, hora, lugar, imagen , fechaAlta, cupos);
+					  Clase clase = new Clase(id, nombre, fecha, hora, lugar, imagen , fechaAlta, cupos);
 					  dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
 	                  controlAct.agregarClase(clase, seleccionada.getNombre());
 	                  
@@ -130,21 +137,25 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.setBounds(305, 260, 85, 21);
+		btnNewButton_1.setBounds(307, 312, 85, 21);
 		getContentPane().add(btnNewButton_1);
 		
 		textFieldId = new JTextField();
 		textFieldId.setColumns(10);
-		textFieldId.setBounds(210, 53, 180, 19);
+		textFieldId.setBounds(212, 105, 180, 19);
 		getContentPane().add(textFieldId);
 		
 		JLabel lblIdDeLa = new JLabel("Id de la clase:");
-		lblIdDeLa.setBounds(50, 53, 121, 13);
+		lblIdDeLa.setBounds(52, 105, 121, 13);
 		getContentPane().add(lblIdDeLa);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(47, 145, 121, 13);
+		lblFecha.setBounds(49, 197, 121, 13);
 		getContentPane().add(lblFecha);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(52, 75, 121, 13);
+		getContentPane().add(lblNombre);
 		cargarDeportistas();
 	}
 	

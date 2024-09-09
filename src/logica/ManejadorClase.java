@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dtos.dataTypeClase;
-import dtos.dataTypeUsuario;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
 import jakarta.persistence.EntityManager;
@@ -47,6 +46,7 @@ public class ManejadorClase {
             return clases.stream()
                     .map(clase -> new dataTypeClase(
                             clase.getFecha(),
+                            clase.getNombre(),
                             clase.getHora(),
                             clase.getLugar(),
                             clase.getImagen(),

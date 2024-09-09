@@ -22,12 +22,15 @@ public class Clase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(name = "Nombre", nullable = false)
+    private String nombre;
+    
     @Column(name = "Fecha", nullable = false)
     private Date fecha;
 
     @Column(name = "Hora", nullable = false)
-    private LocalTime hora;
+    private String hora;
 
     @Column(name = "Lugar", nullable = false, length = 100)
     private String lugar;
@@ -46,8 +49,9 @@ public class Clase {
 
     public Clase() {};
     
-    public Clase(Long id, Date fecha, LocalTime hora, String lugar, String imagen, Date fechaAlta, int cupo) {
+    public Clase(Long id, String nombre, Date fecha, String hora, String lugar, String imagen, Date fechaAlta, int cupo) {
 		super();
+		this.nombre = nombre;
 		this.id = id;
 		this.fecha = fecha;
 		this.hora = hora;
@@ -63,6 +67,9 @@ public class Clase {
 		return id;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -79,12 +86,12 @@ public class Clase {
 	}
 
 
-	public LocalTime getHora() {
+	public String getHora() {
 		return hora;
 	}
 
 
-	public void setHora(LocalTime hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 

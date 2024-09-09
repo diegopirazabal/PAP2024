@@ -6,18 +6,20 @@ import java.time.LocalTime;
 public class dataTypeClase {
     
 	private Date fecha;
-    private LocalTime hora;
+    private String hora;
     private String lugar;
     private String imagen; // URL o nombre de archivo de la imagen
     private Date fechaAlta;
+    private String nombre;
     private int cupo;
     
    	
     public dataTypeClase(){}
     
-    public dataTypeClase(Date date, LocalTime hora, String lugar, String imagen, Date date2, int cupo){
+    public dataTypeClase(Date date, String nombre, String hora, String lugar, String imagen, Date date2, int cupo){
 		super();
 		this.fecha = date;
+		this.nombre = nombre;
 		this.hora = hora;
 		this.lugar = lugar;
 		this.imagen = imagen;
@@ -34,11 +36,15 @@ public class dataTypeClase {
 		this.fecha = fecha;
 	}
 
-	public LocalTime getHora() {
+	public String getHora() {
 		return hora;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 
-	public void setHora(LocalTime hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
@@ -73,6 +79,10 @@ public class dataTypeClase {
 	public void setCupo(int cupo) {
 		this.cupo = cupo;
 	}
-    
+    @Override
+	public String toString() {
+        return nombre; // Personaliza esto según lo que quieras mostrar
+    }
+	
 }
 

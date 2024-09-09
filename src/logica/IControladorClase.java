@@ -12,5 +12,5 @@ public interface IControladorClase {
 
 	List<dataTypeClase> listarTodas() throws ClaseNoExisteException;
 	Clase obtenerClase(Long id);
-	void crearClase(Long id, Date fecha,LocalTime hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException;
+	void crearClase(Long id, String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException;
 }
