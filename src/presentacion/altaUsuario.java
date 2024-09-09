@@ -27,6 +27,7 @@ import logica.IControladorUsuario;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
+import java.awt.Dimension;
 @SuppressWarnings("serial")
 public class altaUsuario extends JInternalFrame {
 
@@ -61,6 +62,7 @@ public class altaUsuario extends JInternalFrame {
      * Create the frame.
      */
     public altaUsuario(IControladorUsuario icu) {
+    	getContentPane().setSize(new Dimension(6, 7));
         controlUsr = icu;
 
         setResizable(true);
@@ -72,9 +74,9 @@ public class altaUsuario extends JInternalFrame {
 
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{100, 120, 120, 0};
-        gridBagLayout.rowHeights = new int[]{30, 30, 30, 30, 0, 0, 0};
+        gridBagLayout.rowHeights = new int[]{30, 30, 30, 30, 0, 0, 0, 0, 0, 0};
         gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
+        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
         getContentPane().setLayout(gridBagLayout);
 
         lblIngreseNombre = new JLabel("Nombre:");
@@ -90,9 +92,8 @@ public class altaUsuario extends JInternalFrame {
         textFieldNombre = new JTextField();
         GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
         gbc_textFieldNombre.anchor = GridBagConstraints.SOUTH;
-        gbc_textFieldNombre.gridwidth = 2;
         gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
         gbc_textFieldNombre.gridx = 1;
         gbc_textFieldNombre.gridy = 0;
         getContentPane().add(textFieldNombre, gbc_textFieldNombre);
@@ -109,9 +110,8 @@ public class altaUsuario extends JInternalFrame {
 
         textFieldApellido = new JTextField();
         GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
-        gbc_textFieldApellido.gridwidth = 2;
         gbc_textFieldApellido.fill = GridBagConstraints.BOTH;
-        gbc_textFieldApellido.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldApellido.insets = new Insets(0, 0, 5, 5);
         gbc_textFieldApellido.gridx = 1;
         gbc_textFieldApellido.gridy = 1;
         getContentPane().add(textFieldApellido, gbc_textFieldApellido);
@@ -130,9 +130,8 @@ public class altaUsuario extends JInternalFrame {
         textFieldNick.setToolTipText("Ingrese su nickname");
         textFieldNick.setColumns(10);
         GridBagConstraints gbc_textFieldNick = new GridBagConstraints();
-        gbc_textFieldNick.gridwidth = 2;
         gbc_textFieldNick.fill = GridBagConstraints.BOTH;
-        gbc_textFieldNick.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldNick.insets = new Insets(0, 0, 5, 5);
         gbc_textFieldNick.gridx = 1;
         gbc_textFieldNick.gridy = 2;
         getContentPane().add(textFieldNick, gbc_textFieldNick);
@@ -148,9 +147,8 @@ public class altaUsuario extends JInternalFrame {
 
         passwordField = new JPasswordField();  // Campo para la contraseña
         GridBagConstraints gbc_passwordField = new GridBagConstraints();
-        gbc_passwordField.gridwidth = 2;
         gbc_passwordField.fill = GridBagConstraints.BOTH;
-        gbc_passwordField.insets = new Insets(0, 0, 5, 0);
+        gbc_passwordField.insets = new Insets(0, 0, 5, 5);
         gbc_passwordField.gridx = 1;
         gbc_passwordField.gridy = 3;
         getContentPane().add(passwordField, gbc_passwordField);
@@ -168,9 +166,8 @@ public class altaUsuario extends JInternalFrame {
         textFieldEmail.setToolTipText("Ingrese su email");
         textFieldEmail.setColumns(10);
         GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
-        gbc_textFieldEmail.gridwidth = 2;
         gbc_textFieldEmail.fill = GridBagConstraints.BOTH;
-        gbc_textFieldEmail.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldEmail.insets = new Insets(0, 0, 5, 5);
         gbc_textFieldEmail.gridx = 1;
         gbc_textFieldEmail.gridy = 4;
         getContentPane().add(textFieldEmail, gbc_textFieldEmail);
@@ -198,6 +195,7 @@ public class altaUsuario extends JInternalFrame {
         grupoRoles = new ButtonGroup();
         
         fechaNacimiento = new JDateChooser();
+        fechaNacimiento.setMaximumSize(new Dimension(100000000, 100000000));
         fechaNacimiento.setToolTipText("Seleccione su fecha de nacimiento");
         GridBagConstraints gbc_fechaNacimiento = new GridBagConstraints();
         gbc_fechaNacimiento.insets = new Insets(0, 0, 5, 5);
@@ -214,43 +212,44 @@ public class altaUsuario extends JInternalFrame {
         gbc_rdbtnNewRadioButton.gridy = 6;
         getContentPane().add(rdbtnEsEntrenador, gbc_rdbtnNewRadioButton);
         grupoRoles.add(rdbtnEsEntrenador);
-
-        rdbtnEsDeportista = new JRadioButton("Deportista");
-        GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-        gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 0);
-        gbc_rdbtnNewRadioButton_1.gridx = 2;
-        gbc_rdbtnNewRadioButton_1.gridy = 6;
-        getContentPane().add(rdbtnEsDeportista, gbc_rdbtnNewRadioButton_1);
-        grupoRoles.add(rdbtnEsDeportista);
-
-        btnAceptar = new JButton("Aceptar");
-        btnAceptar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                cmdRegistroUsuarioActionPerformed(arg0);
-            }
-        });
-
-        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-        gbc_btnAceptar.anchor = GridBagConstraints.NORTH;
-        gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
-        gbc_btnAceptar.gridx = 1;
-        gbc_btnAceptar.gridy = 7;
-        getContentPane().add(btnAceptar, gbc_btnAceptar);
-
-        btnCancelar = new JButton("Cancelar");
-        btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                limpiarFormulario();
-                setVisible(false);
-            }
-        });
-        GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-        gbc_btnCancelar.anchor = GridBagConstraints.NORTH;
-        gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnCancelar.gridx = 2;
-        gbc_btnCancelar.gridy = 7;
-        getContentPane().add(btnCancelar, gbc_btnCancelar);
+        
+                btnAceptar = new JButton("Aceptar");
+                btnAceptar.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                        cmdRegistroUsuarioActionPerformed(arg0);
+                    }
+                });
+                        
+                                rdbtnEsDeportista = new JRadioButton("Deportista");
+                                GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
+                                gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
+                                gbc_rdbtnNewRadioButton_1.gridx = 1;
+                                gbc_rdbtnNewRadioButton_1.gridy = 7;
+                                getContentPane().add(rdbtnEsDeportista, gbc_rdbtnNewRadioButton_1);
+                                grupoRoles.add(rdbtnEsDeportista);
+                
+                        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+                        gbc_btnAceptar.anchor = GridBagConstraints.NORTH;
+                        gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
+                        gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
+                        gbc_btnAceptar.gridx = 1;
+                        gbc_btnAceptar.gridy = 8;
+                        getContentPane().add(btnAceptar, gbc_btnAceptar);
+                                
+                                        btnCancelar = new JButton("Cancelar");
+                                        btnCancelar.addActionListener(new ActionListener() {
+                                            public void actionPerformed(ActionEvent e) {
+                                                limpiarFormulario();
+                                                setVisible(false);
+                                            }
+                                        });
+                                        GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
+                                        gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
+                                        gbc_btnCancelar.anchor = GridBagConstraints.NORTH;
+                                        gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
+                                        gbc_btnCancelar.gridx = 1;
+                                        gbc_btnCancelar.gridy = 9;
+                                        getContentPane().add(btnCancelar, gbc_btnCancelar);
     }
 
     // Este método es invocado al querer registrar un usuario, funcionalidad

@@ -70,6 +70,6 @@ public class dataTypeUsuario {
     
     @Override
     public String toString() {
-        return nickname + " " + nombre + " - " + apellido; // Personaliza esto según lo que quieras mostrar
+        return nickname + " - " + nombre + " " + apellido; // Personaliza esto según lo que quieras mostrar
     }
 }

@@ -86,6 +86,8 @@ public class Principal {
 	        frmGestionDeUsuarios.setTitle("Gestion de Usuarios 1.0");
 	        frmGestionDeUsuarios.setBounds(100, 100, 450, 400);
 	        frmGestionDeUsuarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frmGestionDeUsuarios.setResizable(false);
+	        frmGestionDeUsuarios.setSize(800, 600);
 
 	        JMenuBar menuBar = new JMenuBar();
 	        frmGestionDeUsuarios.setJMenuBar(menuBar);
