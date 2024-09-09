@@ -2,6 +2,9 @@ package dtos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+
+import logica.Inscripcion;
 
 public class dataTypeClase {
     

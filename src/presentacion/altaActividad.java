@@ -67,77 +67,77 @@ public class altaActividad extends JInternalFrame {
         setBounds(10, 40, 539, 404);
 
         lblIngreseNombre = new JLabel("Nombre:");
-        lblIngreseNombre.setBounds(0, 90, 95, 14);
+        lblIngreseNombre.setBounds(0, 90, 127, 14);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseNombre);
 
         textFieldNombre = new JTextField();
-        textFieldNombre.setBounds(100, 84, 361, 20);
+        textFieldNombre.setBounds(137, 87, 361, 20);
         getContentPane().add(textFieldNombre);
         textFieldNombre.setColumns(10);
 
         lblIngreseDescripcion = new JLabel("Descripción:");
-        lblIngreseDescripcion.setBounds(0, 109, 95, 25);
+        lblIngreseDescripcion.setBounds(0, 109, 127, 25);
         lblIngreseDescripcion.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseDescripcion);
 
         textFieldDescripcion = new JTextField();
-        textFieldDescripcion.setBounds(100, 109, 361, 25);
+        textFieldDescripcion.setBounds(137, 109, 361, 25);
         getContentPane().add(textFieldDescripcion);
         textFieldDescripcion.setColumns(10);
 
         lblIngreseDuracion = new JLabel("Duración (min):");
-        lblIngreseDuracion.setBounds(0, 139, 95, 25);
+        lblIngreseDuracion.setBounds(0, 139, 127, 25);
         lblIngreseDuracion.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseDuracion);
 
         textFieldDuracion = new JTextField();
-        textFieldDuracion.setBounds(100, 139, 361, 25);
+        textFieldDuracion.setBounds(137, 139, 361, 25);
         getContentPane().add(textFieldDuracion);
         textFieldDuracion.setColumns(10);
 
         lblIngreseCosto = new JLabel("Costo:");
-        lblIngreseCosto.setBounds(0, 169, 95, 25);
+        lblIngreseCosto.setBounds(0, 169, 127, 25);
         lblIngreseCosto.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseCosto);
 
         textFieldCosto = new JTextField();
-        textFieldCosto.setBounds(100, 169, 361, 25);
+        textFieldCosto.setBounds(137, 169, 361, 25);
         getContentPane().add(textFieldCosto);
         textFieldCosto.setColumns(10);
 
         lblIngreseLugar = new JLabel("Lugar:");
-        lblIngreseLugar.setBounds(0, 199, 95, 25);
+        lblIngreseLugar.setBounds(0, 199, 127, 25);
         lblIngreseLugar.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseLugar);
 
         textFieldLugar = new JTextField();
-        textFieldLugar.setBounds(100, 199, 361, 25);
+        textFieldLugar.setBounds(137, 199, 361, 25);
         getContentPane().add(textFieldLugar);
         textFieldLugar.setColumns(10);
 
         lblIngreseFechaAlta = new JLabel("Fecha de alta:");
-        lblIngreseFechaAlta.setBounds(26, 229, 69, 25);
+        lblIngreseFechaAlta.setBounds(26, 229, 101, 25);
         lblIngreseFechaAlta.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseFechaAlta);
 
         fechaAlta = new JDateChooser();
-        fechaAlta.setBounds(100, 229, 236, 25);
+        fechaAlta.setBounds(137, 229, 236, 25);
         fechaAlta.setToolTipText("Seleccione la fecha de alta");
         getContentPane().add(fechaAlta);
 
         lblIngreseImagen = new JLabel("Imagen:");
-        lblIngreseImagen.setBounds(55, 259, 40, 25);
+        lblIngreseImagen.setBounds(55, 259, 72, 25);
         lblIngreseImagen.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblIngreseImagen);
 
         textFieldImagen = new JTextField();
-        textFieldImagen.setBounds(100, 259, 361, 25);
+        textFieldImagen.setBounds(137, 259, 361, 25);
         getContentPane().add(textFieldImagen);
         textFieldImagen.setColumns(10);
 
         JLabel lblEntrenador = new JLabel("Entrenador:");
-        lblEntrenador.setBounds(37, 295, 58, 14);
+        lblEntrenador.setBounds(37, 295, 90, 14);
         lblEntrenador.setHorizontalAlignment(SwingConstants.RIGHT);
         getContentPane().add(lblEntrenador);
         
@@ -150,7 +150,7 @@ public class altaActividad extends JInternalFrame {
         
         textFieldEntrenador = new JTextField();
         textFieldEntrenador.setColumns(10);
-        textFieldEntrenador.setBounds(100, 290, 361, 25);
+        textFieldEntrenador.setBounds(137, 290, 361, 25);
         getContentPane().add(textFieldEntrenador);
         
 //        btnAceptar_1 = new JButton("Aceptar");       
@@ -181,6 +181,7 @@ public class altaActividad extends JInternalFrame {
         btnCancelar.setBounds(386, 326, 75, 23);
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	limpiarCampos();
                 dispose();
             }
         });
@@ -238,6 +239,7 @@ public class altaActividad extends JInternalFrame {
         textFieldCosto.setText("");
         textFieldLugar.setText("");
         textFieldImagen.setText("");
+        textFieldEntrenador.setText("");
         fechaAlta.setDate(null);
     }
 }

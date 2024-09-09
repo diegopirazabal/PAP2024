@@ -160,7 +160,7 @@ public class manejadorActividad {
     
     public List<dataTypeActividad> obtenerActividadesPorEntrenador(String nickname) {
         try {
-            List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.entrenador.id = :entrenadorId", Actividad.class)
+            List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.entrenador.nickname = :entrenadorId", Actividad.class)
                     .setParameter("entrenadorId", nickname)
                     .getResultList();
 

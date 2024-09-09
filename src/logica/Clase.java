@@ -34,7 +34,21 @@ public class Clase {
     private List<Inscripcion> inscripciones;
 
 
-    public Long getId() {
+    
+    
+    public Clase(LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo) {
+		super();
+		this.fecha = fecha;
+		this.hora = hora;
+		this.lugar = lugar;
+		this.imagen = imagen;
+		this.fechaAlta = fechaAlta;
+		this.cupo = cupo;
+		//this.inscripciones = inscripciones;
+	}
+
+
+	public Long getId() {
 		return id;
 	}
 
