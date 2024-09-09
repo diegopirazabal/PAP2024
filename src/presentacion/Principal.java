@@ -26,6 +26,7 @@ public class Principal {
 	 private listarEntrenadores listEntrenadoresInternalFrame; // InternalFrame para listar entrenadores
 	 private desplegarDatosUsuario despUsrInternalFrame;
 	 private altaActividad altActInternalFrame;
+	 private listarActividades consActInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
@@ -51,6 +52,10 @@ public class Principal {
 	     altUsrInternalFrame.setLocation(30, 35);
 	     altUsrInternalFrame.setVisible(false);
 	     
+	     consActInternalFrame = new listarActividades(controlAct);
+	     consActInternalFrame.setLocation(30, 35);
+	     consActInternalFrame.setVisible(false);
+	     
 	     listUsrInternalFrame = new ListarUsuarios(controlUsr);
 	     listUsrInternalFrame.setLocation(30, 35);
 	     listUsrInternalFrame.setVisible(false);
@@ -72,6 +77,7 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
 	     
 	 }
 	 
@@ -144,6 +150,15 @@ public class Principal {
 	            }
 	        });
 	        menuActividad.add(mntmaltaActividad);
+	        
+	        JMenuItem mntmconsultaActividad = new JMenuItem("Consulta Actividad");
+	        mntmconsultaActividad.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	consActInternalFrame.setVisible(true);
+
+	            }
+	        });
+	        menuActividad.add(mntmconsultaActividad);
 	        
 	        JMenu menuClase = new JMenu("Clase");
 	        menuBar.add(menuClase);
