@@ -21,4 +21,8 @@ public class Fabrica {
 	    public IControladorUsuario getIControladorUsuario() {
 	        return new controladorUsuario();
 	    }
+	    
+	    public IControladorActividad getIControladorActividad() {
+	    	return new ControladorActividad();
+	    }
 }

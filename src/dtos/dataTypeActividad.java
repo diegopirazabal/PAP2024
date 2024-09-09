@@ -1,5 +1,8 @@
 package dtos;
+import java.util.Date;
 import java.time.LocalDate;
+
+import logica.Entrenador;
 
 public class dataTypeActividad {
 
@@ -9,17 +12,11 @@ public class dataTypeActividad {
     private int duracion; // En minutos
     private double costo;
     private String lugar;
-    private LocalDate fechaAlta;
+    private Date fechaAlta;
     private String imagen;
-    private Long entrenadorId; // Puedes almacenar solo el ID del entrenador si no necesitas toda la información del entrenador
+    private Entrenador entrenador; // Puedes almacenar solo el ID del entrenador si no necesitas toda la información del entrenador
 
-    // Constructor sin argumentos
-    public dataTypeActividad() {
-    }
-
-    // Constructor con todos los parámetros necesarios
-    public dataTypeActividad(Long id, String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Long entrenadorId) {
-        this.id = id;
+    public dataTypeActividad(String nombre, String descripcion, int duracion, double costo, String lugar, Date fechaAlta, String imagen, Entrenador entrenador) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -27,34 +24,80 @@ public class dataTypeActividad {
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
         this.imagen = imagen;
-        this.entrenadorId = entrenadorId;
+        this.entrenador = entrenador;
     }
 
-    // Getters y setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+	public Long getId() {
+		return id;
+	}
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public int getDuracion() { return duracion; }
-    public void setDuracion(int duracion) { this.duracion = duracion; }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public double getCosto() { return costo; }
-    public void setCosto(double costo) { this.costo = costo; }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public String getLugar() { return lugar; }
-    public void setLugar(String lugar) { this.lugar = lugar; }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public LocalDate getFechaAlta() { return fechaAlta; }
-    public void setFechaAlta(LocalDate fechaAlta) { this.fechaAlta = fechaAlta; }
+	public int getDuracion() {
+		return duracion;
+	}
 
-    public String getImagen() { return imagen; }
-    public void setImagen(String imagen) { this.imagen = imagen; }
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
 
-    public Long getEntrenadorId() { return entrenadorId; }
-    public void setEntrenadorId(Long entrenadorId) { this.entrenadorId = entrenadorId; }
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public Entrenador getEntrenadorId() {
+		return entrenador;
+	}
+
+	public void setEntrenadorId(Entrenador entrenadorId) {
+		this.entrenador = entrenadorId;
+	}
+
+ 
 }

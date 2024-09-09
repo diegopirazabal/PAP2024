@@ -3,19 +3,23 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import logica.Entrenador;
 import logica.Fabrica;
+import logica.IControladorActividad;
 import logica.IControladorUsuario;
 
 public class Principal {
 	 private JFrame frmGestionDeUsuarios;    
 	 private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
-	 
+	 private IControladorActividad controlAct = Fabrica.getInstance().getIControladorActividad();
+
 	 // Nuevas ventanas internas
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
@@ -59,7 +63,7 @@ public class Principal {
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
 	     
-	     altActInternalFrame = new altaActividad(controlUsr); 
+		 altActInternalFrame = new altaActividad(controlAct, controlUsr); 
 	     altActInternalFrame.setLocation(30, 35);
 	     altActInternalFrame.setVisible(false);
 	     

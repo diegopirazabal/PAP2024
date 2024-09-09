@@ -5,6 +5,7 @@ import logica.Clase;
 import java.time.LocalDate;
 import java.util.List;
 import java.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "ACTIVIDADES")
@@ -14,13 +15,13 @@ public class Actividad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Nombre", nullable = false, length = 50)
+    @Column(name = "Nombre", nullable = true, length = 50)
     private String nombre;
 
-    @Column(name = "Descripcion", nullable = false, length = 50)
+    @Column(name = "Descripcion", nullable = true, length = 50)
     private String descripcion;
 
-    @Column(name = "Duracion", nullable = false)
+    @Column(name = "Duracion", nullable = true)
     private int duracion; // En minutos
 
     @Column(name = "Costo")
@@ -30,9 +31,9 @@ public class Actividad {
     private String lugar;
 
     @Column(name = "FechaAlta")
-    private LocalDate fechaAlta;
+    private Date fechaAlta;
 
-    @Column (name = "Estado", nullable = false)
+    @Column (name = "Estado", nullable = true)
     private String estado; // Ej: Activa, Inactiva, etc. DEBERIA SER UN ENUM ?
     
     private String imagen; // URL o nombre de archivo de la imagen
@@ -46,7 +47,7 @@ public class Actividad {
 
     public Actividad(){};
     
-    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, LocalDate fechaAlta, String imagen, Entrenador entrenador) {
+    public Actividad(String nombre, String descripcion, int duracion, double costo, String lugar, Date fechaAlta, String imagen, Entrenador entrenador) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -54,7 +55,7 @@ public class Actividad {
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
         this.imagen = imagen;
-        this.entrenador = entrenador;
+        this.entrenador = entrenador; // Establece el entrenador
     }
     
     public Long getId() {
@@ -117,12 +118,12 @@ public class Actividad {
 	}
 
 
-	public LocalDate getFechaAlta() {
+	public Date getFechaAlta() {
 		return fechaAlta;
 	}
 
 
-	public void setFechaAlta(LocalDate fechaAlta) {
+	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
