@@ -147,7 +147,6 @@ public class Principal {
 	            }
 	        });
 	        menuUsuarios.add(mntmListarEntrenadores); // Agregar al menú
-
 	        JMenu menuActividad = new JMenu("Actividad");
 	        menuBar.add(menuActividad);
 	        
@@ -164,7 +163,7 @@ public class Principal {
 	        mntmconsultaActividad.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	consActInternalFrame.setVisible(true);
-
+	            	consActInternalFrame.cargarActividades(); 
 	            }
 	        });
 	        menuActividad.add(mntmconsultaActividad);
