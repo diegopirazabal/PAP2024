@@ -31,7 +31,7 @@ public abstract class Usuario {
     @Column (name = "Contrasena", nullable = false, length = 20)
     private char[] contrasena;
     
-    @Column (name = "Entrenador")
+    @Column (name = "Entrenador", nullable = false)
 	protected Boolean esEntrenador;
 ;
     

@@ -155,6 +155,7 @@ public class Principal {
 	        mntmaltaActividad.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	altActInternalFrame.setVisible(true);
+	            	altActInternalFrame.cargarEntrenadores();
 	            }
 	        });
 	        menuActividad.add(mntmaltaActividad);

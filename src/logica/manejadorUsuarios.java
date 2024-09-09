@@ -159,7 +159,7 @@ public class manejadorUsuarios {
 
     public List<dataTypeUsuario> obtenerEntrenadores() {
         try {
-            List<Entrenador> entrenadores = em.createQuery("SELECT u FROM Entrenador u", Entrenador.class)
+            List<Entrenador> entrenadores = em.createQuery("SELECT u FROM Usuario u WHERE u.esEntrenador = true", Entrenador.class)
                     .getResultList();
 
             // Convertir la lista de Usuarios a una lista de dataTypeUsuario
