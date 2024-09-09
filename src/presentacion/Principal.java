@@ -27,6 +27,7 @@ public class Principal {
 	 private desplegarDatosUsuario despUsrInternalFrame;
 	 private altaActividad altActInternalFrame;
 	 private listarActividades consActInternalFrame;
+	 private AltaClase altClaInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
@@ -72,12 +73,17 @@ public class Principal {
 	     altActInternalFrame.setLocation(30, 35);
 	     altActInternalFrame.setVisible(false);
 	     
+	     altClaInternalFrame = new AltaClase(); 
+	     altClaInternalFrame.setLocation(30, 35);
+	     altClaInternalFrame.setVisible(false);
+	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
+	     altClaInternalFrame.getContentPane().add(consActInternalFrame);
 	     
 	 }
 	 
@@ -164,5 +170,14 @@ public class Principal {
 	        
 	        JMenu menuClase = new JMenu("Clase");
 	        menuBar.add(menuClase);
+	        
+	        JMenuItem mntmaltaClase = new JMenuItem("Registrar Clase");
+	        mntmaltaClase.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	consActInternalFrame.setVisible(true);
+
+	            }
+	        });
+	        menuClase.add(mntmaltaClase);
 	    }
 }

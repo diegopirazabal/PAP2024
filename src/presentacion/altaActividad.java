@@ -151,31 +151,7 @@ public class altaActividad extends JInternalFrame {
         textFieldEntrenador = new JTextField();
         textFieldEntrenador.setColumns(10);
         textFieldEntrenador.setBounds(137, 290, 361, 25);
-        getContentPane().add(textFieldEntrenador);
-        
-//        btnAceptar_1 = new JButton("Aceptar");       
-//        btnAceptar_1.setBounds(100, 250, 75, 23);
-//        btnAceptar_1.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    String nombre = textFieldNombre.getText();
-//                    String descripcion = textFieldDescripcion.getText();
-//                    int duracion = Integer.parseInt(textFieldDuracion.getText());
-//                    double costo = Double.parseDouble(textFieldCosto.getText());
-//                    String lugar = textFieldLugar.getText();
-//                    Date fecha = new Date(fechaAlta.getDate().getTime());
-//                    String imagen = textFieldImagen.getText();
-//					// Llamar al método correspondiente del controlador
-//                    String entrenadorSeleccionado = textFieldEntrenador.getText();
-//                    controlAct.crearActividad(nombre, descripcion, duracion, costo, lugar, fecha, imagen, entrenadorSeleccionado);
-//                    
-//                    JOptionPane.showMessageDialog(null, "Actividad registrada exitosamente.");
-//                    limpiarCampos();
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(null, "Error al registrar la actividad: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        });     
+        getContentPane().add(textFieldEntrenador); 
         
         btnCancelar = new JButton("Cancelar");       
         btnCancelar.setBounds(386, 326, 75, 23);

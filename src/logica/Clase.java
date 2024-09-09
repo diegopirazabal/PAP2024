@@ -36,8 +36,9 @@ public class Clase {
 
     
     
-    public Clase(LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo) {
+    public Clase(Long id, LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo) {
 		super();
+		this.id = id;
 		this.fecha = fecha;
 		this.hora = hora;
 		this.lugar = lugar;

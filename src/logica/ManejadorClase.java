@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import dtos.dataTypeUsuario;
-import excepciones.ActividadNoExisteException;
-import excepciones.ActividadRepetidaException;
+import excepciones.ClaseNoExisteException;
+import excepciones.ClaseRepetidaException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -30,10 +29,10 @@ public class ManejadorClase {
         return instancia;
     }
 
-    Clase obtenerClasePorNombre(String nombre) {
+    Clase obtenerClasePorID(Long id) {
         try {
-            List<Clase> resultados = em.createQuery("SELECT c FROM Clase c WHERE c.nombre = :nombre", Clase.class)
-                                           .setParameter("nombre", nombre)
+            List<Clase> resultados = em.createQuery("SELECT c FROM Clase c WHERE c.id = :id", Clase.class)
+                                           .setParameter("id", id)
                                            .getResultList();
             return resultados.isEmpty() ? null : resultados.get(0);
         } catch (Exception e) {
@@ -42,7 +41,7 @@ public class ManejadorClase {
         }
     }
 
-    public List<dataTypeClase> getClases() throws ActividadNoExisteException {
+    public List<dataTypeClase> getClases() throws ClaseNoExisteException {
         try {
             List<Clase> clases = em.createQuery("SELECT c FROM Clase c", Clase.class).getResultList();
             return clases.stream()
@@ -60,13 +59,12 @@ public class ManejadorClase {
         }
     }
 
-    public void agregarClase(Clase clase) throws ActividadRepetidaException {
+    public void agregarClase(Clase clase) throws ClaseRepetidaException {
         // Verificar si la actividad ya existe en la base de datos
-        Clase claseExistente = obtenerClasePorNombre(clase.getImagen());
+        Clase claseExistente = obtenerClasePorID(clase.getId());
         if (claseExistente != null) {
-            throw new ActividadRepetidaException("La actividad con nombre " + clase.getImagen() + " ya existe.");
+            throw new ClaseRepetidaException("La clase con ID " + clase.getId() + " ya existe.");
         }
-
         // Persistir la nueva actividad
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -79,55 +77,6 @@ public class ManejadorClase {
         }
     }
 
-
-
-
-//    public void eliminar(String nombre) throws ActividadNoExisteException {
-//        EntityTransaction transaction = em.getTransaction();
-//        try {
-//            transaction.begin();
-//            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
-//                    .setParameter("nombre", nombre)
-//                    .getResultStream()
-//                    .findFirst()
-//                    .orElse(null);
-//            if (actividad == null) {
-//                throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-//            }
-//            em.remove(actividad);
-//            transaction.commit();
-//        } catch (Exception e) {
-//            if (transaction.isActive()) transaction.rollback();
-//            e.printStackTrace();
-//        }
-//    }
-    
-    public dataTypeUsuario obtenerDeportista(String nickname) {
-        try {
-            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-                                .setParameter("nickname", nickname)
-                                .getResultStream()
-                                .findFirst()
-                                .orElse(null);
-
-            if (usuario instanceof Deportista) {
-                Deportista deportista = (Deportista) usuario;
-                return new dataTypeUsuario(
-                        deportista.getNickname(),
-                        deportista.getNombre(),
-                        deportista.getApellido(),
-                        deportista.getEmail(),
-                        deportista.getFNacimiento(),
-                        deportista.getTipo()
-                );
-            }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    
  
     
     public void cerrar() {
