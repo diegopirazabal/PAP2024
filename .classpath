@@ -6,9 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/eclipselink-4.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/hsqldb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/jakarta.persistence-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/juanp/Desktop/Pap/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/eclipselink-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

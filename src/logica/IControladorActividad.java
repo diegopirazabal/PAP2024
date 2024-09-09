@@ -24,4 +24,6 @@ public interface IControladorActividad {
 
     // Método para listar actividades asociadas a un entrenador específico por su nickname
     public List<dataTypeActividad> listarActividadesPorEntrenador(String nicknameEntrenador) throws UsuarioNoExisteException;
+    
+    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException;
 }

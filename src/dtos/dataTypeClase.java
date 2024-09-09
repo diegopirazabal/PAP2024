@@ -1,39 +1,36 @@
 package dtos;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.time.LocalTime;
-import java.util.List;
-
-import logica.Inscripcion;
 
 public class dataTypeClase {
     
-	private LocalDate fecha;
+	private Date fecha;
     private LocalTime hora;
     private String lugar;
     private String imagen; // URL o nombre de archivo de la imagen
-    private LocalDate fechaAlta;
+    private Date fechaAlta;
     private int cupo;
     
    	
     public dataTypeClase(){}
     
-    public dataTypeClase(LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo){
+    public dataTypeClase(Date date, LocalTime hora, String lugar, String imagen, Date date2, int cupo){
 		super();
-		this.fecha = fecha;
+		this.fecha = date;
 		this.hora = hora;
 		this.lugar = lugar;
 		this.imagen = imagen;
-		this.fechaAlta = fechaAlta;
+		this.fechaAlta = date2;
 		this.cupo = cupo;
 	 }
 
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -61,11 +58,11 @@ public class dataTypeClase {
 		this.imagen = imagen;
 	}
 
-	public LocalDate getFechaAlta() {
+	public Date getFechaAlta() {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(LocalDate fechaAlta) {
+	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 

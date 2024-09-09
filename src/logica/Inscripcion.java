@@ -1,6 +1,13 @@
 package logica;
-import java.time.LocalDate;
-import jakarta.persistence.*;
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "INSCRIPCIONES")
@@ -11,7 +18,7 @@ public class Inscripcion {
     private Long id;
 
     @Column(name = "Fecha", nullable = false)
-    private LocalDate fechaInscripcion;
+    private Date fechaInscripcion;
 
     @Column(name = "CantidadDeportistas", nullable = false)
     private int cantidadDeportistas;
@@ -32,7 +39,7 @@ public class Inscripcion {
     public Inscripcion() {}
 
     // Constructor con parámetros
-    public Inscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
+    public Inscripcion(Date fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
         this.fechaInscripcion = fechaInscripcion;
         this.cantidadDeportistas = cantidadDeportistas;
         this.costo = costo;
@@ -45,11 +52,11 @@ public class Inscripcion {
 //    private Deportista deportista;
 
     // Getters y Setters
-    public LocalDate getFechaInscripcion() {
+    public Date getFechaInscripcion() {
         return fechaInscripcion;
     }
 
-    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+    public void setFechaInscripcion(Date fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
 

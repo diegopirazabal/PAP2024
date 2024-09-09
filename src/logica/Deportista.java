@@ -1,12 +1,14 @@
 package logica;
 
 import java.util.Date;
+import java.util.List;
 
 import com.toedter.calendar.JDateChooser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +20,9 @@ public class Deportista extends Usuario {
 
 	@Column (name = "PROFESIONAL", nullable = true)
     private boolean esProfesional;
+	
+	@OneToMany(targetEntity=Clase.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
+    private List<Inscripcion> inscripciones;
 
     public Deportista() {};
     

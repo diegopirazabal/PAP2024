@@ -1,7 +1,7 @@
 package logica;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 import dtos.dataTypeClase;
@@ -15,7 +15,7 @@ public class ControladorClase implements IControladorClase{
         manejador = manejador.getinstance(); // Usa el método getinstance para obtener la instancia
     }
 	
-	public void crearClase(Long id, LocalDate fecha,LocalTime hora, String lugar, LocalDate fechaAlta, String imagen, int cupo) throws ClaseRepetidaException {
+	public void crearClase(Long id, Date fecha,LocalTime hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException {
         Clase clase = new Clase(id, fecha, hora, lugar, imagen, fechaAlta, cupo);
         // Agregar la actividad al manejador
         manejador.agregarClase(clase);

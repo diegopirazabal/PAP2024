@@ -34,7 +34,10 @@ public class ControladorActividad implements IControladorActividad {
         manejador.agregar(actividad);
     }
 
-
+    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
+    	manejador.agregarClase(clase, actividad);
+    };
+    
     @Override
     public dataTypeActividad consultarActividad(String nombre) throws ActividadNoExisteException {
         return manejador.buscarActividad(nombre);

@@ -1,9 +1,19 @@
 package logica;
 
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CLASES")
@@ -14,7 +24,7 @@ public class Clase {
     private Long id;
 
     @Column(name = "Fecha", nullable = false)
-    private LocalDate fecha;
+    private Date fecha;
 
     @Column(name = "Hora", nullable = false)
     private LocalTime hora;
@@ -25,7 +35,7 @@ public class Clase {
     private String imagen;
 
     @Column(name = "FechaAlta", nullable = false)
-    private LocalDate fechaAlta;
+    private Date fechaAlta;
 
     @Column(name = "Cupo", nullable = false)
     private int cupo;
@@ -34,9 +44,9 @@ public class Clase {
     private List<Inscripcion> inscripciones;
 
 
+    public Clase() {};
     
-    
-    public Clase(Long id, LocalDate fecha, LocalTime hora, String lugar, String imagen, LocalDate fechaAlta, int cupo) {
+    public Clase(Long id, Date fecha, LocalTime hora, String lugar, String imagen, Date fechaAlta, int cupo) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
@@ -59,12 +69,12 @@ public class Clase {
 	}
 
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -99,12 +109,12 @@ public class Clase {
 	}
 
 
-	public LocalDate getFechaAlta() {
+	public Date getFechaAlta() {
 		return fechaAlta;
 	}
 
 
-	public void setFechaAlta(LocalDate fechaAlta) {
+	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 

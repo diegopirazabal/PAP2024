@@ -1,26 +1,27 @@
 package dtos;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class dataTypeInscripcion {
-	 private LocalDate fechaInscripcion;
+	 private Date fechaInscripcion;
 	 private int cantidadDeportistas;
 	 private double costo;
 	 
 	 
-	 public dataTypeInscripcion(LocalDate fechaInscripcion, int cantidadDeportistas, double costo) {
+	 public dataTypeInscripcion(Date fechaInscripcion, int cantidadDeportistas, double costo) {
 		this.fechaInscripcion = fechaInscripcion;
 		this.cantidadDeportistas = cantidadDeportistas;
 		this.costo = costo;
 	}
 
 	 
-	public LocalDate getFechaInscripcion() {
+	public Date getFechaInscripcion() {
 		return fechaInscripcion;
 	}
 
 
-	public void setFechaInscripcion(LocalDate fechaInscripcion) {
+	public void setFechaInscripcion(Date fechaInscripcion) {
 		this.fechaInscripcion = fechaInscripcion;
 	}
 

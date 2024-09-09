@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,6 +112,33 @@ public class manejadorActividad {
         }
         return actividad;
     }
+    
+    public Actividad buscarActividadPorNombre2(String nombre) {
+        try {
+            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
+                    .setParameter("nombre", nombre)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (actividad != null) {
+                return  actividad;           
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
+    public Actividad buscarActividad2(String nombre) throws ActividadNoExisteException {
+        Actividad actividad = buscarActividadPorNombre2(nombre);
+        if (actividad == null) {
+            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+        }
+        return actividad;
+    }
 
     public void eliminar(String nombre) throws ActividadNoExisteException {
         EntityTransaction transaction = em.getTransaction();
@@ -157,6 +185,11 @@ public class manejadorActividad {
             return null;
         }
     }
+    
+    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
+    	 Actividad act = buscarActividad2(actividad);
+    	 act.setClases(clase);
+    };
     
     public List<dataTypeActividad> obtenerActividadesPorEntrenador(String nickname) {
         try {

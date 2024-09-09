@@ -163,8 +163,8 @@ public class Actividad {
 	}
 
 
-	public void setClases(List<Clase> clases) {
-		this.clases = clases;
+	public void setClases(Clase clase) {
+		this.clases.add(clase);
 	}
 
 

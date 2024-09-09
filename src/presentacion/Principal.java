@@ -83,7 +83,7 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
-	     altClaInternalFrame.getContentPane().add(consActInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(altClaInternalFrame);
 	     
 	 }
 	 
@@ -174,7 +174,7 @@ public class Principal {
 	        JMenuItem mntmaltaClase = new JMenuItem("Registrar Clase");
 	        mntmaltaClase.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	consActInternalFrame.setVisible(true);
+	            	altClaInternalFrame.setVisible(true);
 
 	            }
 	        });
