@@ -86,11 +86,11 @@ public class InscripcionClase extends JInternalFrame{
         lblClases.setBounds(38, 76, 119, 13);
         getContentPane().add(lblClases);
         
-        JButton btnNewButton = new JButton("New button");
+        JButton btnNewButton = new JButton("Cancelar");
         btnNewButton.setBounds(167, 192, 119, 21);
         getContentPane().add(btnNewButton);
         
-        JButton btnNewButton_1 = new JButton("New button");
+        JButton btnNewButton_1 = new JButton("Aceptar");
         btnNewButton_1.setBounds(296, 192, 119, 21);
         getContentPane().add(btnNewButton_1);
 	}

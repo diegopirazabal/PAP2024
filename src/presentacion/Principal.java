@@ -25,6 +25,7 @@ public class Principal {
 	 private altaActividad altActInternalFrame;
 	 private listarActividades consActInternalFrame;
 	 private AltaClase altClaInternalFrame;
+	 private rankingActividades rankActInternalFrame;
 	 private consultaClase consClaInternalFrame;
 	 private InscripcionClase insClaInternalFrame;
 	 
@@ -80,6 +81,10 @@ public class Principal {
 	     insClaInternalFrame.setLocation(30, 35);
 	     insClaInternalFrame.setVisible(false);
 	     
+	     rankActInternalFrame = new rankingActividades(); 
+	     rankActInternalFrame.setLocation(30, 35);
+	     rankActInternalFrame.setVisible(false);
+	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
@@ -88,6 +93,7 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(altClaInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consClaInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(insClaInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(rankActInternalFrame);
 	 }
 	 
 	 private void initialize() {
@@ -160,7 +166,17 @@ public class Principal {
 	            	consActInternalFrame.cargarActividades(); 
 	            }
 	        });
+	        
+
 	        menuActividad.add(mntmconsultaActividad);
+	        JMenuItem mntmrankingActividades = new JMenuItem("Ranking Actividades");
+	        mntmrankingActividades.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	rankActInternalFrame.setVisible(true);
+	            	
+	            }
+	        });
+	        menuActividad.add(mntmrankingActividades);
 	        
 	        JMenu menuClase = new JMenu("Clase");
 	        menuBar.add(menuClase);
