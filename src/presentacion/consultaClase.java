@@ -56,7 +56,7 @@ public class consultaClase extends JInternalFrame {
 		
     	
     	comboBoxClases = new JComboBox<dataTypeClase>();
-    	comboBoxClases.setBounds(92, 79, 318, 22);
+    	comboBoxClases.setBounds(92, 79, 318, 21);
     	getContentPane().add(comboBoxClases);
     	comboBoxClases.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -69,25 +69,25 @@ public class consultaClase extends JInternalFrame {
     	
     	textFieldLugar = new JTextField();
     	textFieldLugar.setEditable(false);
-    	textFieldLugar.setBounds(92, 112, 318, 20);
+    	textFieldLugar.setBounds(92, 110, 318, 21);
     	getContentPane().add(textFieldLugar);
     	textFieldLugar.setColumns(10);
     	
     	textFieldCupos = new JTextField();
     	textFieldCupos.setEditable(false);
-    	textFieldCupos.setBounds(92, 142, 318, 20);
+    	textFieldCupos.setBounds(92, 141, 318, 21);
     	getContentPane().add(textFieldCupos);
     	textFieldCupos.setColumns(10);
     	
     	textFieldHora = new JTextField();
     	textFieldHora.setEditable(false);
-    	textFieldHora.setBounds(92, 172, 318, 20);
+    	textFieldHora.setBounds(92, 171, 318, 21);
     	getContentPane().add(textFieldHora);
     	textFieldHora.setColumns(10);
     	
     	textFieldFecha = new JTextField();
     	textFieldFecha.setEditable(false);
-    	textFieldFecha.setBounds(92, 205, 315, 20);
+    	textFieldFecha.setBounds(92, 202, 315, 21);
     	getContentPane().add(textFieldFecha);
     	textFieldFecha.setColumns(10);
     	
@@ -117,7 +117,7 @@ public class consultaClase extends JInternalFrame {
     	
     	textFieldBuscador = new JTextField();
     	textFieldBuscador.setColumns(10);
-    	textFieldBuscador.setBounds(92, 53, 318, 20);
+    	textFieldBuscador.setBounds(92, 52, 318, 21);
     	getContentPane().add(textFieldBuscador);
     	
     	lblIngresarNombreDe = new JLabel("Ingresar nombre de la actividad");
@@ -125,7 +125,7 @@ public class consultaClase extends JInternalFrame {
     	getContentPane().add(lblIngresarNombreDe);
     	
     	JButton btnNewButton = new JButton("X");
-    	btnNewButton.setBounds(417, 52, 30, 23);
+    	btnNewButton.setBounds(421, 51, 30, 23);
     	getContentPane().add(btnNewButton);
     	btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent el) {

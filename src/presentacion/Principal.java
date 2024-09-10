@@ -21,7 +21,6 @@ public class Principal {
 	 // Nuevas ventanas internas
 	 private altaUsuario altUsrInternalFrame;
 	 private ListarUsuarios listUsrInternalFrame;
-	 private listarEntrenadores listEntrenadoresInternalFrame; // InternalFrame para listar entrenadores
 	 private desplegarDatosUsuario despUsrInternalFrame;
 	 private altaActividad altActInternalFrame;
 	 private listarActividades consActInternalFrame;
@@ -61,10 +60,6 @@ public class Principal {
 	     listUsrInternalFrame.setLocation(30, 35);
 	     listUsrInternalFrame.setVisible(false);
 	     
-	     listEntrenadoresInternalFrame = new listarEntrenadores(controlUsr); // Instancia de la nueva ventana para listar entrenadores
-	     listEntrenadoresInternalFrame.setLocation(30, 35);
-	     listEntrenadoresInternalFrame.setVisible(false);
-	     
 	     despUsrInternalFrame = new desplegarDatosUsuario(controlUsr);
 	     despUsrInternalFrame.setLocation(30, 35);
 	     despUsrInternalFrame.setVisible(false);
@@ -87,7 +82,6 @@ public class Principal {
 	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
-	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
 	     frmGestionDeUsuarios.getContentPane().add(despUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
@@ -147,15 +141,6 @@ public class Principal {
 //	        });
 //	        menuUsuarios.add(mntmConsultarUsuarios);
 	        
-	        // Añadir un nuevo ítem para listar entrenadores
-	        JMenuItem mntmListarEntrenadores = new JMenuItem("Listar Entrenadores");
-	        mntmListarEntrenadores.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	            	listEntrenadoresInternalFrame.cargarEntrenadores(); // Llamar la función para cargar entrenadores
-	            	listEntrenadoresInternalFrame.setVisible(true);
-	            }
-	        });
-	        menuUsuarios.add(mntmListarEntrenadores); // Agregar al menú
 	        JMenu menuActividad = new JMenu("Actividad");
 	        menuBar.add(menuActividad);
 	        

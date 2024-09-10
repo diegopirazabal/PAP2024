@@ -38,7 +38,7 @@ public class desplegarDatosUsuario extends JInternalFrame {
         getContentPane().add(lblNickname);
 
         textFieldNick = new JTextField();
-        textFieldNick.setBounds(214, 20, 96, 19);
+        textFieldNick.setBounds(142, 20, 168, 19);
         getContentPane().add(textFieldNick);
         textFieldNick.setColumns(10);
 
@@ -55,30 +55,30 @@ public class desplegarDatosUsuario extends JInternalFrame {
         getContentPane().add(lblNewLabel_3);
 
         JLabel lblNewLabel_4 = new JLabel("Fecha de nacimiento:");
-        lblNewLabel_4.setBounds(36, 180, 122, 13);
+        lblNewLabel_4.setBounds(36, 183, 122, 13);
         getContentPane().add(lblNewLabel_4);
 
         textFieldNom = new JTextField();
         textFieldNom.setEditable(false);
-        textFieldNom.setBounds(214, 60, 96, 19);
+        textFieldNom.setBounds(142, 60, 168, 19);
         getContentPane().add(textFieldNom);
         textFieldNom.setColumns(10);
 
         textFieldApe = new JTextField();
         textFieldApe.setEditable(false);
-        textFieldApe.setBounds(214, 100, 96, 19);
+        textFieldApe.setBounds(142, 100, 168, 19);
         getContentPane().add(textFieldApe);
         textFieldApe.setColumns(10);
 
         textFieldMail = new JTextField();
         textFieldMail.setEditable(false);
-        textFieldMail.setBounds(214, 140, 96, 19);
+        textFieldMail.setBounds(142, 140, 168, 19);
         getContentPane().add(textFieldMail);
         textFieldMail.setColumns(10);
 
         textFieldFNac = new JTextField();
         textFieldFNac.setEditable(false);
-        textFieldFNac.setBounds(214, 180, 96, 19);
+        textFieldFNac.setBounds(142, 180, 168, 19);
         getContentPane().add(textFieldFNac);
         textFieldFNac.setColumns(10);
     }

@@ -47,7 +47,7 @@ public class AltaClase extends JInternalFrame{
         setBounds(10, 40, 539, 404);
         
 		comboBoxActividades = new JComboBox();
-		comboBoxActividades.setBounds(128, 21, 198, 21);
+		comboBoxActividades.setBounds(128, 28, 198, 21);
 		getContentPane().add(comboBoxActividades);
 		comboBoxActividades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +59,7 @@ public class AltaClase extends JInternalFrame{
         });
 		
 		JLabel lblActividades = new JLabel("Actividades Registradas");
-		lblActividades.setBounds(170, 5, 116, 13);
+		lblActividades.setBounds(169, 10, 116, 13);
 		getContentPane().add(lblActividades);
 		
 		JLabel lblHora = new JLabel("Hora de la clase: ");
@@ -67,7 +67,7 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblHora);
 		
 		JLabel lblLugar = new JLabel("Lugar: ");
-		lblLugar.setBounds(52, 241, 121, 13);
+		lblLugar.setBounds(52, 244, 121, 13);
 		getContentPane().add(lblLugar);
 		
 		JLabel lblCupos = new JLabel("Cupos");
@@ -75,12 +75,12 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblCupos);
 		
 		JDateChooser campoFecha = new JDateChooser();
-        campoFecha.setBounds(180, 198, 236, 25);
+        campoFecha.setBounds(212, 202, 180, 21);
         campoFecha.setToolTipText("Seleccione la fecha");
         getContentPane().add(campoFecha);
 		
 		textFieldHora = new JTextField();
-		textFieldHora.setBounds(212, 168, 180, 19);
+		textFieldHora.setBounds(212, 168, 180, 21);
 		getContentPane().add(textFieldHora);
 		textFieldHora.setColumns(10);
 		
@@ -90,18 +90,18 @@ public class AltaClase extends JInternalFrame{
 		textFieldLugar.setColumns(10);
 		
 		textFieldCupos = new JTextField();
-		textFieldCupos.setBounds(212, 282, 180, 19);
+		textFieldCupos.setBounds(212, 277, 180, 21);
 		getContentPane().add(textFieldCupos);
 		textFieldCupos.setColumns(10);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(212, 108, 180, 19);
+		textFieldNombre.setBounds(212, 106, 180, 21);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldBuscador = new JTextField();
     	textFieldBuscador.setColumns(10);
-    	textFieldBuscador.setBounds(138, 53, 318, 20);
+    	textFieldBuscador.setBounds(212, 77, 180, 21);
     	getContentPane().add(textFieldBuscador);
 		
 		JButton btnNewButton = new JButton("Aceptar");
@@ -139,7 +139,7 @@ public class AltaClase extends JInternalFrame{
 		
 		textFieldId = new JTextField();
 		textFieldId.setColumns(10);
-		textFieldId.setBounds(212, 138, 180, 19);
+		textFieldId.setBounds(212, 138, 180, 21);
 		getContentPane().add(textFieldId);
 		
 		JLabel lblIdDeLa = new JLabel("Id de la clase:");
@@ -147,7 +147,7 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblIdDeLa);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(49, 197, 121, 13);
+		lblFecha.setBounds(52, 210, 121, 13);
 		getContentPane().add(lblFecha);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -155,7 +155,7 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblNombre);
 		
 		JLabel lblActividad = new JLabel("Nombre de la actividad");
-		lblActividad.setBounds(7, 56, 121, 13);
+		lblActividad.setBounds(52, 81, 121, 13);
 		getContentPane().add(lblActividad);
 		
 //		JButton btnNewButton_2 = new JButton("Vincular");

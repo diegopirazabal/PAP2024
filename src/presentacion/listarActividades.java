@@ -34,12 +34,12 @@ public class listarActividades extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Consultar una Actividad");
-        setBounds(300, 300, 481, 322);
+        setBounds(300, 300, 451, 301);
         getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 		
 		comboBoxActividades = new JComboBox<dataTypeActividad>();
-		comboBoxActividades.setBounds(151, 7, 257, 22);
+		comboBoxActividades.setBounds(87, 24, 257, 22);
 		getContentPane().add(comboBoxActividades);
 		comboBoxActividades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +51,7 @@ public class listarActividades extends JInternalFrame {
         });
 		
 		JLabel lblNewLabel = new JLabel("Actividades Registradas");
-		lblNewLabel.setBounds(29, 11, 130, 14);
+		lblNewLabel.setBounds(151, 10, 130, 14);
 		getContentPane().add(lblNewLabel);
 		
 //		JLabel lblNewLabel_1 = new JLabel("Nombre actividad");
@@ -59,56 +59,56 @@ public class listarActividades extends JInternalFrame {
 //		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Descripcion");
-		lblNewLabel_2.setBounds(29, 109, 112, 14);
+		lblNewLabel_2.setBounds(29, 94, 112, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Duracion");
-		lblNewLabel_3.setBounds(29, 134, 112, 14);
+		lblNewLabel_3.setBounds(29, 126, 112, 14);
 		getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Costo");
-		lblNewLabel_4.setBounds(29, 165, 112, 14);
+		lblNewLabel_4.setBounds(29, 158, 112, 14);
 		getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Lugar");
-		lblNewLabel_5.setBounds(29, 204, 112, 14);
+		lblNewLabel_5.setBounds(29, 182, 112, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		textFieldDescripcion = new JTextField();
 		textFieldDescripcion.setEditable(false);
-		textFieldDescripcion.setBounds(151, 110, 257, 20);
+		textFieldDescripcion.setBounds(151, 91, 257, 22);
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
 		textFieldDuracion = new JTextField();
 		textFieldDuracion.setEditable(false);
-		textFieldDuracion.setBounds(151, 135, 257, 20);
+		textFieldDuracion.setBounds(151, 123, 257, 22);
 		getContentPane().add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
 		
 		textFieldCosto = new JTextField();
 		textFieldCosto.setEditable(false);
-		textFieldCosto.setBounds(151, 166, 257, 20);
+		textFieldCosto.setBounds(151, 155, 257, 22);
 		getContentPane().add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
 		textFieldLugar = new JTextField();
 		textFieldLugar.setEditable(false);
-		textFieldLugar.setBounds(151, 202, 257, 20);
+		textFieldLugar.setBounds(151, 189, 257, 22);
 		getContentPane().add(textFieldLugar);
 		textFieldLugar.setColumns(10);
 		JLabel lblNewLabel_2_1 = new JLabel("Entrenador Designado");
-		lblNewLabel_2_1.setBounds(29, 79, 112, 14);
+		lblNewLabel_2_1.setBounds(29, 62, 112, 14);
 		getContentPane().add(lblNewLabel_2_1);
 		
 		textFieldEntrenadorDesignado = new JTextField();
 		textFieldEntrenadorDesignado.setEditable(false);
 		textFieldEntrenadorDesignado.setColumns(10);
-		textFieldEntrenadorDesignado.setBounds(151, 79, 257, 20);
+		textFieldEntrenadorDesignado.setBounds(151, 59, 257, 22);
 		getContentPane().add(textFieldEntrenadorDesignado);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
-        btnLimpiar.setBounds(212, 233, 132, 21);
+        btnLimpiar.setBounds(212, 229, 132, 21);
         btnLimpiar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarCampos();

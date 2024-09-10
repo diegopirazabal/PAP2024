@@ -71,116 +71,63 @@ public class altaUsuario extends JInternalFrame {
         setClosable(true);
         setTitle("Registrar un Usuario");
         setBounds(10, 40, 477, 357);
-
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[]{100, 120, 120, 0};
-        gridBagLayout.rowHeights = new int[]{30, 30, 30, 30, 0, 0, 0, 0, 0, 0};
-        gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-        getContentPane().setLayout(gridBagLayout);
+        getContentPane().setLayout(null);
 
         lblIngreseNombre = new JLabel("Nombre:");
+        lblIngreseNombre.setBounds(25, 34, 98, 13);
         lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseNombre = new GridBagConstraints();
-        gbc_lblIngreseNombre.anchor = GridBagConstraints.SOUTH;
-        gbc_lblIngreseNombre.fill = GridBagConstraints.HORIZONTAL;
-        gbc_lblIngreseNombre.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseNombre.gridx = 0;
-        gbc_lblIngreseNombre.gridy = 0;
-        getContentPane().add(lblIngreseNombre, gbc_lblIngreseNombre);
+        getContentPane().add(lblIngreseNombre);
 
         textFieldNombre = new JTextField();
-        GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
-        gbc_textFieldNombre.anchor = GridBagConstraints.SOUTH;
-        gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
-        gbc_textFieldNombre.gridx = 1;
-        gbc_textFieldNombre.gridy = 0;
-        getContentPane().add(textFieldNombre, gbc_textFieldNombre);
+        textFieldNombre.setBounds(133, 28, 237, 25);
+        getContentPane().add(textFieldNombre);
         textFieldNombre.setColumns(10);
 
         lblIngreseApellido = new JLabel("Apellido:");
+        lblIngreseApellido.setBounds(30, 58, 98, 25);
         lblIngreseApellido.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseApellido = new GridBagConstraints();
-        gbc_lblIngreseApellido.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseApellido.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseApellido.gridx = 0;
-        gbc_lblIngreseApellido.gridy = 1;
-        getContentPane().add(lblIngreseApellido, gbc_lblIngreseApellido);
+        getContentPane().add(lblIngreseApellido);
 
         textFieldApellido = new JTextField();
-        GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
-        gbc_textFieldApellido.fill = GridBagConstraints.BOTH;
-        gbc_textFieldApellido.insets = new Insets(0, 0, 5, 5);
-        gbc_textFieldApellido.gridx = 1;
-        gbc_textFieldApellido.gridy = 1;
-        getContentPane().add(textFieldApellido, gbc_textFieldApellido);
+        textFieldApellido.setBounds(133, 58, 237, 25);
+        getContentPane().add(textFieldApellido);
         textFieldApellido.setColumns(10);
 
         lblIngreseNick = new JLabel("Nickname:");
+        lblIngreseNick.setBounds(30, 88, 98, 25);
         lblIngreseNick.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseNick = new GridBagConstraints();
-        gbc_lblIngreseNick.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseNick.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseNick.gridx = 0;
-        gbc_lblIngreseNick.gridy = 2;
-        getContentPane().add(lblIngreseNick, gbc_lblIngreseNick);
+        getContentPane().add(lblIngreseNick);
 
         textFieldNick = new JTextField();
+        textFieldNick.setBounds(133, 88, 237, 25);
         textFieldNick.setToolTipText("Ingrese su nickname");
         textFieldNick.setColumns(10);
-        GridBagConstraints gbc_textFieldNick = new GridBagConstraints();
-        gbc_textFieldNick.fill = GridBagConstraints.BOTH;
-        gbc_textFieldNick.insets = new Insets(0, 0, 5, 5);
-        gbc_textFieldNick.gridx = 1;
-        gbc_textFieldNick.gridy = 2;
-        getContentPane().add(textFieldNick, gbc_textFieldNick);
+        getContentPane().add(textFieldNick);
 
         lblIngreseContrasena = new JLabel("Contraseña:");
+        lblIngreseContrasena.setBounds(30, 118, 98, 25);
         lblIngreseContrasena.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseContrasena = new GridBagConstraints();
-        gbc_lblIngreseContrasena.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseContrasena.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseContrasena.gridx = 0;
-        gbc_lblIngreseContrasena.gridy = 3;
-        getContentPane().add(lblIngreseContrasena, gbc_lblIngreseContrasena);
+        getContentPane().add(lblIngreseContrasena);
 
-        passwordField = new JPasswordField();  // Campo para la contraseña
-        GridBagConstraints gbc_passwordField = new GridBagConstraints();
-        gbc_passwordField.fill = GridBagConstraints.BOTH;
-        gbc_passwordField.insets = new Insets(0, 0, 5, 5);
-        gbc_passwordField.gridx = 1;
-        gbc_passwordField.gridy = 3;
-        getContentPane().add(passwordField, gbc_passwordField);
+        passwordField = new JPasswordField();
+        passwordField.setBounds(133, 118, 237, 25);
+        getContentPane().add(passwordField);
 
         lblIngreseEmail = new JLabel("Email:");
+        lblIngreseEmail.setBounds(30, 153, 98, 19);
         lblIngreseEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseEmail = new GridBagConstraints();
-        gbc_lblIngreseEmail.fill = GridBagConstraints.BOTH;
-        gbc_lblIngreseEmail.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseEmail.gridx = 0;
-        gbc_lblIngreseEmail.gridy = 4;
-        getContentPane().add(lblIngreseEmail, gbc_lblIngreseEmail);
+        getContentPane().add(lblIngreseEmail);
 
         textFieldEmail = new JTextField();
+        textFieldEmail.setBounds(133, 150, 237, 25);
         textFieldEmail.setToolTipText("Ingrese su email");
         textFieldEmail.setColumns(10);
-        GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
-        gbc_textFieldEmail.fill = GridBagConstraints.BOTH;
-        gbc_textFieldEmail.insets = new Insets(0, 0, 5, 5);
-        gbc_textFieldEmail.gridx = 1;
-        gbc_textFieldEmail.gridy = 4;
-        getContentPane().add(textFieldEmail, gbc_textFieldEmail);
+        getContentPane().add(textFieldEmail);
 
         lblIngreseFNac = new JLabel("Fecha de nacimiento:");
+        lblIngreseFNac.setBounds(30, 182, 98, 19);
         lblIngreseFNac.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblIngreseFNac = new GridBagConstraints();
-        gbc_lblIngreseFNac.anchor = GridBagConstraints.EAST;
-        gbc_lblIngreseFNac.fill = GridBagConstraints.VERTICAL;
-        gbc_lblIngreseFNac.insets = new Insets(0, 0, 5, 5);
-        gbc_lblIngreseFNac.gridx = 0;
-        gbc_lblIngreseFNac.gridy = 5;
-        getContentPane().add(lblIngreseFNac, gbc_lblIngreseFNac);
+        getContentPane().add(lblIngreseFNac);
 //        textFieldFNac = new UtilDateModel();
 //        textFieldFNac.setToolTipText("Ingrese su fecha de nacimiento");
 //        textFieldFNac.setColumns(10);
@@ -195,25 +142,19 @@ public class altaUsuario extends JInternalFrame {
         grupoRoles = new ButtonGroup();
         
         fechaNacimiento = new JDateChooser();
+        fechaNacimiento.setBounds(133, 181, 237, 25);
         fechaNacimiento.setMaximumSize(new Dimension(100000000, 100000000));
         fechaNacimiento.setToolTipText("Seleccione su fecha de nacimiento");
-        GridBagConstraints gbc_fechaNacimiento = new GridBagConstraints();
-        gbc_fechaNacimiento.insets = new Insets(0, 0, 5, 5);
-        gbc_fechaNacimiento.fill = GridBagConstraints.BOTH;
-        gbc_fechaNacimiento.gridx = 1;
-        gbc_fechaNacimiento.gridy = 5;
-        getContentPane().add(fechaNacimiento, gbc_fechaNacimiento);
+        getContentPane().add(fechaNacimiento);
 
         
         rdbtnEsEntrenador = new JRadioButton("Entrenador");
-        GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
-        gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
-        gbc_rdbtnNewRadioButton.gridx = 1;
-        gbc_rdbtnNewRadioButton.gridy = 6;
-        getContentPane().add(rdbtnEsEntrenador, gbc_rdbtnNewRadioButton);
+        rdbtnEsEntrenador.setBounds(159, 219, 75, 25);
+        getContentPane().add(rdbtnEsEntrenador);
         grupoRoles.add(rdbtnEsEntrenador);
         
                 btnAceptar = new JButton("Aceptar");
+                btnAceptar.setBounds(312, 281, 143, 21);
                 btnAceptar.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         cmdRegistroUsuarioActionPerformed(arg0);
@@ -221,35 +162,20 @@ public class altaUsuario extends JInternalFrame {
                 });
                         
                                 rdbtnEsDeportista = new JRadioButton("Deportista");
-                                GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-                                gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
-                                gbc_rdbtnNewRadioButton_1.gridx = 1;
-                                gbc_rdbtnNewRadioButton_1.gridy = 7;
-                                getContentPane().add(rdbtnEsDeportista, gbc_rdbtnNewRadioButton_1);
+                                rdbtnEsDeportista.setBounds(259, 221, 71, 21);
+                                getContentPane().add(rdbtnEsDeportista);
                                 grupoRoles.add(rdbtnEsDeportista);
-                
-                        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-                        gbc_btnAceptar.anchor = GridBagConstraints.NORTH;
-                        gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
-                        gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
-                        gbc_btnAceptar.gridx = 1;
-                        gbc_btnAceptar.gridy = 8;
-                        getContentPane().add(btnAceptar, gbc_btnAceptar);
+                        getContentPane().add(btnAceptar);
                                 
                                         btnCancelar = new JButton("Cancelar");
+                                        btnCancelar.setBounds(159, 281, 143, 21);
                                         btnCancelar.addActionListener(new ActionListener() {
                                             public void actionPerformed(ActionEvent e) {
                                                 limpiarFormulario();
                                                 setVisible(false);
                                             }
                                         });
-                                        GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-                                        gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
-                                        gbc_btnCancelar.anchor = GridBagConstraints.NORTH;
-                                        gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
-                                        gbc_btnCancelar.gridx = 1;
-                                        gbc_btnCancelar.gridy = 9;
-                                        getContentPane().add(btnCancelar, gbc_btnCancelar);
+                                        getContentPane().add(btnCancelar);
     }
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
