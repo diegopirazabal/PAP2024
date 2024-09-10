@@ -1,10 +1,8 @@
 package presentacion;
 
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 import java.util.Date;
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -19,6 +17,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import dtos.dataTypeActividad;
+import logica.Actividad;
 import logica.Clase;
 import logica.Fabrica;
 import logica.IControladorActividad;
@@ -30,10 +29,10 @@ public class AltaClase extends JInternalFrame{
 	private IControladorActividad controlAct = Fabrica.getInstance().getIControladorActividad();
 	private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
 	private IControladorClase controlCla = Fabrica.getInstance().getIcontroladorClase();
-	private JTextField textFieldFecha;
 	private JTextField textFieldHora;
 	private JTextField textFieldLugar;
 	private JTextField textFieldNombre;
+	private JTextField textFieldBuscador;
 	private JTextField textFieldCupos;
 	private JComboBox<dataTypeActividad> comboBoxActividades;
 	private JTextField textFieldId;
@@ -63,10 +62,6 @@ public class AltaClase extends JInternalFrame{
 		lblActividades.setBounds(170, 5, 116, 13);
 		getContentPane().add(lblActividades);
 		
-		JLabel lblFecja = new JLabel("Fecha de la clase: ");
-		lblFecja.setBounds(52, 140, 121, 13);
-		getContentPane().add(lblFecja);
-		
 		JLabel lblHora = new JLabel("Hora de la clase: ");
 		lblHora.setBounds(52, 173, 121, 13);
 		getContentPane().add(lblHora);
@@ -78,11 +73,6 @@ public class AltaClase extends JInternalFrame{
 		JLabel lblCupos = new JLabel("Cupos");
 		lblCupos.setBounds(52, 282, 121, 13);
 		getContentPane().add(lblCupos);
-		
-		textFieldFecha = new JTextField();
-		textFieldFecha.setBounds(212, 135, 180, 19);
-		getContentPane().add(textFieldFecha);
-		textFieldFecha.setColumns(10);
 		
 		JDateChooser campoFecha = new JDateChooser();
         campoFecha.setBounds(180, 198, 236, 25);
@@ -105,9 +95,14 @@ public class AltaClase extends JInternalFrame{
 		textFieldCupos.setColumns(10);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(212, 75, 180, 19);
+		textFieldNombre.setBounds(212, 108, 180, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
+		
+		textFieldBuscador = new JTextField();
+    	textFieldBuscador.setColumns(10);
+    	textFieldBuscador.setBounds(138, 53, 318, 20);
+    	getContentPane().add(textFieldBuscador);
 		
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBounds(212, 312, 85, 21);
@@ -121,8 +116,10 @@ public class AltaClase extends JInternalFrame{
 	                  Long id = (long) Integer.parseInt(textFieldId.getText());
 	                  Date fechaAlta = fecha;
 	                  String nombre = textFieldNombre.getText();
+	                  Actividad actividad = controlAct.consultarActividad2(textFieldBuscador.getText());
 	                  controlCla.crearClase(id, nombre,fecha, hora, lugar, fechaAlta, lugar, cupos);
 	                  String imagen = "";
+	                  
 					  Clase clase = new Clase(id, nombre, fecha, hora, lugar, imagen , fechaAlta, cupos);
 					  dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
 	                  controlAct.agregarClase(clase, seleccionada.getNombre());
@@ -142,11 +139,11 @@ public class AltaClase extends JInternalFrame{
 		
 		textFieldId = new JTextField();
 		textFieldId.setColumns(10);
-		textFieldId.setBounds(212, 105, 180, 19);
+		textFieldId.setBounds(212, 138, 180, 19);
 		getContentPane().add(textFieldId);
 		
 		JLabel lblIdDeLa = new JLabel("Id de la clase:");
-		lblIdDeLa.setBounds(52, 105, 121, 13);
+		lblIdDeLa.setBounds(52, 138, 121, 13);
 		getContentPane().add(lblIdDeLa);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
@@ -154,8 +151,16 @@ public class AltaClase extends JInternalFrame{
 		getContentPane().add(lblFecha);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(52, 75, 121, 13);
+		lblNombre.setBounds(52, 108, 121, 13);
 		getContentPane().add(lblNombre);
+		
+		JLabel lblActividad = new JLabel("Nombre de la actividad");
+		lblActividad.setBounds(7, 56, 121, 13);
+		getContentPane().add(lblActividad);
+		
+//		JButton btnNewButton_2 = new JButton("Vincular");
+//		btnNewButton_2.setBounds(367, 84, 89, 23);
+//		getContentPane().add(btnNewButton_2);
 		cargarDeportistas();
 	}
 	

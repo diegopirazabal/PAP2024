@@ -15,6 +15,8 @@ public interface IControladorActividad {
 
     // Método para consultar una actividad por su nombre
     public dataTypeActividad consultarActividad(String nombre) throws ActividadNoExisteException;
+    
+    public Actividad consultarActividad2(String nombre) throws ActividadNoExisteException;
 
     // Método para eliminar una actividad por su nombre
     public void eliminarActividad(String nombre) throws ActividadNoExisteException;

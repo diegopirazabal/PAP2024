@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -17,6 +18,7 @@ import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import excepciones.ActividadNoExisteException;
 import excepciones.ClaseNoExisteException;
+import logica.Actividad;
 import logica.Fabrica;
 import logica.IControladorActividad;
 import logica.IControladorClase;
@@ -36,6 +38,8 @@ public class consultaClase extends JInternalFrame {
 	private JLabel lblNewLabel_3;
 	private JLabel lblClase;
 	private JLabel lblActividad;
+	private JTextField textFieldBuscador;
+	private JLabel lblIngresarNombreDe;
 	
 	public consultaClase() {
 		setResizable(true);
@@ -43,23 +47,16 @@ public class consultaClase extends JInternalFrame {
     	setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     	setClosable(true);
     	setTitle("Consultar clase");
-    	setBounds(10, 40, 539, 404);
+    	setBounds(10, 40, 473, 280);
     	getContentPane().setLayout(null);
     	
-    	comboBoxActividades = new JComboBox();
-		comboBoxActividades.setBounds(128, 21, 198, 21);
+    	comboBoxActividades = new JComboBox<dataTypeActividad>();
+		comboBoxActividades.setBounds(92, 21, 318, 21);
 		getContentPane().add(comboBoxActividades);
-		comboBoxActividades.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
-                if (seleccionada != null) {
-                	
-                }
-            }
-        });
+		
     	
-    	comboBoxClases = new JComboBox();
-    	comboBoxClases.setBounds(92, 44, 318, 22);
+    	comboBoxClases = new JComboBox<dataTypeClase>();
+    	comboBoxClases.setBounds(92, 79, 318, 22);
     	getContentPane().add(comboBoxClases);
     	comboBoxClases.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -72,7 +69,7 @@ public class consultaClase extends JInternalFrame {
     	
     	textFieldLugar = new JTextField();
     	textFieldLugar.setEditable(false);
-    	textFieldLugar.setBounds(92, 94, 318, 20);
+    	textFieldLugar.setBounds(92, 112, 318, 20);
     	getContentPane().add(textFieldLugar);
     	textFieldLugar.setColumns(10);
     	
@@ -84,18 +81,18 @@ public class consultaClase extends JInternalFrame {
     	
     	textFieldHora = new JTextField();
     	textFieldHora.setEditable(false);
-    	textFieldHora.setBounds(92, 173, 318, 20);
+    	textFieldHora.setBounds(92, 172, 318, 20);
     	getContentPane().add(textFieldHora);
     	textFieldHora.setColumns(10);
     	
     	textFieldFecha = new JTextField();
     	textFieldFecha.setEditable(false);
-    	textFieldFecha.setBounds(95, 204, 315, 20);
+    	textFieldFecha.setBounds(92, 205, 315, 20);
     	getContentPane().add(textFieldFecha);
     	textFieldFecha.setColumns(10);
     	
     	lblNewLabel = new JLabel("Lugar");
-    	lblNewLabel.setBounds(10, 97, 46, 14);
+    	lblNewLabel.setBounds(10, 114, 46, 14);
     	getContentPane().add(lblNewLabel);
     	
     	lblNewLabel_1 = new JLabel("Cupos");
@@ -111,12 +108,42 @@ public class consultaClase extends JInternalFrame {
     	getContentPane().add(lblNewLabel_3);
     	
     	lblClase = new JLabel("Clase");
-    	lblClase.setBounds(10, 48, 46, 14);
+    	lblClase.setBounds(10, 83, 46, 14);
     	getContentPane().add(lblClase);
     	
     	lblActividad = new JLabel("Actividad");
     	lblActividad.setBounds(10, 24, 151, 14);
     	getContentPane().add(lblActividad);
+    	
+    	textFieldBuscador = new JTextField();
+    	textFieldBuscador.setColumns(10);
+    	textFieldBuscador.setBounds(92, 53, 318, 20);
+    	getContentPane().add(textFieldBuscador);
+    	
+    	lblIngresarNombreDe = new JLabel("Ingresar nombre de la actividad");
+    	lblIngresarNombreDe.setBounds(10, 49, 46, 14);
+    	getContentPane().add(lblIngresarNombreDe);
+    	
+    	JButton btnNewButton = new JButton("X");
+    	btnNewButton.setBounds(417, 52, 30, 23);
+    	getContentPane().add(btnNewButton);
+    	btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent el) {
+                Actividad seleccionada;
+                try {
+					seleccionada = controlAct.consultarActividad2(textFieldBuscador.getText());
+					cargarClases(seleccionada);
+					dataTypeClase seleccionada2 = (dataTypeClase) comboBoxClases.getSelectedItem();
+					completarCampos(seleccionada2);
+					
+					System.out.println("sos muy crack");
+				} catch (ActividadNoExisteException e) {
+					e.printStackTrace();
+					System.out.println("sos muy boludo");
+				}
+                
+            }
+        });
 	}
 	
 	public void cargarActividades() {
@@ -141,22 +168,16 @@ public class consultaClase extends JInternalFrame {
         	textFieldHora.setText(clase.getHora());
         	SimpleDateFormat sm = new SimpleDateFormat("MM-dd-yyyy");
         	String f = sm.format(clase.getFecha());
-        	//String strDate = sm.format(myDate);
         	textFieldFecha.setText(f);
         	
-//            textFieldLugar.setText(actividad.getLugar());
-//            String x = String.valueOf(actividad.getDuracion());
-//            textFieldDuracion.setText(x);
-//            String y = String.valueOf(actividad.getCosto());
-//            textFieldCosto.setText(y);
-//            textFieldDescripcion.setText(actividad.getDescripcion());
         }
     }
 	
-	public void cargarClases() {
+	public void cargarClases(Actividad act) {
         DefaultComboBoxModel<dataTypeClase> model;
         try {
             List<dataTypeClase> clases = controlCla.listarTodas();
+            System.out.println(clases);
             model = new DefaultComboBoxModel<dataTypeClase>();
             for (dataTypeClase clase : clases) {
                 model.addElement(clase);
@@ -166,5 +187,4 @@ public class consultaClase extends JInternalFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-	
 }

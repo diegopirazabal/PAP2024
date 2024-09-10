@@ -27,6 +27,7 @@ public class Principal {
 	 private listarActividades consActInternalFrame;
 	 private AltaClase altClaInternalFrame;
 	 private consultaClase consClaInternalFrame;
+	 private InscripcionClase insClaInternalFrame;
 	 
 	 
 	 public static void main(String[] args) {
@@ -80,6 +81,10 @@ public class Principal {
 	     consClaInternalFrame.setLocation(30, 35);
 	     consClaInternalFrame.setVisible(false);
 	     
+	     insClaInternalFrame = new InscripcionClase(); 
+	     insClaInternalFrame.setLocation(30, 35);
+	     insClaInternalFrame.setVisible(false);
+	     
 	     frmGestionDeUsuarios.getContentPane().add(altUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listUsrInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(listEntrenadoresInternalFrame); // Añadir a la ventana principal
@@ -88,6 +93,7 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(consActInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(altClaInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(consClaInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(insClaInternalFrame);
 	 }
 	 
 	 private void initialize() {
@@ -178,22 +184,31 @@ public class Principal {
 	        mntmaltaClase.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	altClaInternalFrame.setVisible(true);
-	            	consClaInternalFrame.cargarClases();
+	            	//consClaInternalFrame.cargarClases();
 	            	consClaInternalFrame.cargarActividades();
 
 	            }
 	        });
+	        menuClase.add(mntmaltaClase);
 	        
 	        JMenuItem mntmconsultaClase = new JMenuItem("Consulta Clase");
 	        mntmconsultaClase.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	consClaInternalFrame.setVisible(true);
 	            	consClaInternalFrame.cargarActividades();
-	            	consClaInternalFrame.cargarClases();
+	            	//consClaInternalFrame.listarTodas();
 	            }
 	        });
-	        
-	        menuClase.add(mntmaltaClase);
 	        menuClase.add(mntmconsultaClase);
+	        
+	        JMenuItem mntmInscripcionClase = new JMenuItem("Inscripcion a Clase");
+	        mntmInscripcionClase.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	insClaInternalFrame.setVisible(true);
+	            	insClaInternalFrame.cargarActividades();
+	            	insClaInternalFrame.cargarClases();
+	            }
+	        });
+	        menuClase.add(mntmInscripcionClase);
 	    }
 }

@@ -42,6 +42,10 @@ public class ControladorActividad implements IControladorActividad {
     public dataTypeActividad consultarActividad(String nombre) throws ActividadNoExisteException {
         return manejador.buscarActividad(nombre);
     }
+    
+    public Actividad consultarActividad2(String nombre) throws ActividadNoExisteException {
+        return manejador.buscarActividad2(nombre);
+    }
 
     @Override
     public void eliminarActividad(String nombre) throws ActividadNoExisteException {

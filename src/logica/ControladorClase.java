@@ -1,9 +1,9 @@
 package logica;
 
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
@@ -29,4 +29,8 @@ public class ControladorClase implements IControladorClase{
 	 public Clase obtenerClase(Long id) {
 		 return manejador.obtenerClasePorID(id);
 	 }
+	 
+	 public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException {
+         return manejador.listarporActividad(act);
+     }
 }

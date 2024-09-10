@@ -1,11 +1,16 @@
 package logica;
-import jakarta.persistence.*;
-import logica.Usuario;
-import logica.Clase;
-import java.time.LocalDate;
-import java.util.List;
-import java.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ACTIVIDADES")
@@ -42,7 +47,7 @@ public class Actividad {
     private Entrenador entrenador; // Relación con el entrenador
     
     @OneToMany( targetEntity=Clase.class)
-    private List<Clase> clases; // Relación con las clases
+    private List<Clase> clases = new ArrayList<>(); // Relación con las clases
     
 
     public Actividad(){};

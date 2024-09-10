@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
@@ -37,6 +38,27 @@ public class ManejadorClase {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException{
+        try {
+            List<Clase> clases = em.createQuery("SELECT c FROM Clase c WHERE c.actividad = :acti", Clase.class)
+            .setParameter("acti", act)
+            .getResultList();
+            return clases.stream()
+                    .map(clase -> new dataTypeClase(
+                            clase.getFecha(),
+                            clase.getNombre(),
+                            clase.getHora(),
+                            clase.getLugar(),
+                            clase.getImagen(),
+                            clase.getFechaAlta(),
+                            clase.getCupo()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

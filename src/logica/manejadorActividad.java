@@ -104,14 +104,6 @@ public class manejadorActividad {
             return null;
         }
     }
-
-    public dataTypeActividad buscarActividad(String nombre) throws ActividadNoExisteException {
-        dataTypeActividad actividad = buscarActividadPorNombre(nombre);
-        if (actividad == null) {
-            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-        }
-        return actividad;
-    }
     
     public Actividad buscarActividadPorNombre2(String nombre) {
         try {
@@ -122,7 +114,16 @@ public class manejadorActividad {
                     .orElse(null);
 
             if (actividad != null) {
-                return  actividad;           
+                return new Actividad(
+                        actividad.getNombre(),
+                        actividad.getDescripcion(),
+                        actividad.getDuracion(),
+                        actividad.getCosto(),
+                        actividad.getLugar(),
+                        actividad.getFechaAlta(),
+                        actividad.getImagen(),
+                        actividad.getEntrenador()
+                );
             }
             return null;
         } catch (Exception e) {
@@ -130,6 +131,16 @@ public class manejadorActividad {
             return null;
         }
     }
+
+    public dataTypeActividad buscarActividad(String nombre) throws ActividadNoExisteException {
+        dataTypeActividad actividad = buscarActividadPorNombre(nombre);
+        if (actividad == null) {
+            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+        }
+        return actividad;
+    }
+    
+    
     
     
     public Actividad buscarActividad2(String nombre) throws ActividadNoExisteException {
