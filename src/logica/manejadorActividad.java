@@ -28,6 +28,7 @@ public class manejadorActividad {
     }
 
     Actividad obtenerActividadPorNombre(String nombre) {
+    	//Devuelve un objeto de tipo Actividad
         try {
             List<Actividad> resultados = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
                                            .setParameter("nombre", nombre)
@@ -38,6 +39,43 @@ public class manejadorActividad {
             return null;
         }
     }
+    
+    public dataTypeActividad buscarActividadPorNombre(String nombre) {
+    	//Devuelve un objeto de tipo dataTypeActividad
+        try {
+            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
+                    .setParameter("nombre", nombre)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (actividad != null) {
+                dataTypeActividad act = new dataTypeActividad(
+                        actividad.getNombre(),
+                        actividad.getDescripcion(),
+                        actividad.getDuracion(),
+                        actividad.getCosto(),
+                        actividad.getLugar(),
+                        actividad.getFechaAlta(),
+                        actividad.getImagen(),
+                        actividad.getEntrenador()
+                );
+                return act;
+            }
+            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+//    public dataTypeActividad buscarActividad(String nombre) throws ActividadNoExisteException {
+//        dataTypeActividad actividad = buscarActividadPorNombre(nombre);
+//        if (actividad == null) {
+//            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+//        }
+//        return actividad;
+//    }
 
     public List<dataTypeActividad> getActividades() throws ActividadNoExisteException {
         try {
@@ -78,79 +116,6 @@ public class manejadorActividad {
         }
     }
 
-    public dataTypeActividad buscarActividadPorNombre(String nombre) {
-        try {
-            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
-                    .setParameter("nombre", nombre)
-                    .getResultStream()
-                    .findFirst()
-                    .orElse(null);
-
-            if (actividad != null) {
-                return new dataTypeActividad(
-                        actividad.getNombre(),
-                        actividad.getDescripcion(),
-                        actividad.getDuracion(),
-                        actividad.getCosto(),
-                        actividad.getLugar(),
-                        actividad.getFechaAlta(),
-                        actividad.getImagen(),
-                        actividad.getEntrenador()
-                );
-            }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    
-    public Actividad buscarActividadPorNombre2(String nombre) {
-        try {
-            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
-                    .setParameter("nombre", nombre)
-                    .getResultStream()
-                    .findFirst()
-                    .orElse(null);
-
-            if (actividad != null) {
-                return new Actividad(
-                        actividad.getNombre(),
-                        actividad.getDescripcion(),
-                        actividad.getDuracion(),
-                        actividad.getCosto(),
-                        actividad.getLugar(),
-                        actividad.getFechaAlta(),
-                        actividad.getImagen(),
-                        actividad.getEntrenador()
-                );
-            }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public dataTypeActividad buscarActividad(String nombre) throws ActividadNoExisteException {
-        dataTypeActividad actividad = buscarActividadPorNombre(nombre);
-        if (actividad == null) {
-            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-        }
-        return actividad;
-    }
-    
-    
-    
-    
-    public Actividad buscarActividad2(String nombre) throws ActividadNoExisteException {
-        Actividad actividad = buscarActividadPorNombre2(nombre);
-        if (actividad == null) {
-            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-        }
-        return actividad;
-    }
-
     public void eliminar(String nombre) throws ActividadNoExisteException {
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -171,36 +136,72 @@ public class manejadorActividad {
         }
     }
     
-    public dataTypeUsuario obtenerEntrenadorPorNickname(String nickname) {
-        try {
-            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-                                .setParameter("nickname", nickname)
-                                .getResultStream()
-                                .findFirst()
-                                .orElse(null);
-
-            if (usuario instanceof Entrenador) {
-                Entrenador entrenador = (Entrenador) usuario;
-                return new dataTypeUsuario(
-                        entrenador.getNickname(),
-                        entrenador.getNombre(),
-                        entrenador.getApellido(),
-                        entrenador.getEmail(),
-                        entrenador.getFNacimiento(),
-                        entrenador.getTipo()
-                );
-            }
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public Actividad buscarActividadPorNombre2(String nombre) {
+//        try {
+//            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
+//                    .setParameter("nombre", nombre)
+//                    .getResultStream()
+//                    .findFirst()
+//                    .orElse(null);
+//
+//            if (actividad != null) {
+//                return new Actividad(
+//                        actividad.getNombre(),
+//                        actividad.getDescripcion(),
+//                        actividad.getDuracion(),
+//                        actividad.getCosto(),
+//                        actividad.getLugar(),
+//                        actividad.getFechaAlta(),
+//                        actividad.getImagen(),
+//                        actividad.getEntrenador()
+//                );
+//            }
+//            return null;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+//
+//    
+//    public Actividad buscarActividad2(String nombre) throws ActividadNoExisteException {
+//        Actividad actividad = buscarActividadPorNombre2(nombre);
+//        if (actividad == null) {
+//            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+//        }
+//        return actividad;
+//    }
     
-    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
-    	 Actividad act = buscarActividad2(actividad);
-    	 act.setClases(clase);
-    };
+//    public dataTypeUsuario obtenerEntrenadorPorNickname(String nickname) {
+//        try {
+//            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+//                                .setParameter("nickname", nickname)
+//                                .getResultStream()
+//                                .findFirst()
+//                                .orElse(null);
+//
+//            if (usuario instanceof Entrenador) {
+//                Entrenador entrenador = (Entrenador) usuario;
+//                return new dataTypeUsuario(
+//                        entrenador.getNickname(),
+//                        entrenador.getNombre(),
+//                        entrenador.getApellido(),
+//                        entrenador.getEmail(),
+//                        entrenador.getFNacimiento(),
+//                        entrenador.getTipo()
+//                );
+//            }
+//            return null;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+    
+//    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
+//    	 Actividad act = buscarActividad2(actividad);
+//    	 act.setClases(clase);
+//    };
     
     public List<dataTypeActividad> obtenerActividadesPorEntrenador(String nickname) {
         try {

@@ -15,19 +15,7 @@ public class manejadorUsuarios {
     private EntityManagerFactory emf;
     private EntityManager em;
     private static manejadorUsuarios instancia = null;
-    private Usuario obtenerUsuarioPorNickname(String nickname) {
-        try {
-            List<Usuario> resultados = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-                                         .setParameter("nickname", nickname)
-                                         .getResultList();
-            return resultados.isEmpty() ? null : resultados.get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
+    
     public manejadorUsuarios() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
         this.em = emf.createEntityManager();
@@ -38,6 +26,19 @@ public class manejadorUsuarios {
             instancia = new manejadorUsuarios();      // Constructor solo se llama de aca
         return instancia;
     }
+    
+    public Usuario obtenerUsuarioPorNickname(String nickname) {
+    	//Devuelve un objeto de tipo Usuario
+        try {
+            List<Usuario> resultados = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                                         .setParameter("nickname", nickname)
+                                         .getResultList();
+            return resultados.isEmpty() ? null : resultados.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }    
     
     public List<dataTypeUsuario> getUsuarios() {
         try {
@@ -90,7 +91,7 @@ public class manejadorUsuarios {
                     .orElse(null);
 
             if (usuario != null) {
-                return new dataTypeUsuario(
+                dataTypeUsuario user =  new dataTypeUsuario(
                         usuario.getNickname(),
                         usuario.getNombre(),
                         usuario.getApellido(),
@@ -98,8 +99,9 @@ public class manejadorUsuarios {
                         usuario.getFNacimiento(),
                         usuario.getTipo()
                 );
+                return user;
             }
-            return null;
+            throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -107,13 +109,13 @@ public class manejadorUsuarios {
     }
 
 
-    public dataTypeUsuario buscarUsuario(String nickname) throws UsuarioNoExisteException {
-        dataTypeUsuario usuario = buscarUsuarioPorNickname(nickname);
-        if (usuario == null) {
-            throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
-        }
-        return usuario;
-    }
+//    public dataTypeUsuario buscarUsuario(String nickname) throws UsuarioNoExisteException {
+//        dataTypeUsuario usuario = buscarUsuarioPorNickname(nickname);
+//        if (usuario == null) {
+//            throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
+//        }
+//        return usuario;
+//    }
 
 
     public void eliminar(String nickname) throws UsuarioNoExisteException {
@@ -137,23 +139,7 @@ public class manejadorUsuarios {
     }
 
 
-    public List<dataTypeUsuario> obtenerTodos() {
-        try {
-            List<Usuario> usuarios = em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
-            return usuarios.stream()
-                    .map(usuario -> new dataTypeUsuario(
-                            usuario.getNickname(),
-                            usuario.getNombre(),
-                            usuario.getApellido(),
-                            usuario.getEmail(),
-                            usuario.getFNacimiento(),
-                            usuario.getTipo()))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
+    
 
 
 

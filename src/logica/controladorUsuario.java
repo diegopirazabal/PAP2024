@@ -24,7 +24,7 @@ public class controladorUsuario implements IControladorUsuario{
     }
     
     public dataTypeUsuario consultarUsuario(String nickname) throws UsuarioNoExisteException {
-    	return manejador.buscarUsuario(nickname);
+    	return manejador.buscarUsuarioPorNickname(nickname);
     }
 
     public void eliminarUsuario(String nickname) throws UsuarioNoExisteException{
@@ -32,11 +32,11 @@ public class controladorUsuario implements IControladorUsuario{
     }
     
     public List<dataTypeUsuario> listarTodos(){
-    	return manejador.obtenerTodos();
+    	return manejador.getUsuarios();
     }
     
     public dataTypeUsuario verInfoUsuario(String nickname) throws UsuarioNoExisteException{
-    	return manejador.buscarUsuario(nickname);
+    	return manejador.buscarUsuarioPorNickname(nickname);
     }
     
     public List<dataTypeUsuario> listarEntrenadores() {
