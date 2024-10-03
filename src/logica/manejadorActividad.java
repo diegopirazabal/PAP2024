@@ -1,15 +1,18 @@
 package logica;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-import excepciones.ActividadNoExisteException;
-import excepciones.ActividadRepetidaException;
-import jakarta.persistence.*;
 import dtos.dataTypeActividad;
 import dtos.dataTypeUsuario;
+import excepciones.ActividadNoExisteException;
+import excepciones.ActividadRepetidaException;
+import excepciones.UsuarioRepetidoException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 
 public class manejadorActividad {
     private EntityManagerFactory emf;
@@ -172,31 +175,31 @@ public class manejadorActividad {
 //        return actividad;
 //    }
     
-//    public dataTypeUsuario obtenerEntrenadorPorNickname(String nickname) {
-//        try {
-//            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
-//                                .setParameter("nickname", nickname)
-//                                .getResultStream()
-//                                .findFirst()
-//                                .orElse(null);
-//
-//            if (usuario instanceof Entrenador) {
-//                Entrenador entrenador = (Entrenador) usuario;
-//                return new dataTypeUsuario(
-//                        entrenador.getNickname(),
-//                        entrenador.getNombre(),
-//                        entrenador.getApellido(),
-//                        entrenador.getEmail(),
-//                        entrenador.getFNacimiento(),
-//                        entrenador.getTipo()
-//                );
-//            }
-//            return null;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException{
+        try {
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                                .setParameter("nickname", nickname)
+                                .getResultStream()
+                                .findFirst()
+                                .orElse(null);
+
+            if (usuario instanceof Entrenador) {
+                Entrenador entrenador = (Entrenador) usuario;
+                return new dataTypeUsuario(
+                        entrenador.getNickname(),
+                        entrenador.getNombre(),
+                        entrenador.getApellido(),
+                        entrenador.getEmail(),
+                        entrenador.getFNacimiento(),
+                        entrenador.getTipo()
+                );
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
 //    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
 //    	 Actividad act = buscarActividad2(actividad);

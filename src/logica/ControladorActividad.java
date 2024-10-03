@@ -7,18 +7,21 @@ import dtos.dataTypeActividad;
 import dtos.dataTypeUsuario;
 import excepciones.ActividadNoExisteException;
 import excepciones.ActividadRepetidaException;
+import excepciones.ClaseRepetidaException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.UsuarioRepetidoException;
 
 public class ControladorActividad implements IControladorActividad {
     private manejadorActividad manejador;
-
+    private manejadorUsuarios manejadorU;
+    private ManejadorClase manejadorC;
     public ControladorActividad() {
         manejador = manejadorActividad.getinstance(); // Usa el método getinstance para obtener la instancia
     }
 
-    public void crearActividad(String nombre, String descripcion, int duracion, double costo, String lugar, Date fechaAlta, String imagen, String nicknameEntrenador) throws ActividadRepetidaException, UsuarioNoExisteException {
+    public void crearActividad(String nombre, String descripcion, int duracion, double costo, String lugar, Date fechaAlta, String imagen, String nicknameEntrenador) throws ActividadRepetidaException, UsuarioNoExisteException, UsuarioRepetidoException {
         // Buscar el entrenador por nickname
-        dataTypeUsuario dtEntrenador = manejador.obtenerEntrenadorPorNickname(nicknameEntrenador);
+        dataTypeUsuario dtEntrenador = manejador.obtenerEntrenadorDeLaActividadPorNickname(nicknameEntrenador);
         if (dtEntrenador == null) {
             throw new UsuarioNoExisteException("El entrenador con nickname " + nicknameEntrenador + " no existe.");
         }
@@ -34,17 +37,19 @@ public class ControladorActividad implements IControladorActividad {
         manejador.agregar(actividad);
     }
 
-    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
-    	manejador.agregarClase(clase, actividad);
-    };
+//    public void agregarClase(Clase clase, String actividad) throws ClaseRepetidaException {
+//    	manejadorC.agregarClase(clase);
+//    };
     
     @Override
     public dataTypeActividad consultarActividad(String nombre) throws ActividadNoExisteException {
-        return manejador.buscarActividad(nombre);
+    	//Devuelve un objeto de tipo dataTypeActividad con nombre "nombre"
+        return manejador.buscarActividadPorNombre(nombre);
     }
     
     public Actividad consultarActividad2(String nombre) throws ActividadNoExisteException {
-        return manejador.buscarActividad2(nombre);
+    	//Devuelve un objeto de tipo actividad con nombre "nombre"
+        return manejador.obtenerActividadPorNombre(nombre);
     }
 
     @Override
@@ -64,4 +69,11 @@ public class ControladorActividad implements IControladorActividad {
         // Obtener las actividades asociadas al entrenador por su nickname
         return manejador.obtenerActividadesPorEntrenador(nicknameEntrenador);
     }
+
+	@Override
+	public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException {
+		// TODO Auto-generated method stub
+		return manejador.obtenerEntrenadorDeLaActividadPorNickname(nickname);
+	}
+
 }

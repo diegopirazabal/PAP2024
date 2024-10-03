@@ -42,6 +42,10 @@ public class controladorUsuario implements IControladorUsuario{
     public List<dataTypeUsuario> listarEntrenadores() {
         return manejador.obtenerEntrenadores();
     }
+    
+    public dataTypeUsuario obtenerEntrenadorPorNickname(String nickname) {
+    	return manejador.obtenerEntrenadorPorNickname(nickname);
+    }
 
 //    public List<dataTypeUsuario> listarEntrenadores() {
 //        return manejadorUsuarios.getinstance().obtenerEntrenadores();

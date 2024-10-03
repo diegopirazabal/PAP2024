@@ -3,7 +3,6 @@ package logica;
 import java.util.Date;
 import java.util.List;
 
-import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
@@ -32,5 +31,8 @@ public class ControladorClase implements IControladorClase{
 	 
 	 public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException {
          return manejador.listarporActividad(act);
+	 }
+     public void agregarClase(Clase clase) throws ClaseRepetidaException {
+         manejador.agregarClase(clase);
      }
 }

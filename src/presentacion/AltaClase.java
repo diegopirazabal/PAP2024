@@ -119,10 +119,10 @@ public class AltaClase extends JInternalFrame{
 	                  Actividad actividad = controlAct.consultarActividad2(textFieldBuscador.getText());
 	                  controlCla.crearClase(id, nombre,fecha, hora, lugar, fechaAlta, lugar, cupos);
 	                  String imagen = "";
-	                  
 					  Clase clase = new Clase(id, nombre, fecha, hora, lugar, imagen , fechaAlta, cupos);
 					  dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
-	                  controlAct.agregarClase(clase, seleccionada.getNombre());
+					  //controlCla.agregarClase(clase);
+	                 
 	                  
 	                  JOptionPane.showMessageDialog(null, "Actividad registrada exitosamente.");
 	                  //limpiarCampos();

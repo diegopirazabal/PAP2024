@@ -81,7 +81,33 @@ public class manejadorUsuarios {
         }
     }
 
+    public dataTypeUsuario obtenerEntrenadorPorNickname(String nickname) {
+      try {
+          Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                              .setParameter("nickname", nickname)
+                              .getResultStream()
+                              .findFirst()
+                              .orElse(null);
 
+          if (usuario instanceof Entrenador) {
+              Entrenador entrenador = (Entrenador) usuario;
+              return new dataTypeUsuario(
+                      entrenador.getNickname(),
+                      entrenador.getNombre(),
+                      entrenador.getApellido(),
+                      entrenador.getEmail(),
+                      entrenador.getFNacimiento(),
+                      entrenador.getTipo()
+              );
+          }
+          return null;
+      } catch (Exception e) {
+          e.printStackTrace();
+          return null;
+      }
+  }
+    
+    
     public dataTypeUsuario buscarUsuarioPorNickname(String nickname) {
         try {
             Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)

@@ -41,6 +41,7 @@ public class ManejadorClase {
         }
     }
     
+    
     public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException{
         try {
             List<Clase> clases = em.createQuery("SELECT c FROM Clase c WHERE c.actividad = :acti", Clase.class)
@@ -82,6 +83,7 @@ public class ManejadorClase {
     }
 
     public void agregarClase(Clase clase) throws ClaseRepetidaException {
+    	
         // Verificar si la actividad ya existe en la base de datos
         Clase claseExistente = obtenerClasePorID(clase.getId());
         if (claseExistente != null) {
