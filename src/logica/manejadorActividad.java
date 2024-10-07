@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dtos.dataTypeActividad;
+import dtos.dataTypeClase;
 import dtos.dataTypeUsuario;
 import excepciones.ActividadNoExisteException;
 import excepciones.ActividadRepetidaException;
@@ -72,13 +73,6 @@ public class manejadorActividad {
         }
     }
     
-//    public dataTypeActividad buscarActividad(String nombre) throws ActividadNoExisteException {
-//        dataTypeActividad actividad = buscarActividadPorNombre(nombre);
-//        if (actividad == null) {
-//            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-//        }
-//        return actividad;
-//    }
 
     public List<dataTypeActividad> getActividades() throws ActividadNoExisteException {
         try {
@@ -107,14 +101,18 @@ public class manejadorActividad {
             throw new ActividadRepetidaException("La actividad con nombre " + actividad.getNombre() + " ya existe.");
         }
 
-        // Persistir la nueva actividad
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();  // Inicia la transacción
-            em.persist(actividad);  // Persiste la nueva actividad
-            transaction.commit(); // Confirma la transacción
+            transaction.begin();  
+            em.persist(actividad);  
+            em.flush(); 
+            em.refresh(actividad);  
+            em.refresh(actividad.getEntrenador());
+            transaction.commit(); 
         } catch (Exception e) {
-            if (transaction.isActive()) transaction.rollback();  // Si hay error, hacer rollback
+            if (transaction.isActive()) {
+                transaction.rollback(); 
+            }
             e.printStackTrace();
         }
     }
@@ -138,43 +136,7 @@ public class manejadorActividad {
             e.printStackTrace();
         }
     }
-    
-//    public Actividad buscarActividadPorNombre2(String nombre) {
-//        try {
-//            Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
-//                    .setParameter("nombre", nombre)
-//                    .getResultStream()
-//                    .findFirst()
-//                    .orElse(null);
-//
-//            if (actividad != null) {
-//                return new Actividad(
-//                        actividad.getNombre(),
-//                        actividad.getDescripcion(),
-//                        actividad.getDuracion(),
-//                        actividad.getCosto(),
-//                        actividad.getLugar(),
-//                        actividad.getFechaAlta(),
-//                        actividad.getImagen(),
-//                        actividad.getEntrenador()
-//                );
-//            }
-//            return null;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-//
-//    
-//    public Actividad buscarActividad2(String nombre) throws ActividadNoExisteException {
-//        Actividad actividad = buscarActividadPorNombre2(nombre);
-//        if (actividad == null) {
-//            throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
-//        }
-//        return actividad;
-//    }
-    
+
     public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException{
         try {
             Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
@@ -201,10 +163,6 @@ public class manejadorActividad {
         }
     }
     
-//    public void agregarClase(Clase clase, String actividad) throws ActividadNoExisteException {
-//    	 Actividad act = buscarActividad2(actividad);
-//    	 act.setClases(clase);
-//    };
     
     public List<dataTypeActividad> obtenerActividadesPorEntrenador(String nickname) {
         try {

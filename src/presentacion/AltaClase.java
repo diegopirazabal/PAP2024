@@ -35,7 +35,6 @@ public class AltaClase extends JInternalFrame{
 	private JTextField textFieldBuscador;
 	private JTextField textFieldCupos;
 	private JComboBox<dataTypeActividad> comboBoxActividades;
-	private JTextField textFieldId;
 	
 	public AltaClase() {
 		getContentPane().setLayout(null);
@@ -46,6 +45,7 @@ public class AltaClase extends JInternalFrame{
         setTitle("Registrar una Clase");
         setBounds(10, 40, 539, 404);
         
+
 		comboBoxActividades = new JComboBox();
 		comboBoxActividades.setBounds(128, 28, 198, 21);
 		getContentPane().add(comboBoxActividades);
@@ -53,44 +53,44 @@ public class AltaClase extends JInternalFrame{
             public void actionPerformed(ActionEvent e) {
                 dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
                 if (seleccionada != null) {
-                	//agregarClase(seleccionada, fecha, lugar)
+                	completarCamposAct(seleccionada);
                 }
             }
         });
-		
+				
 		JLabel lblActividades = new JLabel("Actividades Registradas");
 		lblActividades.setBounds(169, 10, 116, 13);
 		getContentPane().add(lblActividades);
 		
 		JLabel lblHora = new JLabel("Hora de la clase: ");
-		lblHora.setBounds(52, 173, 121, 13);
+		lblHora.setBounds(52, 149, 121, 13);
 		getContentPane().add(lblHora);
 		
 		JLabel lblLugar = new JLabel("Lugar: ");
-		lblLugar.setBounds(52, 244, 121, 13);
+		lblLugar.setBounds(52, 220, 121, 13);
 		getContentPane().add(lblLugar);
 		
-		JLabel lblCupos = new JLabel("Cupos");
-		lblCupos.setBounds(52, 282, 121, 13);
+		JLabel lblCupos = new JLabel("Cupos:");
+		lblCupos.setBounds(52, 258, 121, 13);
 		getContentPane().add(lblCupos);
 		
 		JDateChooser campoFecha = new JDateChooser();
-        campoFecha.setBounds(212, 202, 180, 21);
+        campoFecha.setBounds(212, 178, 180, 21);
         campoFecha.setToolTipText("Seleccione la fecha");
         getContentPane().add(campoFecha);
 		
 		textFieldHora = new JTextField();
-		textFieldHora.setBounds(212, 168, 180, 21);
+		textFieldHora.setBounds(212, 144, 180, 21);
 		getContentPane().add(textFieldHora);
 		textFieldHora.setColumns(10);
 		
 		textFieldLugar = new JTextField();
-		textFieldLugar.setBounds(212, 241, 180, 19);
+		textFieldLugar.setBounds(212, 217, 180, 19);
 		getContentPane().add(textFieldLugar);
 		textFieldLugar.setColumns(10);
 		
 		textFieldCupos = new JTextField();
-		textFieldCupos.setBounds(212, 277, 180, 21);
+		textFieldCupos.setBounds(212, 253, 180, 21);
 		getContentPane().add(textFieldCupos);
 		textFieldCupos.setColumns(10);
 		
@@ -113,13 +113,13 @@ public class AltaClase extends JInternalFrame{
 	                  String hora = textFieldHora.getText();
 	                  int cupos = Integer.parseInt(textFieldCupos.getText());
 	                  Date fecha = (Date) campoFecha.getDate();
-	                  Long id = (long) Integer.parseInt(textFieldId.getText());
+//	                  Long id = (long) Integer.parseInt(textFieldId.getText());
 	                  Date fechaAlta = fecha;
 	                  String nombre = textFieldNombre.getText();
 	                  Actividad actividad = controlAct.consultarActividad2(textFieldBuscador.getText());
-	                  controlCla.crearClase(nombre,fecha, hora, lugar, fechaAlta, lugar, cupos);
+	                  controlCla.crearClase(nombre,fecha, hora, lugar, fechaAlta, lugar, cupos, actividad);
 	                  String imagen = "";
-					  Clase clase = new Clase(nombre, fecha, hora, lugar, imagen , fechaAlta, cupos);
+					  Clase clase = new Clase(nombre, fecha, hora, lugar, imagen , fechaAlta, cupos, actividad);
 					  dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
 					  //controlCla.agregarClase(clase);
 	                 
@@ -137,36 +137,27 @@ public class AltaClase extends JInternalFrame{
 		btnNewButton_1.setBounds(307, 312, 85, 21);
 		getContentPane().add(btnNewButton_1);
 		
-		textFieldId = new JTextField();
-		textFieldId.setColumns(10);
-		textFieldId.setBounds(212, 138, 180, 21);
-		getContentPane().add(textFieldId);
-		
-		JLabel lblIdDeLa = new JLabel("Id de la clase:");
-		lblIdDeLa.setBounds(52, 138, 121, 13);
-		getContentPane().add(lblIdDeLa);
-		
 		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(52, 210, 121, 13);
+		lblFecha.setBounds(52, 186, 121, 13);
 		getContentPane().add(lblFecha);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		JLabel lblNombre = new JLabel("Nombre de la clase:");
 		lblNombre.setBounds(52, 108, 121, 13);
 		getContentPane().add(lblNombre);
 		
-		JLabel lblActividad = new JLabel("Nombre de la actividad");
+		JLabel lblActividad = new JLabel("Nombre de la actividad:");
 		lblActividad.setBounds(52, 81, 121, 13);
 		getContentPane().add(lblActividad);
 		
 //		JButton btnNewButton_2 = new JButton("Vincular");
 //		btnNewButton_2.setBounds(367, 84, 89, 23);
 //		getContentPane().add(btnNewButton_2);
-		cargarDeportistas();
+		cargarActividades();
 	}
 	
 	
 	
-	public void cargarDeportistas() {
+	public void cargarActividades() {
         DefaultComboBoxModel<dataTypeActividad> model; // Este modelo se crea para cargar el combo
         try {
             // Obtener la lista de entrenadores desde el controlador
@@ -179,6 +170,12 @@ public class AltaClase extends JInternalFrame{
         } catch (Exception e) {
             // Manejo de errores
             JOptionPane.showMessageDialog(this, "Error al listar las activdades: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+	
+    private void completarCamposAct(dataTypeActividad act) {
+        if (act != null) {
+        	textFieldBuscador.setText(act.getNombre());
         }
     }
 }

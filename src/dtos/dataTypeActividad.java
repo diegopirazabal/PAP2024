@@ -98,6 +98,7 @@ public class dataTypeActividad {
 	public void setEntrenadorId(Entrenador entrenadorId) {
 		this.entrenador = entrenadorId;
 	}
+	
 	@Override
 	public String toString() {
         return nombre + " - Entrenador: " + entrenador.getNombre(); // Personaliza esto según lo que quieras mostrar

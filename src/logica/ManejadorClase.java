@@ -62,6 +62,27 @@ public class ManejadorClase {
             return new ArrayList<>();
         }
     }
+    
+    public List<dataTypeClase> listarporActividadNombre(String act) throws ClaseNoExisteException{
+        try {
+            List<Clase> clases = em.createQuery("SELECT c FROM Clase c WHERE c.actividad = :act", Clase.class)
+            .setParameter("act", act)
+            .getResultList();
+            return clases.stream()
+                    .map(clase -> new dataTypeClase(
+                            clase.getFecha(),
+                            clase.getNombre(),
+                            clase.getHora(),
+                            clase.getLugar(),
+                            clase.getImagen(),
+                            clase.getFechaAlta(),
+                            clase.getCupo()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 
     public List<dataTypeClase> getClases() throws ClaseNoExisteException {
         try {
@@ -101,7 +122,29 @@ public class ManejadorClase {
         }
     }
 
- 
+    public List<dataTypeClase> listarClasesPorActividad(String nombreActividad) {
+    	try {
+            List<Clase> clases = em.createQuery(
+                "SELECT c FROM Clase c WHERE c.actividad.nombre = :nombreActividad", Clase.class)
+                .setParameter("nombreActividad", nombreActividad)
+                .getResultList();
+
+            return clases.stream()
+                .map(clase -> new dataTypeClase(
+                    clase.getFecha(), 
+                    clase.getNombre(), 
+                    clase.getHora(), 
+                    clase.getLugar(), 
+                    clase.getImagen(), 
+                    clase.getFecha(), 
+                    clase.getCupo()))
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     
     public void cerrar() {
         if (em.isOpen()) em.close();

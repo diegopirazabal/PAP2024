@@ -199,6 +199,21 @@ public class ListarUsuarios extends JInternalFrame {
         }
     }
     
+    
+//    private void completarCampos(dataTypeClase clase) {
+//        if (clase != null) {
+//        	textFieldLugar.setText(clase.getLugar());
+//        	String k = String.valueOf(clase.getCupo());
+//        	textFieldCupos.setText(k);
+//        	textFieldHora.setText(clase.getHora());
+//        	SimpleDateFormat sm = new SimpleDateFormat("MM-dd-yyyy");
+//        	String f = sm.format(clase.getFecha());
+//        	textFieldFecha.setText(f);
+//        	
+//        }
+//    }
+    
+
     private void completarCamposAct(dataTypeActividad act) {
         if (act != null) {
             textFieldLugar.setText(act.getLugar());
@@ -221,6 +236,7 @@ public class ListarUsuarios extends JInternalFrame {
         }
     }
 
+    
 //    public void cargarClases(dataTypeUsuario x) {
 //        DefaultComboBoxModel<dataTypeClase> model;
 //        try {

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import dtos.dataTypeActividad;
+import dtos.dataTypeClase;
 import dtos.dataTypeUsuario;
 import excepciones.ActividadNoExisteException;
 import excepciones.ActividadRepetidaException;
@@ -62,7 +63,9 @@ public class ControladorActividad implements IControladorActividad {
         return manejador.getActividades();
     }
 
-
+//    public List<dataTypeClase> listarClases(String nombreAct) throws ActividadNoExisteException {
+//    	return manejador.getClases(nombreAct);
+//    }
 
     @Override
     public List<dataTypeActividad> listarActividadesPorEntrenador(String nicknameEntrenador) throws UsuarioNoExisteException {

@@ -41,15 +41,17 @@ public class Clase {
     @Column(name = "Cupo", nullable = false)
     private int cupo;
     
+    @ManyToOne  // Relación con la entidad Actividad
+    @JoinColumn(name = "actividad", nullable = false)
+    private Actividad actividad;
     
-
     @OneToMany(mappedBy = "clase", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Inscripcion> inscripciones;
 
 
     public Clase() {};
     
-    public Clase(String nombre, Date fecha, String hora, String lugar, String imagen, Date fechaAlta, int cupo) {
+    public Clase(String nombre, Date fecha, String hora, String lugar, String imagen, Date fechaAlta, int cupo, Actividad actividad) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -58,11 +60,11 @@ public class Clase {
 		this.imagen = imagen;
 		this.fechaAlta = fechaAlta;
 		this.cupo = cupo;
-
+		this.actividad = actividad;
 		//this.inscripciones = inscripciones;
 	}
 
-
+    
 
 	public String getNombre() {
 		return nombre;
@@ -127,6 +129,14 @@ public class Clase {
 		this.cupo = cupo;
 	}
 
+	
+	public Actividad getActividad() {
+		return actividad;
+	}
+	
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
+	}
 
 	public List<Inscripcion> getInscripciones() {
 		return inscripciones;
@@ -147,4 +157,6 @@ public class Clase {
             return false;
         }
     }
+	
+	
 }

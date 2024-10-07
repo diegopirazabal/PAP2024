@@ -186,8 +186,7 @@ public class Principal {
 	            public void actionPerformed(ActionEvent e) {
 	            	altClaInternalFrame.setVisible(true);
 	            	//consClaInternalFrame.cargarClases();
-	            	consClaInternalFrame.cargarActividades();
-
+	            	altClaInternalFrame.cargarActividades();
 	            }
 	        });
 	        menuClase.add(mntmaltaClase);

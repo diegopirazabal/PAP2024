@@ -38,7 +38,6 @@ public class consultaClase extends JInternalFrame {
 	private JLabel lblNewLabel_3;
 	private JLabel lblClase;
 	private JLabel lblActividad;
-	private JTextField textFieldBuscador;
 	private JLabel lblIngresarNombreDe;
 	
 	public consultaClase() {
@@ -47,16 +46,23 @@ public class consultaClase extends JInternalFrame {
     	setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     	setClosable(true);
     	setTitle("Consultar clase");
-    	setBounds(10, 40, 473, 280);
+    	setBounds(10, 40, 669, 280);
     	getContentPane().setLayout(null);
     	
     	comboBoxActividades = new JComboBox<dataTypeActividad>();
-		comboBoxActividades.setBounds(92, 21, 318, 21);
+		comboBoxActividades.setBounds(190, 19, 318, 21);
 		getContentPane().add(comboBoxActividades);
-		
+    	comboBoxActividades.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
+                if (seleccionada != null) {
+                	cargarClases2(seleccionada);
+                }
+            }
+        });
     	
     	comboBoxClases = new JComboBox<dataTypeClase>();
-    	comboBoxClases.setBounds(92, 79, 318, 21);
+    	comboBoxClases.setBounds(190, 77, 318, 21);
     	getContentPane().add(comboBoxClases);
     	comboBoxClases.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -69,25 +75,25 @@ public class consultaClase extends JInternalFrame {
     	
     	textFieldLugar = new JTextField();
     	textFieldLugar.setEditable(false);
-    	textFieldLugar.setBounds(92, 110, 318, 21);
+    	textFieldLugar.setBounds(190, 108, 318, 21);
     	getContentPane().add(textFieldLugar);
     	textFieldLugar.setColumns(10);
     	
     	textFieldCupos = new JTextField();
     	textFieldCupos.setEditable(false);
-    	textFieldCupos.setBounds(92, 141, 318, 21);
+    	textFieldCupos.setBounds(190, 139, 318, 21);
     	getContentPane().add(textFieldCupos);
     	textFieldCupos.setColumns(10);
     	
     	textFieldHora = new JTextField();
     	textFieldHora.setEditable(false);
-    	textFieldHora.setBounds(92, 171, 318, 21);
+    	textFieldHora.setBounds(190, 169, 318, 21);
     	getContentPane().add(textFieldHora);
     	textFieldHora.setColumns(10);
     	
     	textFieldFecha = new JTextField();
     	textFieldFecha.setEditable(false);
-    	textFieldFecha.setBounds(92, 202, 315, 21);
+    	textFieldFecha.setBounds(190, 200, 318, 21);
     	getContentPane().add(textFieldFecha);
     	textFieldFecha.setColumns(10);
     	
@@ -114,33 +120,6 @@ public class consultaClase extends JInternalFrame {
     	lblActividad = new JLabel("Actividad");
     	lblActividad.setBounds(10, 24, 151, 14);
     	getContentPane().add(lblActividad);
-    	
-    	textFieldBuscador = new JTextField();
-    	textFieldBuscador.setColumns(10);
-    	textFieldBuscador.setBounds(92, 52, 318, 21);
-    	getContentPane().add(textFieldBuscador);
-    	
-    	lblIngresarNombreDe = new JLabel("Ingresar nombre de la actividad");
-    	lblIngresarNombreDe.setBounds(10, 49, 46, 14);
-    	getContentPane().add(lblIngresarNombreDe);
-    	
-    	JButton btnNewButton = new JButton("X");
-    	btnNewButton.setBounds(421, 51, 30, 23);
-    	getContentPane().add(btnNewButton);
-    	btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent el) {
-                Actividad seleccionada;
-                try {
-					seleccionada = controlAct.consultarActividad2(textFieldBuscador.getText());
-					cargarClases(seleccionada);
-					dataTypeClase seleccionada2 = (dataTypeClase) comboBoxClases.getSelectedItem();
-					completarCampos(seleccionada2);
-				} catch (ActividadNoExisteException e) {
-					e.printStackTrace();
-				}
-                
-            }
-        });
 	}
 	
 	public void cargarActividades() {
@@ -184,4 +163,34 @@ public class consultaClase extends JInternalFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+	
+	
+	public void cargarClases2(dataTypeActividad actividad) {
+	    DefaultComboBoxModel<dataTypeClase> model;
+	    try {
+	        // Llamar al método del controlador que obtiene las clases para la actividad seleccionada
+	        List<dataTypeClase> clases = controlCla.listarClasesPorActividad(actividad.getNombre());
+	        model = new DefaultComboBoxModel<>();
+	        for (dataTypeClase clase : clases) {
+	            model.addElement(clase);
+	        }
+	        comboBoxClases.setModel(model);
+	    } catch (ClaseNoExisteException e) {
+	        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+	}
+
+//  public void cargarClases(dataTypeUsuario x) {
+//  DefaultComboBoxModel<dataTypeClase> model;
+//  try {
+//      List<dataTypeClase> clases = controlCla.listarClasesPorDeportista(x.getNickname());
+//      model = new DefaultComboBoxModel<dataTypeClase>();
+//      for (dataTypeClase clase : clases) {
+//          model.addElement(clase);
+//      }
+//      comboBoxClases.setModel(model);
+//  } catch (ClaseNoExisteException e) {
+//      JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//  }
+//}
 }
