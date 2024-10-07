@@ -17,7 +17,9 @@ import javax.swing.SwingConstants;
 
 import com.toedter.calendar.JDateChooser;
 
+import dtos.dataTypeActividad;
 import dtos.dataTypeUsuario;
+import excepciones.UsuarioNoExisteException;
 import logica.Fabrica;
 import logica.IControladorActividad;
 import logica.IControladorUsuario;
@@ -230,10 +232,11 @@ public class altaActividad extends JInternalFrame {
         textFieldEntrenador.setText("");
         fechaAlta.setDate(null);
     }
+
     
     private void completarEntrenador(dataTypeUsuario usuario) {
         if (usuario != null) {
-            txtMostrarNombre.setText(usuario.getNombre());
+        	textFieldEntrenador.setText(usuario.getNickname());
         }
     }
 }
