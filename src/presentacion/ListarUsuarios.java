@@ -198,6 +198,7 @@ public class ListarUsuarios extends JInternalFrame {
             txtMostrarMail.setText(usuario.getEmail());
         }
     }
+    
     private void completarCamposAct(dataTypeActividad act) {
         if (act != null) {
             textFieldLugar.setText(act.getLugar());

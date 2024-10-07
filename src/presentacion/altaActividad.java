@@ -46,6 +46,7 @@ public class altaActividad extends JInternalFrame {
     private JButton btnCancelar;
     private JDateChooser fechaAlta;
     private JTextField textFieldEntrenador;
+    private JTextField txtMostrarNombre;
     private JComboBox<dataTypeUsuario> comboBoxEntrenadores;
     private JButton btnAceptar_1;
     
@@ -58,6 +59,16 @@ public class altaActividad extends JInternalFrame {
         comboBoxEntrenadores = new JComboBox<>();
         comboBoxEntrenadores.setBounds(100, 27, 361, 22);
         getContentPane().add(comboBoxEntrenadores);
+        comboBoxEntrenadores.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dataTypeUsuario seleccionado = (dataTypeUsuario) comboBoxEntrenadores.getSelectedItem();
+                if (seleccionado != null) {
+                	completarEntrenador(seleccionado);
+                }
+            }
+        });
+        
+        
         
         setResizable(true);
         setIconifiable(true);
@@ -142,7 +153,8 @@ public class altaActividad extends JInternalFrame {
         getContentPane().add(lblEntrenador);
         
         cargarEntrenadores();
-        
+
+            
         JLabel lblEntrenadoresRegistrados = new JLabel("Entrenadores registrados:");
         lblEntrenadoresRegistrados.setHorizontalAlignment(SwingConstants.RIGHT);
         lblEntrenadoresRegistrados.setBounds(210, 11, 126, 14);
@@ -217,5 +229,11 @@ public class altaActividad extends JInternalFrame {
         textFieldImagen.setText("");
         textFieldEntrenador.setText("");
         fechaAlta.setDate(null);
+    }
+    
+    private void completarEntrenador(dataTypeUsuario usuario) {
+        if (usuario != null) {
+            txtMostrarNombre.setText(usuario.getNombre());
+        }
     }
 }
