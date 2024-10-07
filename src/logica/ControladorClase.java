@@ -14,8 +14,8 @@ public class ControladorClase implements IControladorClase{
         manejador = manejador.getinstance(); // Usa el método getinstance para obtener la instancia
     }
 	
-	public void crearClase(Long id, String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException {
-        Clase clase = new Clase(id, nombre, fecha, hora, lugar, imagen, fechaAlta, cupo);
+	public void crearClase(String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException {
+        Clase clase = new Clase(nombre, fecha, hora, lugar, imagen, fechaAlta, cupo);
         // Agregar la actividad al manejador
         manejador.agregarClase(clase);
     }
@@ -25,8 +25,8 @@ public class ControladorClase implements IControladorClase{
 	        return manejador.getClases();
 	 }
 	    
-	 public Clase obtenerClase(Long id) {
-		 return manejador.obtenerClasePorID(id);
+	 public Clase obtenerClase(String nombre) {
+		 return manejador.obtenerClasePorNombre(nombre);
 	 }
 	 
 	 public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException {

@@ -11,8 +11,8 @@ import excepciones.ClaseRepetidaException;
 public interface IControladorClase {
 
 	List<dataTypeClase> listarTodas() throws ClaseNoExisteException;
-	Clase obtenerClase(Long id);
-	void crearClase(Long id, String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException;
+	Clase obtenerClase(String nombre);
+	void crearClase(String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo) throws ClaseRepetidaException;
 	public List<dataTypeClase> listarporActividad(Actividad act) throws ClaseNoExisteException;
 	public void agregarClase(Clase clase) throws ClaseRepetidaException;
 }
