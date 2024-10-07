@@ -21,9 +21,6 @@ import jakarta.persistence.Table;
 public class Clase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
     @Column(name = "Nombre", nullable = false)
     private String nombre;
     
@@ -52,10 +49,9 @@ public class Clase {
 
     public Clase() {};
     
-    public Clase(Long id, String nombre, Date fecha, String hora, String lugar, String imagen, Date fechaAlta, int cupo) {
+    public Clase(String nombre, Date fecha, String hora, String lugar, String imagen, Date fechaAlta, int cupo) {
 		super();
 		this.nombre = nombre;
-		this.id = id;
 		this.fecha = fecha;
 		this.hora = hora;
 		this.lugar = lugar;
@@ -67,18 +63,10 @@ public class Clase {
 	}
 
 
-	public Long getId() {
-		return id;
-	}
 
 	public String getNombre() {
 		return nombre;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 
 	public Date getFecha() {
 		return fecha;

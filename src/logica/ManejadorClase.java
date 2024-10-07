@@ -29,10 +29,10 @@ public class ManejadorClase {
         return instancia;
     }
 
-    Clase obtenerClasePorID(Long id) {
+    Clase obtenerClasePorNombre(String nombre) {
         try {
-            List<Clase> resultados = em.createQuery("SELECT c FROM Clase c WHERE c.id = :id", Clase.class)
-                                           .setParameter("id", id)
+            List<Clase> resultados = em.createQuery("SELECT c FROM Clase c WHERE c.nombre = :nombre", Clase.class)
+                                           .setParameter("nombre", nombre)
                                            .getResultList();
             return resultados.isEmpty() ? null : resultados.get(0);
         } catch (Exception e) {
@@ -85,9 +85,9 @@ public class ManejadorClase {
     public void agregarClase(Clase clase) throws ClaseRepetidaException {
     	
         // Verificar si la actividad ya existe en la base de datos
-        Clase claseExistente = obtenerClasePorID(clase.getId());
+        Clase claseExistente = obtenerClasePorNombre(clase.getNombre());
         if (claseExistente != null) {
-            throw new ClaseRepetidaException("La clase con ID " + clase.getId() + " ya existe.");
+            throw new ClaseRepetidaException("La clase con nombre " + clase.getNombre() + " ya existe.");
         }
         // Persistir la nueva actividad
         EntityTransaction transaction = em.getTransaction();

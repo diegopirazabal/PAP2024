@@ -135,11 +135,8 @@ public class consultaClase extends JInternalFrame {
 					cargarClases(seleccionada);
 					dataTypeClase seleccionada2 = (dataTypeClase) comboBoxClases.getSelectedItem();
 					completarCampos(seleccionada2);
-					
-					System.out.println("sos muy crack");
 				} catch (ActividadNoExisteException e) {
 					e.printStackTrace();
-					System.out.println("sos muy boludo");
 				}
                 
             }
