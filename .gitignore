@@ -1,0 +1,16 @@
+# Ignorar archivos de configuración del entorno de desarrollo
+
+.project
+.settings/
+*.iml
+*.ipr
+*.iws
+
+# Ignorar archivos de compilación
+/build/
+/target/
+/bin/
+
+# Ignorar archivos temporales
+*.log
+*.tmp
