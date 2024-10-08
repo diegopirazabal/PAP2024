@@ -21,12 +21,14 @@ import logica.IControladorActividad;
 
 public class listarActividades extends JInternalFrame {
 	private IControladorActividad controlAct = Fabrica.getInstance().getIControladorActividad();
+	
 	private JComboBox<dataTypeActividad> comboBoxActividades;
 	private JTextField textFieldDescripcion;
 	private JTextField textFieldDuracion;
 	private JTextField textFieldCosto;
 	private JTextField textFieldLugar;
 	private JTextField textFieldEntrenadorDesignado;
+	
 	public listarActividades(IControladorActividad ControlAct) {
 		setResizable(true);
         setIconifiable(true);
@@ -54,9 +56,6 @@ public class listarActividades extends JInternalFrame {
 		lblNewLabel.setBounds(151, 10, 130, 14);
 		getContentPane().add(lblNewLabel);
 		
-//		JLabel lblNewLabel_1 = new JLabel("Nombre actividad");
-//		lblNewLabel_1.setBounds(29, 49, 112, 14);
-//		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Descripcion");
 		lblNewLabel_2.setBounds(29, 94, 112, 14);

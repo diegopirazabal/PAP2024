@@ -46,7 +46,7 @@ public class AltaClase extends JInternalFrame{
         setTitle("Registrar una Clase");
         setBounds(10, 40, 539, 404);
         
-		comboBoxActividades = new JComboBox();
+		comboBoxActividades = new JComboBox<dataTypeActividad>();
 		comboBoxActividades.setBounds(128, 28, 198, 21);
 		getContentPane().add(comboBoxActividades);
 		comboBoxActividades.addActionListener(new ActionListener() {
