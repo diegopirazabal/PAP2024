@@ -105,19 +105,17 @@ public class ManejadorClase {
 
     public void agregarClase(Clase clase) throws ClaseRepetidaException {
     	
-        // Verificar si la actividad ya existe en la base de datos
         Clase claseExistente = obtenerClasePorNombre(clase.getNombre());
         if (claseExistente != null) {
             throw new ClaseRepetidaException("La clase con nombre " + clase.getNombre() + " ya existe.");
         }
-        // Persistir la nueva actividad
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();  // Inicia la transacción
-            em.persist(clase);  // Persiste la nueva clase
-            transaction.commit(); // Confirma la transacción
+            transaction.begin();
+            em.persist(clase);
+            transaction.commit();
         } catch (Exception e) {
-            if (transaction.isActive()) transaction.rollback();  // Si hay error, hacer rollback
+            if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
         }
     }

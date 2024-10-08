@@ -27,18 +27,13 @@ public class Inscripcion {
     private double costo;
 
     @ManyToOne
-    private Clase clase; // Relación con la clase
+    private Clase clase;
 
     @ManyToOne
-    private Deportista deportista; // Relación con el deportista
+    private Deportista deportista; 
 
-//    @ManyToOne
-//    @JoinColumn(name = "clase_id")
-//    private Clase clase;
-    // Constructor sin parámetros
     public Inscripcion() {}
 
-    // Constructor con parámetros
     public Inscripcion(Date fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
         this.fechaInscripcion = fechaInscripcion;
         this.cantidadDeportistas = cantidadDeportistas;
@@ -47,11 +42,6 @@ public class Inscripcion {
         this.deportista = deportista;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "deportista_id")
-//    private Deportista deportista;
-
-    // Getters y Setters
     public Date getFechaInscripcion() {
         return fechaInscripcion;
     }

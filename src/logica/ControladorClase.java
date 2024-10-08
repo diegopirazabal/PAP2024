@@ -11,12 +11,11 @@ public class ControladorClase implements IControladorClase{
 	private ManejadorClase manejador;
 	
 	public ControladorClase() {
-        manejador = manejador.getinstance(); // Usa el método getinstance para obtener la instancia
-    }
+        manejador = manejador.getinstance(); 
+	}
 	
 	public void crearClase(String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo, Actividad actividad) throws ClaseRepetidaException {
         Clase clase = new Clase(nombre, fecha, hora, lugar, imagen, fechaAlta, cupo, actividad);
-        // Agregar la actividad al manejador
         manejador.agregarClase(clase);
     }
 	

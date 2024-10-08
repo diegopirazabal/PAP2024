@@ -39,15 +39,15 @@ public class Actividad {
     private Date fechaAlta;
 
     @Column (name = "Estado", nullable = true)
-    private String estado; // Ej: Activa, Inactiva, etc. DEBERIA SER UN ENUM ?
+    private String estado;
     
-    private String imagen; // URL o nombre de archivo de la imagen
+    private String imagen;
     
     @ManyToOne
-    private Entrenador entrenador; // Relación con el entrenador
+    private Entrenador entrenador;
     
     @OneToMany( targetEntity=Clase.class)
-    private List<Clase> clases = new ArrayList<>(); // Relación con las clases
+    private List<Clase> clases = new ArrayList<>();
     
 
     public Actividad(){};
@@ -60,7 +60,7 @@ public class Actividad {
         this.lugar = lugar;
         this.fechaAlta = fechaAlta;
         this.imagen = imagen;
-        this.entrenador = entrenador; // Establece el entrenador
+        this.entrenador = entrenador;
     }
     
     public Long getId() {

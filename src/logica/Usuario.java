@@ -47,7 +47,6 @@ public Usuario(String nickname, String nombre, String apellido, String email, Da
     this.esEntrenador = esEntrenador;
 }
 
-// Getters y Setters
 	public String getNickname() {
 		return nickname;
 	}

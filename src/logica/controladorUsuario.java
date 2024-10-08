@@ -47,22 +47,7 @@ public class controladorUsuario implements IControladorUsuario{
     	return manejador.obtenerEntrenadorPorNickname(nickname);
     }
 
-//    public List<dataTypeUsuario> listarEntrenadores() {
-//        return manejadorUsuarios.getinstance().obtenerEntrenadores();
-//    }
-
     public List<dataTypeUsuario> listarDeportistas() {
         return manejador.obtenerDeportistas();
     }
-
-//    public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException {
-//        manejadorUsuarios mu = manejadorUsuarios.getinstance();
-//        List<dataTypeUsuario> usuarios = mu.obtenerTodos(); // Método que devuelve List<dataTypeUsuario>
-//
-//        if (usuarios != null && !usuarios.isEmpty()) {
-//            return usuarios;
-//        } else {
-//            throw new UsuarioNoExisteException("No existen usuarios registrados");
-//        }
-//    }
 }

@@ -21,7 +21,7 @@ public class Entrenador extends Usuario {
     @Column (name = "URL", nullable = true, length = 75)
     private String linkSitioWeb;
     
-    @OneToMany(targetEntity=Actividad.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
+    @OneToMany(targetEntity=Actividad.class) 
     private List<Actividad> actividades;
     
     private Boolean esEntrenador = true;

@@ -24,6 +24,4 @@ public interface IControladorUsuario {
 	public List<dataTypeUsuario> listarDeportistas() throws UsuarioNoExisteException;
 	
 	public List<dataTypeUsuario> listarEntrenadores() throws UsuarioNoExisteException;
-
-//	public List<dataTypeUsuario> getUsuarios() throws UsuarioNoExisteException;
 }

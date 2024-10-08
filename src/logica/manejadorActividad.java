@@ -32,7 +32,6 @@ public class manejadorActividad {
     }
 
     Actividad obtenerActividadPorNombre(String nombre) {
-    	//Devuelve un objeto de tipo Actividad
         try {
             List<Actividad> resultados = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
                                            .setParameter("nombre", nombre)
@@ -45,7 +44,6 @@ public class manejadorActividad {
     }
     
     public dataTypeActividad buscarActividadPorNombre(String nombre) {
-    	//Devuelve un objeto de tipo dataTypeActividad
         try {
             Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
                     .setParameter("nombre", nombre)
@@ -95,7 +93,6 @@ public class manejadorActividad {
     }
 
     public void agregar(Actividad actividad) throws ActividadRepetidaException {
-        // Verificar si la actividad ya existe en la base de datos
         Actividad actividadExistente = obtenerActividadPorNombre(actividad.getNombre());
         if (actividadExistente != null) {
             throw new ActividadRepetidaException("La actividad con nombre " + actividad.getNombre() + " ya existe.");

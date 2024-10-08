@@ -28,7 +28,6 @@ public class manejadorUsuarios {
     }
     
     public Usuario obtenerUsuarioPorNickname(String nickname) {
-    	//Devuelve un objeto de tipo Usuario
         try {
             List<Usuario> resultados = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
                                          .setParameter("nickname", nickname)
@@ -63,7 +62,6 @@ public class manejadorUsuarios {
 
 
     public void agregar(Usuario usuario) throws UsuarioRepetidoException {
-        // Verificar si el usuario ya existe en la base de datos utilizando la nueva función
         Usuario usuarioExistente = obtenerUsuarioPorNickname(usuario.getNickname());
         if (usuarioExistente != null) {
             throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() + " ya existe.");
@@ -72,11 +70,11 @@ public class manejadorUsuarios {
         // Persistir el nuevo usuario
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();  // Inicia la transacción
-            em.persist(usuario);  // Persiste el nuevo usuario
-            transaction.commit(); // Confirma la transacción
+            transaction.begin();  
+            em.persist(usuario);  
+            transaction.commit(); 
         } catch (Exception e) {
-            if (transaction.isActive()) transaction.rollback();  // Si hay error, hacer rollback
+            if (transaction.isActive()) transaction.rollback();  
             e.printStackTrace();
         }
     }
@@ -134,16 +132,6 @@ public class manejadorUsuarios {
         }
     }
 
-
-//    public dataTypeUsuario buscarUsuario(String nickname) throws UsuarioNoExisteException {
-//        dataTypeUsuario usuario = buscarUsuarioPorNickname(nickname);
-//        if (usuario == null) {
-//            throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
-//        }
-//        return usuario;
-//    }
-
-
     public void eliminar(String nickname) throws UsuarioNoExisteException {
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -164,17 +152,10 @@ public class manejadorUsuarios {
         }
     }
 
-
-    
-
-
-
     public List<dataTypeUsuario> obtenerEntrenadores() {
         try {
             List<Entrenador> entrenadores = em.createQuery("SELECT u FROM Usuario u WHERE u.esEntrenador = true", Entrenador.class)
                     .getResultList();
-
-            // Convertir la lista de Usuarios a una lista de dataTypeUsuario
             return entrenadores.stream()
                     .map(entrenador -> new dataTypeUsuario(
                             entrenador.getNickname(),
@@ -182,7 +163,7 @@ public class manejadorUsuarios {
                             entrenador.getApellido(),
                             entrenador.getEmail(),
                             entrenador.getFNacimiento(),
-                            entrenador.getTipo()))  // Asume que tienes un método getTipo() para determinar si es entrenador
+                            entrenador.getTipo())) 
                     .collect(Collectors.toList());
             
         } catch (Exception e) {
@@ -191,14 +172,9 @@ public class manejadorUsuarios {
         }
     }
 
-
-
-
     public List<dataTypeUsuario> obtenerDeportistas() {
         try {
-            // Consulta que selecciona solo los Deportistas
             List<Deportista> deportistas = em.createQuery("SELECT d FROM Deportista d", Deportista.class).getResultList();
-            // Convertimos cada Deportista a dataTypeUsuario
             return deportistas.stream()
                     .map(deportista -> new dataTypeUsuario(
                             deportista.getNickname(),

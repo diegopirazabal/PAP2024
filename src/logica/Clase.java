@@ -41,7 +41,7 @@ public class Clase {
     @Column(name = "Cupo", nullable = false)
     private int cupo;
     
-    @ManyToOne  // Relación con la entidad Actividad
+    @ManyToOne
     @JoinColumn(name = "actividad", nullable = false)
     private Actividad actividad;
     

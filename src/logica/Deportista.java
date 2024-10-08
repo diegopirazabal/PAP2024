@@ -21,7 +21,7 @@ public class Deportista extends Usuario {
 	@Column (name = "PROFESIONAL", nullable = true)
     private boolean esProfesional;
 	
-	@OneToMany(targetEntity=Clase.class) //  @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) segun chatgpt)
+	@OneToMany(targetEntity=Clase.class)
     private List<Inscripcion> inscripciones;
 
     public Deportista() {};

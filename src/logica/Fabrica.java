@@ -8,16 +8,15 @@ public class Fabrica {
 	   
 		private static Fabrica instancia;
 
-	    private Fabrica() {  /* Constructor privado para evitar que otras clases puedan instanciarlo */
+	    private Fabrica() {
 	    };
 	    
 	    public static Fabrica getInstance() {
 	        if (instancia == null) {
-	            instancia = new Fabrica();   // SOlo de aca se puede llamar al contructor
+	            instancia = new Fabrica();
 	        }
 	        return instancia;
 	    }
-	    /*Metodo publico para devolver el controlador*/
 	    public IControladorUsuario getIControladorUsuario() {
 	        return new controladorUsuario();
 	    }
