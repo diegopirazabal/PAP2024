@@ -187,7 +187,6 @@ public class InscripcionClase extends JInternalFrame{
     }
 	
 
-
 public void cargarDeportistas() {
 	DefaultComboBoxModel<dataTypeUsuario> model;
     try {

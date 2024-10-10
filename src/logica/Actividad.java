@@ -39,7 +39,7 @@ public class Actividad {
     private Date fechaAlta;
 
     @Column (name = "Estado", nullable = true)
-    private String estado;
+    private Boolean estado;
     
     private String imagen;
     
@@ -47,8 +47,7 @@ public class Actividad {
     private Entrenador entrenador;
     
     @OneToMany( targetEntity=Clase.class)
-    private List<Clase> clases = new ArrayList<>();
-    
+    private List<Clase> clases = new ArrayList<>();    
 
     public Actividad(){};
     
@@ -61,6 +60,7 @@ public class Actividad {
         this.fechaAlta = fechaAlta;
         this.imagen = imagen;
         this.entrenador = entrenador;
+        this.estado = null;
     }
     
     public Long getId() {
@@ -133,14 +133,14 @@ public class Actividad {
 	}
 
 
-//	public estadoActividad getEstado() {
-//		return estado;
-//	}
-//
-//
-//	public void setEstado(estadoActividad estado) {
-//		this.estado = estado;
-//	}
+	public Boolean getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
 
 
 	public String getImagen() {
@@ -173,9 +173,9 @@ public class Actividad {
 	}
 
 
-	public enum estadoActividad {
-        ACTIVA,
-        INACTIVA,
-        CANCELADA
-    }
+//	public enum estadoActividad {
+//        Agregada,
+//        Confirmada,
+//        Rechazada
+//    }
 }

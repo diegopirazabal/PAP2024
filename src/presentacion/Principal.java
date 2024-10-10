@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import logica.Fabrica;
 import logica.IControladorActividad;
 import logica.IControladorUsuario;
+import javax.swing.JTextPane;
 
 public class Principal {
 	 private JFrame frmGestionDeUsuarios;    
@@ -28,7 +29,7 @@ public class Principal {
 	 private rankingActividades rankActInternalFrame;
 	 private consultaClase consClaInternalFrame;
 	 private InscripcionClase insClaInternalFrame;
-	 
+	 private estadoActividad cambiarEstadoInternalFrame ;
 	 
 	 public static void main(String[] args) {
 	    	System.out.print("Entre al main");
@@ -49,6 +50,7 @@ public class Principal {
 		 Fabrica fabrica = Fabrica.getInstance(); 
 		 controlUsr = fabrica.getIControladorUsuario();
 	     
+		 
 	     altUsrInternalFrame = new altaUsuario(controlUsr);
 	     altUsrInternalFrame.setLocation(30, 35);
 	     altUsrInternalFrame.setVisible(false);
@@ -56,6 +58,11 @@ public class Principal {
 	     consActInternalFrame = new listarActividades(controlAct);
 	     consActInternalFrame.setLocation(30, 35);
 	     consActInternalFrame.setVisible(false);
+	     
+	     cambiarEstadoInternalFrame = new estadoActividad(controlAct);
+	     cambiarEstadoInternalFrame.setLocation(30, 35);
+	     cambiarEstadoInternalFrame.setVisible(false);
+	     
 	     
 	     listUsrInternalFrame = new ListarUsuarios(controlUsr);
 	     listUsrInternalFrame.setLocation(30, 35);
@@ -94,6 +101,8 @@ public class Principal {
 	     frmGestionDeUsuarios.getContentPane().add(consClaInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(insClaInternalFrame);
 	     frmGestionDeUsuarios.getContentPane().add(rankActInternalFrame);
+	     frmGestionDeUsuarios.getContentPane().add(cambiarEstadoInternalFrame);
+
 	 }
 	 
 	 private void initialize() {
@@ -138,17 +147,20 @@ public class Principal {
 	            }
 	        });
 	        menuUsuarios.add(mntmListaUsuarios);
-	        
-//	        JMenuItem mntmConsultarUsuarios = new JMenuItem("Consultar Usuarios");
-//	        mntmConsultarUsuarios.addActionListener(new ActionListener() {
-//	            public void actionPerformed(ActionEvent e) {
-//	            	despUsrInternalFrame.setVisible(true);
-//	            }
-//	        });
-//	        menuUsuarios.add(mntmConsultarUsuarios);
+
 	        
 	        JMenu menuActividad = new JMenu("Actividad");
 	        menuBar.add(menuActividad);
+	        
+	        JMenuItem mntmalcambiarEstado = new JMenuItem("Cambiar Estado");
+	        mntmalcambiarEstado.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	cambiarEstadoInternalFrame.setVisible(true);
+	            	cambiarEstadoInternalFrame.cargarActividades();
+	            }
+	        });	        
+	        menuActividad.add(mntmalcambiarEstado);
+
 	        
 	        JMenuItem mntmaltaActividad = new JMenuItem("Registrar Actividad");
 	        mntmaltaActividad.addActionListener(new ActionListener() {
@@ -167,7 +179,15 @@ public class Principal {
 	            }
 	        });
 	        
-
+	        
+	        menuActividad.add(mntmconsultaActividad);
+	        JMenuItem mntmCambiarEstado = new JMenuItem("Cambiar Estado");
+	        mntmCambiarEstado.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	            	rankActInternalFrame.setVisible(true);
+	            	
+	            }
+	        });
 	        menuActividad.add(mntmconsultaActividad);
 	        JMenuItem mntmrankingActividades = new JMenuItem("Ranking Actividades");
 	        mntmrankingActividades.addActionListener(new ActionListener() {

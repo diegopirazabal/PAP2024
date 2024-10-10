@@ -184,6 +184,26 @@ public class manejadorActividad {
         }
     }
     
+    public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException {
+        try {
+            List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.estado = null", Actividad.class).getResultList();
+            return actividades.stream()
+                    .map(actividad -> new dataTypeActividad(
+                            actividad.getNombre(),
+                            actividad.getDescripcion(),
+                            actividad.getDuracion(),
+                            actividad.getCosto(),
+                            actividad.getLugar(),
+                            actividad.getFechaAlta(),
+                            actividad.getImagen(),
+                            actividad.getEntrenador()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
     public void cerrar() {
         if (em.isOpen()) em.close();
         if (emf.isOpen()) emf.close();

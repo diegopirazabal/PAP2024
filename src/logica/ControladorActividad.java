@@ -62,4 +62,9 @@ public class ControladorActividad implements IControladorActividad {
 	public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException {
 		return manejador.obtenerEntrenadorDeLaActividadPorNickname(nickname);
 	}
+	
+    public List<dataTypeActividad> listarAgregadas() throws ActividadNoExisteException{
+        return manejador.getAgregadas();
+    };
+
 }

@@ -21,8 +21,12 @@ public interface IControladorActividad {
     public void eliminarActividad(String nombre) throws ActividadNoExisteException;
 
     public List<dataTypeActividad> listarTodas() throws ActividadNoExisteException;
+    
+    public List<dataTypeActividad> listarAgregadas() throws ActividadNoExisteException;
 
     public List<dataTypeActividad> listarActividadesPorEntrenador(String nicknameEntrenador) throws UsuarioNoExisteException;
     
     public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException;
+    
+    
 }
