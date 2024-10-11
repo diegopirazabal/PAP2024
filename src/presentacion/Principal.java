@@ -156,7 +156,7 @@ public class Principal {
 	        mntmalcambiarEstado.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            	cambiarEstadoInternalFrame.setVisible(true);
-	            	cambiarEstadoInternalFrame.cargarActividades();
+	            	cambiarEstadoInternalFrame.cargarActividades3();
 	            }
 	        });	        
 	        menuActividad.add(mntmalcambiarEstado);

@@ -33,7 +33,22 @@ public class ControladorActividad implements IControladorActividad {
 
         manejador.agregar(actividad);
     }
-
+    
+    @Override
+    public List<dataTypeActividad> getConfirmadas() throws ActividadNoExisteException{
+    	return manejador.getConfirmadas();
+    }
+    
+    @Override
+    public void rechazarActividad(Actividad x) {
+    	manejador.rechazarActividad(x);
+    }
+    
+    @Override
+    public void activarActividad(Actividad x) {
+    	manejador.activarActividad(x);
+    }
+    
     @Override
     public dataTypeActividad consultarActividad(String nombre) throws ActividadNoExisteException {
         return manejador.buscarActividadPorNombre(nombre);
@@ -62,9 +77,10 @@ public class ControladorActividad implements IControladorActividad {
 	public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException {
 		return manejador.obtenerEntrenadorDeLaActividadPorNickname(nickname);
 	}
-	
-    public List<dataTypeActividad> listarAgregadas() throws ActividadNoExisteException{
+	@Override
+    public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException {
         return manejador.getAgregadas();
-    };
+    }
+	
 
 }

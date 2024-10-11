@@ -43,6 +43,32 @@ public class manejadorActividad {
         }
     }
     
+    public void activarActividad(Actividad x) {
+    	x.setEstado(true);
+    	EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();  
+            em.persist(x);  
+            transaction.commit(); 
+        } catch (Exception e) {
+            if (transaction.isActive()) transaction.rollback();  
+            e.printStackTrace();
+        }
+    }
+    
+    public void rechazarActividad(Actividad x) {
+    	x.setEstado(false);
+    	EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();  
+            em.persist(x);  
+            transaction.commit(); 
+        } catch (Exception e) {
+            if (transaction.isActive()) transaction.rollback();  
+            e.printStackTrace();
+        }
+    }
+    
     public dataTypeActividad buscarActividadPorNombre(String nombre) {
         try {
             Actividad actividad = em.createQuery("SELECT a FROM Actividad a WHERE a.nombre = :nombre", Actividad.class)
@@ -187,6 +213,28 @@ public class manejadorActividad {
     public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException {
         try {
             List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.estado = null", Actividad.class).getResultList();
+            
+            return actividades.stream()
+                    .map(actividad -> new dataTypeActividad(
+                            actividad.getNombre(),
+                            actividad.getDescripcion(),
+                            actividad.getDuracion(),
+                            actividad.getCosto(),
+                            actividad.getLugar(),
+                            actividad.getFechaAlta(),
+                            actividad.getImagen(),
+                            actividad.getEntrenador()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
+    public List<dataTypeActividad> getConfirmadas() throws ActividadNoExisteException {
+        try {
+            List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.estado = true", Actividad.class).getResultList();
+            
             return actividades.stream()
                     .map(actividad -> new dataTypeActividad(
                             actividad.getNombre(),

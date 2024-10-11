@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -25,14 +26,14 @@ public class estadoActividad  extends JInternalFrame {
 	private JComboBox<dataTypeActividad> comboBoxActividades;
     private ButtonGroup estadoActividad; 
 	public estadoActividad(IControladorActividad ControlAct) {
-		getContentPane().setLayout(null);
 		
-        setResizable(true);
-        setIconifiable(true);
+		setIconifiable(true);
+		getContentPane().setLayout(null);
+		setResizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Cambiar Estado de Actividad");
-        setBounds(10, 40, 477, 357);
+        setTitle("Cambiar el estado de una actividad");
+        setBounds(10, 40, 500, 250);
 		
 		comboBoxActividades = new JComboBox<dataTypeActividad>();
 		comboBoxActividades.setBounds(153, 39, 290, 21);
@@ -46,12 +47,12 @@ public class estadoActividad  extends JInternalFrame {
         estadoActividad = new ButtonGroup();
         
 JRadioButton rdbtnConfirmar = new JRadioButton("Confirmar");
-rdbtnConfirmar.setBounds(159, 219, 75, 25);
+rdbtnConfirmar.setBounds(65, 78, 171, 25);
 getContentPane().add(rdbtnConfirmar);
 estadoActividad.add(rdbtnConfirmar);
 
         JButton btnAceptar = new JButton("Aceptar");
-        btnAceptar.setBounds(312, 281, 143, 21);
+        btnAceptar.setBounds(300, 188, 143, 21);
         btnAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
 	            dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
@@ -63,21 +64,33 @@ estadoActividad.add(rdbtnConfirmar);
 					e.printStackTrace();
 				}
 	            if (seleccionada != null) {
-	            	if (rdbtnConfirmar.isSelected())
-	            		aux.setEstado(true);
-	            		else aux.setEstado(false);
+	            	if (rdbtnConfirmar.isSelected()) {
+	            		System.out.println("FLAG -- actividad seleccionada: " + aux.getNombre());
+	            		System.out.println("FLAG -- estado pre activacion actividad seleccionada: " + aux.getEstado());
+	            		controlAct.activarActividad(aux);
+	            		System.out.println("FLAG -- estado post activacion actividad seleccionada: " + aux.getEstado());
+	            		setVisible(false);
+	            		
+	            		
+	            	}else {
+	            		controlAct.rechazarActividad(aux);
+	            		setVisible(false);
+	            		}
+	            cargarActividades3();
 	            }
             }
         });
-                
+        
+       
+        
         JRadioButton rdbtnRechazar = new JRadioButton("Rechazar");
-        rdbtnRechazar.setBounds(259, 221, 71, 21);
+        rdbtnRechazar.setBounds(295, 80, 148, 21);
         getContentPane().add(rdbtnRechazar);
         estadoActividad.add(rdbtnRechazar);
 getContentPane().add(btnAceptar);
         
                 JButton btnCancelar = new JButton("Cancelar");
-                    btnCancelar.setBounds(159, 281, 143, 21);
+                    btnCancelar.setBounds(153, 152, 143, 21);
                     btnCancelar.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             setVisible(false);
@@ -87,10 +100,11 @@ getContentPane().add(btnAceptar);
                     	}
 	
 	
-	public void cargarActividades() {
+	public void cargarActividades3() {
         DefaultComboBoxModel<dataTypeActividad> model;
         try {
-            List<dataTypeActividad> actividades = controlAct.listarAgregadas();
+            List<dataTypeActividad> actividades = controlAct.getAgregadas();
+            
             model = new DefaultComboBoxModel<dataTypeActividad>();
             for (dataTypeActividad actividad : actividades) {
                 model.addElement(actividad);

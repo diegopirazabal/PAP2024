@@ -22,11 +22,15 @@ public interface IControladorActividad {
 
     public List<dataTypeActividad> listarTodas() throws ActividadNoExisteException;
     
-    public List<dataTypeActividad> listarAgregadas() throws ActividadNoExisteException;
+    public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException;
 
     public List<dataTypeActividad> listarActividadesPorEntrenador(String nicknameEntrenador) throws UsuarioNoExisteException;
     
     public dataTypeUsuario obtenerEntrenadorDeLaActividadPorNickname(String nickname) throws UsuarioRepetidoException;
     
+    public void activarActividad(Actividad x);
     
+    public List<dataTypeActividad> getConfirmadas() throws ActividadNoExisteException;
+    
+    public void rechazarActividad(Actividad x);
 }
