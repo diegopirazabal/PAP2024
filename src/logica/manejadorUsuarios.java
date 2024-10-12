@@ -52,7 +52,8 @@ public class manejadorUsuarios {
                             usuario.getApellido(),
                             usuario.getEmail(),
                             usuario.getFNacimiento(),
-                            usuario.getTipo()))
+                            usuario.getTipo(),
+                            usuario.getContrasena()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +96,8 @@ public class manejadorUsuarios {
                       entrenador.getApellido(),
                       entrenador.getEmail(),
                       entrenador.getFNacimiento(),
-                      entrenador.getTipo()
+                      entrenador.getTipo(),
+                      entrenador.getContrasena()
               );
           }
           return null;
@@ -121,11 +123,39 @@ public class manejadorUsuarios {
                         usuario.getApellido(),
                         usuario.getEmail(),
                         usuario.getFNacimiento(),
-                        usuario.getTipo()
+                        usuario.getTipo(),
+                        usuario.getContrasena()
                 );
                 return user;
             }
             throw new UsuarioNoExisteException("El usuario con nickname " + nickname + " no existe.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public dataTypeUsuario buscarUsuarioPorEmail(String email) {
+        try {
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
+                    .setParameter("email", email)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (usuario != null) {
+                dataTypeUsuario user =  new dataTypeUsuario(
+                        usuario.getNickname(),
+                        usuario.getNombre(),
+                        usuario.getApellido(),
+                        usuario.getEmail(),
+                        usuario.getFNacimiento(),
+                        usuario.getTipo(),
+                        usuario.getContrasena()
+                );
+                return user;
+            }
+            throw new UsuarioNoExisteException("El usuario con email " + email + " no existe.");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -163,7 +193,8 @@ public class manejadorUsuarios {
                             entrenador.getApellido(),
                             entrenador.getEmail(),
                             entrenador.getFNacimiento(),
-                            entrenador.getTipo())) 
+                            entrenador.getTipo(),
+                            entrenador.getContrasena())) 
                     .collect(Collectors.toList());
             
         } catch (Exception e) {
@@ -182,7 +213,8 @@ public class manejadorUsuarios {
                             deportista.getApellido(),
                             deportista.getEmail(),
                             deportista.getFNacimiento(),
-                            deportista.getTipo()))
+                            deportista.getTipo(),
+                            deportista.getContrasena()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();

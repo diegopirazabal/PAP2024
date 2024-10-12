@@ -10,16 +10,26 @@ public class dataTypeUsuario {
     private String email;
     private Date fechaNacimiento;
     private Boolean esEntrenador;
+    private String contrasena;
 
-    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador) {
+    public dataTypeUsuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, String contrasena) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.esEntrenador = esEntrenador;
+        this.contrasena = contrasena;
     }
 
+    public void setContrasena(String x) {
+    	this.contrasena = x;
+    }
+    
+    public String getContrasena() {
+    	return contrasena;
+    }
+    
     public Boolean getTipo() {
     	return esEntrenador;
     }

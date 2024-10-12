@@ -29,7 +29,7 @@ public abstract class Usuario {
     private Date fechaNacimiento;
     
     @Column (name = "Contrasena", nullable = false, length = 20)
-    private char[] contrasena;
+    private String contrasena;
     
     @Column (name = "Entrenador", nullable = false)
 	protected Boolean esEntrenador;
@@ -37,7 +37,7 @@ public abstract class Usuario {
     
 public Usuario(){};
 
-public Usuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena) {
+public Usuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, String contrasena) {
     this.nickname = nickname;
     this.nombre = nombre;
     this.apellido = apellido;
@@ -87,11 +87,11 @@ public Usuario(String nickname, String nombre, String apellido, String email, Da
 	    this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	public void setContrasena(char[] contrasena){
+	public void setContrasena(String contrasena){
 	    this.contrasena = contrasena;
 	}
 	
-	public char[] getContrasena(){
+	public String getContrasena(){
 	    return contrasena;
 	}
 

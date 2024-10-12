@@ -27,7 +27,7 @@ public class Entrenador extends Usuario {
     private Boolean esEntrenador = true;
     public Entrenador() {};
     
-    public Entrenador(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, char[] contrasena, String disciplina, String linkSitioWeb) {
+    public Entrenador(String nickname, String nombre, String apellido, String email, Date fechaNacimiento, Boolean esEntrenador, String contrasena, String disciplina, String linkSitioWeb) {
         super(nickname, nombre, apellido, email, fechaNacimiento, esEntrenador, contrasena);
         this.disciplina = disciplina;
         this.linkSitioWeb = linkSitioWeb;

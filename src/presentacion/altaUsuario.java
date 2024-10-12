@@ -189,7 +189,7 @@ public class altaUsuario extends JInternalFrame {
         String apellidoU = this.textFieldApellido.getText();
         String nick = this.textFieldNick.getText();
         String mail = this.textFieldEmail.getText();
-        char[] contrasena = this.passwordField.getPassword();
+        String contrasena = this.passwordField.getText();
         Date fechaNac = this.fechaNacimiento.getDate(); // Obtén la fecha seleccionada
         
         // Verifica si el usuario ha seleccionado "Entrenador" o "Deportista"

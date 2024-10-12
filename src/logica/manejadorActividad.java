@@ -176,7 +176,8 @@ public class manejadorActividad {
                         entrenador.getApellido(),
                         entrenador.getEmail(),
                         entrenador.getFNacimiento(),
-                        entrenador.getTipo()
+                        entrenador.getTipo(),
+                        entrenador.getContrasena()
                 );
             }
             return null;
