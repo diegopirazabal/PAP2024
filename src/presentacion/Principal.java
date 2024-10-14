@@ -226,7 +226,6 @@ public class Principal {
 	            public void actionPerformed(ActionEvent e) {
 	            	insClaInternalFrame.setVisible(true);
 	            	insClaInternalFrame.cargarActividades();
-	            	insClaInternalFrame.cargarClases();
 	            }
 	        });
 	        menuClase.add(mntmInscripcionClase);

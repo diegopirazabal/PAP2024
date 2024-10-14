@@ -28,4 +28,8 @@ public class Fabrica {
 	    public IControladorClase getIcontroladorClase() {
 	    	return new ControladorClase();
 	    }
+	    
+	    public IControladorInscripciones getIcontroladorInscripciones() {
+	    	return new ControladorInscripciones();
+	    }
 }

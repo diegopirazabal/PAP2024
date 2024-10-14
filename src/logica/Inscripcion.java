@@ -20,12 +20,6 @@ public class Inscripcion {
     @Column(name = "Fecha", nullable = false)
     private Date fechaInscripcion;
 
-    @Column(name = "CantidadDeportistas", nullable = false)
-    private int cantidadDeportistas;
-
-    @Column(name = "Costo", nullable = false)
-    private double costo;
-
     @ManyToOne
     private Clase clase;
 
@@ -34,10 +28,8 @@ public class Inscripcion {
 
     public Inscripcion() {}
 
-    public Inscripcion(Date fechaInscripcion, int cantidadDeportistas, double costo, Clase clase, Deportista deportista) {
+    public Inscripcion(Date fechaInscripcion,  Clase clase, Deportista deportista) {
         this.fechaInscripcion = fechaInscripcion;
-        this.cantidadDeportistas = cantidadDeportistas;
-        this.costo = costo;
         this.clase = clase;
         this.deportista = deportista;
     }
@@ -48,22 +40,6 @@ public class Inscripcion {
 
     public void setFechaInscripcion(Date fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
-    }
-
-    public int getCantidadDeportistas() {
-        return cantidadDeportistas;
-    }
-
-    public void setCantidadDeportistas(int cantidadDeportistas) {
-        this.cantidadDeportistas = cantidadDeportistas;
-    }
-
-    public double getCosto() {
-        return costo;
-    }
-
-    public void setCosto(double costo) {
-        this.costo = costo;
     }
 
     public Clase getClase() {

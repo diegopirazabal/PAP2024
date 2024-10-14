@@ -28,8 +28,7 @@ public class manejadorInscripciones {
     private List<Inscripcion> inscripciones;//Reemplazar esto por consultas sql en buscarInscripcion
 
 
-    public void agregarInscripcion(Inscripcion inscripcion, Clase clase) {// repensar esta funcion y checkear que funcione
-    	clase.getInscripciones().add(inscripcion);
+    public void agregarInscripcionAClase(Inscripcion inscripcion) {// repensar esta funcion y checkear que funcione
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();

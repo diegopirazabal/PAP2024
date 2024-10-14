@@ -121,9 +121,7 @@ public class AltaClase extends JInternalFrame{
 	                  String imagen = "";
 					  Clase clase = new Clase(nombre, fecha, hora, lugar, imagen , fechaAlta, cupos, actividad);
 					  dataTypeActividad seleccionada = (dataTypeActividad) comboBoxActividades.getSelectedItem();
-					  //controlCla.agregarClase(clase);
-	                 
-	                  
+       
 	                  JOptionPane.showMessageDialog(null, "Actividad registrada exitosamente.");
 	                  //limpiarCampos();
 	              } catch (Exception ex) {

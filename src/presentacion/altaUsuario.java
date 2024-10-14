@@ -153,29 +153,29 @@ public class altaUsuario extends JInternalFrame {
         getContentPane().add(rdbtnEsEntrenador);
         grupoRoles.add(rdbtnEsEntrenador);
         
-                btnAceptar = new JButton("Aceptar");
-                btnAceptar.setBounds(312, 281, 143, 21);
-                btnAceptar.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent arg0) {
-                        cmdRegistroUsuarioActionPerformed(arg0);
-                    }
-                });
+        btnAceptar = new JButton("Aceptar");
+        btnAceptar.setBounds(312, 281, 143, 21);
+      	btnAceptar.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent arg0) {
+           cmdRegistroUsuarioActionPerformed(arg0);
+        }
+        });
                         
-                                rdbtnEsDeportista = new JRadioButton("Deportista");
-                                rdbtnEsDeportista.setBounds(259, 221, 71, 21);
-                                getContentPane().add(rdbtnEsDeportista);
-                                grupoRoles.add(rdbtnEsDeportista);
-                        getContentPane().add(btnAceptar);
+        rdbtnEsDeportista = new JRadioButton("Deportista");
+        rdbtnEsDeportista.setBounds(259, 221, 71, 21);
+        getContentPane().add(rdbtnEsDeportista);
+        grupoRoles.add(rdbtnEsDeportista);
+        getContentPane().add(btnAceptar);
                                 
-                                        btnCancelar = new JButton("Cancelar");
-                                        btnCancelar.setBounds(159, 281, 143, 21);
-                                        btnCancelar.addActionListener(new ActionListener() {
-                                            public void actionPerformed(ActionEvent e) {
-                                                limpiarFormulario();
-                                                setVisible(false);
-                                            }
-                                        });
-                                        getContentPane().add(btnCancelar);
+       btnCancelar = new JButton("Cancelar");
+       btnCancelar.setBounds(159, 281, 143, 21);
+       btnCancelar.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             limpiarFormulario();
+             setVisible(false);
+         }
+         });
+      getContentPane().add(btnCancelar);
     }
 
     // Este método es invocado al querer registrar un usuario, funcionalidad
