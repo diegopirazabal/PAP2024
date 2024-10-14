@@ -15,17 +15,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dtos.dataTypeActividad;
-import dtos.dataTypeClase;
 import dtos.dataTypeUsuario;
 import excepciones.UsuarioNoExisteException;
 import logica.Fabrica;
 import logica.IControladorActividad;
+import logica.IControladorClase;
 import logica.IControladorUsuario;
+import logica.Inscripcion;
 
 public class ListarUsuarios extends JInternalFrame {
 
     private IControladorUsuario controlUsr = Fabrica.getInstance().getIControladorUsuario();
     private IControladorActividad controlAct = Fabrica.getInstance().getIControladorActividad();
+    private IControladorClase controlCla = Fabrica.getInstance().getIcontroladorClase();
     private JComboBox<dataTypeUsuario> comboBoxUsuarios;
     private JComboBox<dataTypeActividad> comboBoxActividades;
     private JLabel lblUsuarios;
@@ -66,6 +68,8 @@ public class ListarUsuarios extends JInternalFrame {
         comboBoxUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dataTypeUsuario seleccionado = (dataTypeUsuario) comboBoxUsuarios.getSelectedItem();
+                List<Inscripcion> insc = controlCla.listarInscripcionesPorClase(seleccionado.getNickname());
+                System.out.println("FLAG --------- las inscripciones de la clase son :" + insc);
                 if (seleccionado != null) {
                 	cargarActividades2(seleccionado);
                     completarCampos(seleccionado);

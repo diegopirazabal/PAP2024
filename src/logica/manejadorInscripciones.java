@@ -16,7 +16,7 @@ public class manejadorInscripciones {
 
     public manejadorInscripciones() {
         this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
-        this.em = emf.createEntityManager();
+        this.em = emf.createEntityManager(); 
     }
 
     public static manejadorInscripciones getinstance() {
@@ -29,6 +29,7 @@ public class manejadorInscripciones {
 
 
     public void agregarInscripcionAClase(Inscripcion inscripcion) {// repensar esta funcion y checkear que funcione
+    	System.out.println("\n\nLlegue al manejador de inscripciones.");
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();

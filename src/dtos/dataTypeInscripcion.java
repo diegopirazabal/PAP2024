@@ -44,5 +44,6 @@ public class dataTypeInscripcion {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	 
+	
+	
 }

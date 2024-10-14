@@ -12,7 +12,7 @@ public class ControladorClase implements IControladorClase{
 	
 	public ControladorClase() {
         manejador = manejador.getinstance(); 
-	}
+	} 
 	
 	public void crearClase(String nombre, Date fecha,String hora, String lugar, Date fechaAlta, String imagen, int cupo, Actividad actividad) throws ClaseRepetidaException {
         Clase clase = new Clase(nombre, fecha, hora, lugar, imagen, fechaAlta, cupo, actividad);
@@ -23,7 +23,15 @@ public class ControladorClase implements IControladorClase{
 	 public List<dataTypeClase> listarTodas() throws ClaseNoExisteException {
 	        return manejador.getClases();
 	 }
-	    
+	 
+	 public List<Inscripcion> listarInscripcionesPorClase(String deportista){
+		return manejador.listarInscripcionesPorClase(deportista);
+	 }
+	 
+	 public dataTypeClase obtenerClasePorNombre2(String nombre) {
+		 return manejador.obtenerClasePorNombre2(nombre);
+	 };
+	 
 	 public Clase obtenerClase(String nombre) {
 		 return manejador.obtenerClasePorNombre(nombre);
 	 }
@@ -41,7 +49,7 @@ public class ControladorClase implements IControladorClase{
      }
      
  	public List<dataTypeClase> listarClases(String nombre) throws ClaseNoExisteException {
- 		return manejador.getClases();
+ 		return manejador.getClases(); 
  	}
 
 	@Override

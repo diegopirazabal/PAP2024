@@ -111,6 +111,36 @@ public class manejadorUsuarios {
       }
   }
     
+    public dataTypeUsuario obtenerDeportistaPorNickname(String nickname) throws UsuarioNoExisteException {
+    	System.out.println("AFUERA DEL TRY DE OBTENERDEPORTISTAPORNICKNAME");
+        try {
+        	System.out.println("ENTRRE AL TRY DE OBTENERDEPORTISTAPORNICKNAME");
+
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nickname", Usuario.class)
+                                .setParameter("nickname", nickname)
+                                .getResultStream()
+                                .findFirst()
+                                .orElse(null);
+            
+            if (usuario instanceof Deportista) {
+                Deportista deportista = (Deportista) usuario;
+                return new dataTypeUsuario(
+                		deportista.getNickname(),
+                		deportista.getNombre(),
+                		deportista.getApellido(),
+                		deportista.getEmail(),
+                		deportista.getFNacimiento(),
+                		deportista.getTipo(),
+                		deportista.getContrasena()
+                );
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     
     public dataTypeUsuario buscarUsuarioPorNickname(String nickname) {
         try {

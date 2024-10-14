@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -22,6 +21,7 @@ import logica.Actividad;
 import logica.Fabrica;
 import logica.IControladorActividad;
 import logica.IControladorClase;
+import logica.Inscripcion;
 
 public class consultaClase extends JInternalFrame {
 	private JTextField textFieldLugar;
@@ -127,6 +127,7 @@ public class consultaClase extends JInternalFrame {
         try {
             List<dataTypeActividad> actividades = controlAct.listarTodas();
             model = new DefaultComboBoxModel<dataTypeActividad>();
+            
             for (dataTypeActividad actividad : actividades) {
                 model.addElement(actividad);
             }
@@ -138,6 +139,7 @@ public class consultaClase extends JInternalFrame {
 	
 	private void completarCampos(dataTypeClase clase) {
         if (clase != null) {
+        	
         	textFieldLugar.setText(clase.getLugar());
         	String k = String.valueOf(clase.getCupo());
         	textFieldCupos.setText(k);

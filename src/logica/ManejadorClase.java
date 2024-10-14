@@ -1,10 +1,10 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dtos.dataTypeActividad;
 import dtos.dataTypeClase;
 import excepciones.ClaseNoExisteException;
 import excepciones.ClaseRepetidaException;
@@ -27,7 +27,7 @@ public class ManejadorClase {
         if (instancia == null)
             instancia = new ManejadorClase();
         return instancia;
-    }
+    } 
 
     Clase obtenerClasePorNombre(String nombre) {
         try {
@@ -35,6 +35,40 @@ public class ManejadorClase {
                                            .setParameter("nombre", nombre)
                                            .getResultList();
             return resultados.isEmpty() ? null : resultados.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    List<Inscripcion> listarInscripcionesPorClase(String deportista){
+    	try {
+            return em.createQuery(
+                    "SELECT i FROM Inscripcion i WHERE i.deportista.nickname = :nickDeportista", Inscripcion.class)
+                    .setParameter("nickDeportista", deportista)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    dataTypeClase obtenerClasePorNombre2(String nombre) {
+        try {
+            List<Clase> resultados = em.createQuery("SELECT c FROM Clase c WHERE c.nombre = :nombre", Clase.class)
+                                           .setParameter("nombre", nombre)
+                                           .getResultList();
+            Clase a = resultados.get(0);
+            dataTypeClase result = new dataTypeClase(
+                            a.getFecha(),
+                            a.getNombre(),
+                            a.getHora(),
+                            a.getLugar(),
+                            a.getImagen(),
+                            a.getFechaAlta(),
+                            a.getCupo());
+            return result;
+                    
         } catch (Exception e) {
             e.printStackTrace();
             return null;

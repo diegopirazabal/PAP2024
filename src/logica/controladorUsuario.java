@@ -27,6 +27,10 @@ public class controladorUsuario implements IControladorUsuario{
     	return manejador.buscarUsuarioPorNickname(nickname);
     }
     
+    public dataTypeUsuario obtenerDeportistaPorNickname(String nickname) throws UsuarioNoExisteException{
+    	return manejador.obtenerDeportistaPorNickname(nickname);
+    }
+    
     public dataTypeUsuario buscarUsuarioPorEmail(String email) throws UsuarioNoExisteException{
     	return manejador.buscarUsuarioPorEmail(email);
     }

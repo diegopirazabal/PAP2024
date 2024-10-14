@@ -139,18 +139,19 @@ public class InscripcionClase extends JInternalFrame{
 	    getContentPane().add(btnNewButton);
 
 	    JButton btnNewButton_1 = new JButton("Aceptar");
-	    btnNewButton_1.setBounds(331, 348, 119, 30);
+	    btnNewButton_1.setBounds(331, 331, 119, 30);
 	    getContentPane().add(btnNewButton_1);
 	    cargarDeportistas();
-	    btnNewButton_1.addActionListener(new ActionListener() {
+	    btnNewButton_1.addActionListener(new ActionListener() { 
 	    	public void actionPerformed(ActionEvent e) {
 	    		try {
-	    			Deportista Depor =  (Deportista) comboBoxDeportistas.getSelectedItem();
-	    			Clase Cla = (Clase) comboBoxClases.getSelectedItem();
+	    			dataTypeUsuario Depor =  (dataTypeUsuario) comboBoxDeportistas.getSelectedItem();
+	    			System.out.println("Data Type deportista: " + Depor + "\n\n");
+	    			dataTypeClase Cla = (dataTypeClase) comboBoxClases.getSelectedItem();
 	    			Date fecha = (Date) new Date();
-	                Date fechaAlta = fecha;
 	                if(chequearCupos(Cla)) { 
-	                	ControlIns.agregarInscripcionAClase(Depor, Cla, fechaAlta);
+	                	System.out.println("Voy a agregar la inscripcion...\n\n");
+	                	ControlIns.agregarInscripcionAClase(Depor.getNickname(), Cla.getNombre(), fecha);
 	                }
 	                else {
 	                	
@@ -224,7 +225,7 @@ public void cargarClases2(dataTypeActividad actividad) {
     }
 }
 
-private boolean chequearCupos(Clase clase) throws ClaseSinCupoException{
+private boolean chequearCupos(dataTypeClase clase) throws ClaseSinCupoException{
 	if(clase.getCupo() <= 0) {
 		throw new ClaseSinCupoException("La clase con nombre " + clase.getNombre() + " no tiene cupos disponibles.");
 	}

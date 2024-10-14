@@ -26,4 +26,6 @@ public interface IControladorUsuario {
 	public List<dataTypeUsuario> listarEntrenadores() throws UsuarioNoExisteException;
 	
 	public dataTypeUsuario buscarUsuarioPorEmail(String email) throws UsuarioNoExisteException;
+	
+	public dataTypeUsuario obtenerDeportistaPorNickname(String nickname) throws UsuarioNoExisteException;
 }

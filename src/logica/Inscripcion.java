@@ -57,4 +57,9 @@ public class Inscripcion {
     public void setDeportista(Deportista deportista) {
         this.deportista = deportista;
     }
+    
+    @Override
+	public String toString() {
+        return clase.getNombre() + " - Fecha Alta: " + this.fechaInscripcion; // Personaliza esto según lo que quieras mostrar
+    }
 }

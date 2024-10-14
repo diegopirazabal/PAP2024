@@ -17,8 +17,8 @@ public class ControladorActividad implements IControladorActividad {
     private manejadorUsuarios manejadorU;
     private ManejadorClase manejadorC;
     public ControladorActividad() {
-        manejador = manejadorActividad.getinstance();
-    }
+        manejador = manejadorActividad.getinstance(); 
+    } 
 
     public void crearActividad(String nombre, String descripcion, int duracion, double costo, String lugar, Date fechaAlta, String imagen, String nicknameEntrenador) throws ActividadRepetidaException, UsuarioNoExisteException, UsuarioRepetidoException {
         dataTypeUsuario dtEntrenador = manejador.obtenerEntrenadorDeLaActividadPorNickname(nicknameEntrenador);

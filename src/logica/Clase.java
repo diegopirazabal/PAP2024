@@ -69,7 +69,11 @@ public class Clase {
 	public String getNombre() {
 		return nombre;
 	}
-
+	
+	public void setNombre(String x) {
+		this.nombre =x;
+	}
+	
 	public Date getFecha() {
 		return fecha;
 	}

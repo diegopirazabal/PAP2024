@@ -25,4 +25,8 @@ public interface IControladorClase {
 	public void agregarClase(Clase clase) throws ClaseRepetidaException;
     
 	public List<dataTypeClase> listarClasesPorActividad(String nombreActividad) throws ClaseNoExisteException;
+	
+	dataTypeClase obtenerClasePorNombre2(String nombre);
+	
+	List<Inscripcion> listarInscripcionesPorClase(String deportista);
 }
