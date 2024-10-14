@@ -275,6 +275,30 @@ public class manejadorActividad {
             return new ArrayList<>();
         }
     }
+    public void modificarActividad(String nombre, String descripcion, int duracion, double costo, String lugar) throws ActividadNoExisteException {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            // Buscar la actividad por nombre
+            Actividad actividad = obtenerActividadPorNombre(nombre);
+            if (actividad == null) {
+                throw new ActividadNoExisteException("La actividad con nombre " + nombre + " no existe.");
+            }
+
+            // Actualizar los campos de la actividad
+            actividad.setDescripcion(descripcion);
+            actividad.setDuracion(duracion);
+            actividad.setCosto(costo);
+            actividad.setLugar(lugar);
+            em.merge(actividad); // Actualiza la actividad en la base de datos
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback(); // Hacer rollback si hay un error
+            }
+            e.printStackTrace();
+        }
+    }
     
     public void cerrar() {
         if (em.isOpen()) em.close();

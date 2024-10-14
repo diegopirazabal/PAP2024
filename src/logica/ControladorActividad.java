@@ -86,6 +86,9 @@ public class ControladorActividad implements IControladorActividad {
     public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException {
         return manejador.getAgregadas();
     }
-	
+    
+    public void modificarActividad(String nombre, String descripcion, int duracion, double costo, String lugar) throws ActividadNoExisteException, UsuarioNoExisteException {
+        manejador.modificarActividad(nombre, descripcion, duracion, costo, lugar);
+    }
 
 }

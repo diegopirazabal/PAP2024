@@ -35,4 +35,6 @@ public interface IControladorActividad {
     public void rechazarActividad(Actividad x);
     
     public List<dataTypeActividad> obtenerActividadesConfirmadasPorEntrenador(String nickname);
+    
+    void modificarActividad(String nombre, String descripcion, int duracion, double costo, String lugar) throws ActividadNoExisteException, UsuarioNoExisteException;
 }
