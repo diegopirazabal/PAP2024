@@ -13,7 +13,7 @@
         <properties>
 			<property name="jakarta.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 <!-- 			<property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:file:database/db;shutdown=true" /> -->
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:file:C:\Users\juanp\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0"/>
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:file:C:\Users\diego\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0"/>
 			<property name="jakarta.persistence.jdbc.user" value="sa" />
 			<property name="jakarta.persistence.jdbc.password" value="" />
 			<!-- Configuración de generación del esquema -->

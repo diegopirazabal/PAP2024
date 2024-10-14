@@ -85,7 +85,6 @@ public class InscripcionClase extends JInternalFrame{
 	    		dataTypeClase seleccionadaClase = (dataTypeClase) comboBoxClases.getSelectedItem();
                 if (seleccionadaClase != null) {
                 	completarCampos(seleccionadaClase);
-                    completarCupos(seleccionadaClase);
                 }
 	    	}
 	    });
@@ -234,9 +233,5 @@ private boolean chequearCupos(Clase clase) throws ClaseSinCupoException{
 	}
 }
 
-private void completarCupos(dataTypeClase clase) {
-	String x = String.valueOf(clase.getCupo());
-	textFieldCupos.setText(x);
-}
 
 }
