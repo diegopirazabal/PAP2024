@@ -180,17 +180,4 @@ public class consultaClase extends JInternalFrame {
 	    }
 	}
 
-//  public void cargarClases(dataTypeUsuario x) {
-//  DefaultComboBoxModel<dataTypeClase> model;
-//  try {
-//      List<dataTypeClase> clases = controlCla.listarClasesPorDeportista(x.getNickname());
-//      model = new DefaultComboBoxModel<dataTypeClase>();
-//      for (dataTypeClase clase : clases) {
-//          model.addElement(clase);
-//      }
-//      comboBoxClases.setModel(model);
-//  } catch (ClaseNoExisteException e) {
-//      JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//  }
-//}
 }

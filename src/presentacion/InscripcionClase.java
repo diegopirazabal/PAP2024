@@ -124,6 +124,7 @@ public class InscripcionClase extends JInternalFrame{
 	    textFieldCupos.setEditable(false);
 	    textFieldCupos.setBounds(200, 227, 250, 25);  
 	    getContentPane().add(textFieldCupos);
+	    textFieldCupos.setColumns(10);
 
 	    JLabel lblNewLabel_5 = new JLabel("Lugar");
 	    lblNewLabel_5.setBounds(38, 102, 150, 20);
@@ -203,9 +204,9 @@ private void completarCampos(dataTypeClase clase) {
         String x = String.valueOf(clase.getCupo());
         textFieldDuracion.setText(x);
         textFieldCosto.setText(clase.getHora());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM");
-        String fechaString = formato.format(textFieldCupos);
-        textFieldCupos.setText(fechaString);
+        SimpleDateFormat sm = new SimpleDateFormat("MM-dd-yyyy");
+    	String f = sm.format(clase.getFecha());
+        textFieldCupos.setText(f);
     }
 }
 

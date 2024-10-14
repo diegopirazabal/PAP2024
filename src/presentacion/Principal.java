@@ -226,6 +226,7 @@ public class Principal {
 	            public void actionPerformed(ActionEvent e) {
 	            	insClaInternalFrame.setVisible(true);
 	            	insClaInternalFrame.cargarActividades();
+	            	insClaInternalFrame.cargarDeportistas();
 	            }
 	        });
 	        menuClase.add(mntmInscripcionClase);
