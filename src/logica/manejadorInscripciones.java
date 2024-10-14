@@ -3,15 +3,42 @@ package logica;
 import java.util.ArrayList;
 import java.util.List;
 
+import excepciones.ClaseRepetidaException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
 public class manejadorInscripciones {
-    private List<Inscripcion> inscripciones;
+	private EntityManagerFactory emf;
+    private EntityManager em;
+    private static manejadorInscripciones instancia = null;
 
     public manejadorInscripciones() {
-        inscripciones = new ArrayList<>();
+        this.emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
+        this.em = emf.createEntityManager();
     }
 
-    public void agregarInscripcion(Inscripcion inscripcion) {
-        inscripciones.add(inscripcion);
+    public static manejadorInscripciones getinstance() {
+        if (instancia == null)
+            instancia = new manejadorInscripciones();
+        return instancia;
+    }
+	
+    private List<Inscripcion> inscripciones;//Reemplazar esto por consultas sql en buscarInscripcion
+
+
+    public void agregarInscripcion(Inscripcion inscripcion, Clase clase) {// repensar esta funcion y checkear que funcione
+    	clase.getInscripciones().add(inscripcion);
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(inscripcion);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) transaction.rollback();
+            e.printStackTrace();
+        }
     }
 
     public List<Inscripcion> buscarInscripcionesPorClase(Clase clase) {

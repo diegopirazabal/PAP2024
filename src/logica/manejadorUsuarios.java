@@ -65,7 +65,11 @@ public class manejadorUsuarios {
     public void agregar(Usuario usuario) throws UsuarioRepetidoException {
         Usuario usuarioExistente = obtenerUsuarioPorNickname(usuario.getNickname());
         if (usuarioExistente != null) {
-            throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() + " ya existe.");
+            throw new UsuarioRepetidoException("El usuario con ese nickname " + usuario.getNickname() + " ya existe.");
+        }
+        dataTypeUsuario usuarioExistente2 = buscarUsuarioPorEmail(usuario.getEmail());
+        if (usuarioExistente2 != null) {
+            throw new UsuarioRepetidoException("El usuario con ese correo " + usuario.getEmail() + " ya existe.");
         }
 
         // Persistir el nuevo usuario

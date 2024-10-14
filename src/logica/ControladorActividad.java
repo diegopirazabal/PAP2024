@@ -35,6 +35,11 @@ public class ControladorActividad implements IControladorActividad {
     }
     
     @Override
+    public List<dataTypeActividad> obtenerActividadesConfirmadasPorEntrenador(String nickname) {
+    	return manejador.obtenerActividadesConfirmadasPorEntrenador(nickname);
+    }
+    
+    @Override
     public List<dataTypeActividad> getConfirmadas() throws ActividadNoExisteException{
     	return manejador.getConfirmadas();
     }

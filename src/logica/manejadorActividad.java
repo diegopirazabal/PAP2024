@@ -211,6 +211,29 @@ public class manejadorActividad {
         }
     }
     
+    public List<dataTypeActividad> obtenerActividadesConfirmadasPorEntrenador(String nickname) {
+        try {
+            List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.entrenador.nickname = :entrenadorId AND a.estado = true", Actividad.class)
+                    .setParameter("entrenadorId", nickname)
+                    .getResultList();
+
+            return actividades.stream()
+                    .map(actividad -> new dataTypeActividad(
+                            actividad.getNombre(),
+                            actividad.getDescripcion(),
+                            actividad.getDuracion(),
+                            actividad.getCosto(),
+                            actividad.getLugar(),
+                            actividad.getFechaAlta(),
+                            actividad.getImagen(),
+                            actividad.getEntrenador()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
     public List<dataTypeActividad> getAgregadas() throws ActividadNoExisteException {
         try {
             List<Actividad> actividades = em.createQuery("SELECT a FROM Actividad a WHERE a.estado = null", Actividad.class).getResultList();

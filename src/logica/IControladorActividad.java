@@ -33,4 +33,6 @@ public interface IControladorActividad {
     public List<dataTypeActividad> getConfirmadas() throws ActividadNoExisteException;
     
     public void rechazarActividad(Actividad x);
+    
+    public List<dataTypeActividad> obtenerActividadesConfirmadasPorEntrenador(String nickname);
 }
