@@ -28,4 +28,6 @@ public interface IControladorUsuario {
 	public dataTypeUsuario buscarUsuarioPorEmail(String email) throws UsuarioNoExisteException;
 	
 	public dataTypeUsuario obtenerDeportistaPorNickname(String nickname) throws UsuarioNoExisteException;
+	
+	public void editarNombreApellido(String nickname, String nuevoNombre, String nuevoApellido) throws UsuarioNoExisteException;
 }

@@ -39,6 +39,30 @@ public class manejadorUsuarios {
         }
     }    
     
+    public void editarNombreApellido(String nickname, String nuevoNombre, String nuevoApellido) throws UsuarioNoExisteException {
+        // Obtener el usuario por su nickname
+        Usuario usuarioExistente = obtenerUsuarioPorNickname(nickname);
+        
+        if (usuarioExistente == null) {
+            throw new UsuarioNoExisteException("No se encontró un usuario con el nickname: " + nickname);
+        }
+
+        // Actualizar el nombre y apellido
+        usuarioExistente.setNombre(nuevoNombre);
+        usuarioExistente.setApellido(nuevoApellido);
+
+        // Persistir los cambios en la base de datos
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();  // Iniciar la transacción
+            em.merge(usuarioExistente);  // Actualizar el usuario en la base de datos
+            transaction.commit();  // Confirmar los cambios
+        } catch (Exception e) {
+            if (transaction.isActive()) transaction.rollback();  // Revertir si hay algún error
+            e.printStackTrace();
+        }
+    }
+    
     public List<dataTypeUsuario> getUsuarios() {
         try {
             // Recuperar todos los usuarios desde la base de datos
