@@ -153,8 +153,9 @@ public class listarActividades extends JInternalFrame {
 	public void cargarActividades() {
         DefaultComboBoxModel<dataTypeActividad> model;
         try {
-            List<dataTypeActividad> actividades = controlAct.getConfirmadas();
+            List<dataTypeActividad> actividades = controlAct.listarTodas();
             model = new DefaultComboBoxModel<dataTypeActividad>();
+            
             for (dataTypeActividad actividad : actividades) {
                 model.addElement(actividad);
             }
