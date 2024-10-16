@@ -27,6 +27,10 @@ public class controladorUsuario implements IControladorUsuario{
     	return manejador.buscarUsuarioPorNickname(nickname);
     }
     
+    public void editarNombreApellido(String nickname, String nuevoNombre, String nuevoApellido) throws UsuarioNoExisteException {
+    	manejador.editarNombreApellido(nickname, nuevoNombre, nuevoApellido);
+    }
+    
     public dataTypeUsuario obtenerDeportistaPorNickname(String nickname) throws UsuarioNoExisteException{
     	return manejador.obtenerDeportistaPorNickname(nickname);
     }

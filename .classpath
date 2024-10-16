@@ -8,9 +8,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/eclipselink-4.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/hsqldb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/jakarta.persistence-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauro/Desktop/jars/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/eclipselink-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/jakarta.persistence-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Desktop/Dev/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
